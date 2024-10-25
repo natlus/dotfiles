@@ -1,0 +1,37 @@
+*.*
+
+# misc
+!.gitignore
+!readme.md
+phoenix/
+iterm2/
+configstore/
+bat/
+github-copilot/
+simple-update-notifier/
+yarn/
+
+# fish
+fish/fish_*
+!fish/functions/z.fish
+!fish/functions/c.fish
+!fish/functions/co.fish
+!fish/functions/gl.fish
+!fish/functions/gst.fish
+!fish/functions/prco.fish
+!fish/functions/proxyon.fish
+!fish/functions/proxyoff.fish
+!fish/fish_plugins
+
+# starship
+!starship.toml
+
+# karabiner
+!karabiner/karabiner.json
+
+# raycast
+raycast/
+
+# zed
+!zed/settings.json
+!zed/keymap.json
