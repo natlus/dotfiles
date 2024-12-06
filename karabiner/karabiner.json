@@ -1,122 +1,148 @@
 {
-    "global": { "show_in_menu_bar": false },
-    "profiles": [
-        {
-            "complex_modifications": {
-                "rules": [
-                    {
-                        "description": "Hyper Key (⌃⌥⇧⌘)",
-                        "manipulators": [
-                            {
-                                "description": "Caps Lock -> Hyper Key",
-                                "from": { "key_code": "caps_lock" },
-                                "to": [
-                                    {
-                                        "key_code": "left_shift",
-                                        "modifiers": ["left_command", "left_control", "left_option"]
-                                    }
-                                ],
-                                "to_if_alone": [{ "key_code": "escape" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Open -a 'Arc.app'",
-                                "from": {
-                                    "key_code": "b",
-                                    "modifiers": { "mandatory": ["left_command", "left_control", "left_shift", "left_option"] }
-                                },
-                                "to": [{ "shell_command": "open -a 'Arc.app'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Open -a 'Visual Studio Code.app'",
-                                "from": {
-                                    "key_code": "c",
-                                    "modifiers": { "mandatory": ["left_command", "left_control", "left_shift", "left_option"] }
-                                },
-                                "to": [{ "shell_command": "open -a 'Visual Studio Code.app'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Open -a 'Warp.app'",
-                                "from": {
-                                    "key_code": "t",
-                                    "modifiers": { "mandatory": ["left_command", "left_control", "left_shift", "left_option"] }
-                                },
-                                "to": [{ "shell_command": "open -a 'Warp.app'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Open -a 'Microsoft Teams.app'",
-                                "from": {
-                                    "key_code": "d",
-                                    "modifiers": { "mandatory": ["left_command", "left_control", "left_shift", "left_option"] }
-                                },
-                                "to": [{ "shell_command": "open -a 'Microsoft Teams.app'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Open -a 'Arc.app'",
-                                "from": {
-                                    "key_code": "s",
-                                    "modifiers": { "mandatory": ["left_command", "left_control", "left_shift", "left_option"] }
-                                },
-                                "to": [{ "shell_command": "open -a 'Arc.app'" }],
-                                "type": "basic"
-                            },
-                            {
-                                "description": "Open -a 'Figma.app'",
-                                "from": {
-                                    "key_code": "f",
-                                    "modifiers": { "mandatory": ["left_command", "left_control", "left_shift", "left_option"] }
-                                },
-                                "to": [{ "shell_command": "open -a 'Figma.app'" }],
-                                "type": "basic"
-                            }
-                        ]
-                    }
-                ]
-            },
-            "devices": [
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "product_id": 835,
-                        "vendor_id": 1452
-                    },
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "grave_accent_and_tilde" },
-                            "to": [{ "key_code": "non_us_backslash" }]
-                        },
-                        {
-                            "from": { "key_code": "non_us_backslash" },
-                            "to": [{ "key_code": "grave_accent_and_tilde" }]
-                        }
+  "global": { "show_in_menu_bar": false },
+  "profiles": [
+    {
+      "complex_modifications": {
+        "rules": [
+          {
+            "description": "Hyper Key (⌃⌥⇧⌘)",
+            "manipulators": [
+              {
+                "description": "Caps Lock -> Hyper Key",
+                "from": { "key_code": "caps_lock" },
+                "to": [
+                  {
+                    "key_code": "left_shift",
+                    "modifiers": ["left_command", "left_control", "left_option"]
+                  }
+                ],
+                "to_if_alone": [{ "key_code": "escape" }],
+                "type": "basic"
+              },
+              {
+                "description": "Open -a 'Arc.app'",
+                "from": {
+                  "key_code": "b",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_command",
+                      "left_control",
+                      "left_shift",
+                      "left_option"
                     ]
+                  }
                 },
-                {
-                    "identifiers": {
-                        "is_keyboard": true,
-                        "is_pointing_device": true,
-                        "product_id": 45919,
-                        "vendor_id": 1133
-                    },
-                    "ignore": false,
-                    "simple_modifications": [
-                        {
-                            "from": { "key_code": "left_command" },
-                            "to": [{ "key_code": "left_option" }]
-                        },
-                        {
-                            "from": { "key_code": "left_option" },
-                            "to": [{ "key_code": "left_command" }]
-                        }
-                    ],
-                    "treat_as_built_in_keyboard": true
-                }
-            ],
-            "name": "Default"
+                "to": [{ "shell_command": "open -a 'Arc.app'" }],
+                "type": "basic"
+              },
+              {
+                "description": "Open -a 'Visual Studio Code.app'",
+                "from": {
+                  "key_code": "c",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_command",
+                      "left_control",
+                      "left_shift",
+                      "left_option"
+                    ]
+                  }
+                },
+                "to": [{ "shell_command": "open -a 'Visual Studio Code.app'" }],
+                "type": "basic"
+              },
+              {
+                "description": "Open -a 'Warp.app'",
+                "from": {
+                  "key_code": "t",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_command",
+                      "left_control",
+                      "left_shift",
+                      "left_option"
+                    ]
+                  }
+                },
+                "to": [{ "shell_command": "open -a 'Warp.app'" }],
+                "type": "basic"
+              },
+              {
+                "description": "Open -a 'Microsoft Teams.app'",
+                "from": {
+                  "key_code": "d",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_command",
+                      "left_control",
+                      "left_shift",
+                      "left_option"
+                    ]
+                  }
+                },
+                "to": [{ "shell_command": "open -a 'Microsoft Teams.app'" }],
+                "type": "basic"
+              },
+              {
+                "description": "Open -a 'Arc.app'",
+                "from": {
+                  "key_code": "s",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_command",
+                      "left_control",
+                      "left_shift",
+                      "left_option"
+                    ]
+                  }
+                },
+                "to": [{ "shell_command": "open -a 'Arc.app'" }],
+                "type": "basic"
+              },
+              {
+                "description": "Open -a 'Figma.app'",
+                "from": {
+                  "key_code": "f",
+                  "modifiers": {
+                    "mandatory": [
+                      "left_command",
+                      "left_control",
+                      "left_shift",
+                      "left_option"
+                    ]
+                  }
+                },
+                "to": [{ "shell_command": "open -a 'Figma.app'" }],
+                "type": "basic"
+              }
+            ]
+          }
+        ]
+      },
+      "devices": [
+        {
+          "identifiers": {
+            "is_keyboard": true,
+            "is_pointing_device": true,
+            "product_id": 45919,
+            "vendor_id": 1133
+          },
+          "ignore": false,
+          "simple_modifications": [
+            {
+              "from": { "key_code": "left_command" },
+              "to": [{ "key_code": "left_option" }]
+            },
+            {
+              "from": { "key_code": "left_option" },
+              "to": [{ "key_code": "left_command" }]
+            }
+          ],
+          "treat_as_built_in_keyboard": true
         }
-    ]
+      ],
+      "name": "Default",
+      "virtual_hid_keyboard": { "keyboard_type_v2": "iso" }
+    }
+  ]
 }
