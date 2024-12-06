@@ -15,5 +15,6 @@ macos-titlebar-style = tabs
 window-padding-x = 12,12
 window-padding-y = 12,12
 
-keybind = global:shift+cmd+alt+c=toggle_quick_terminal
 window-save-state = always
+
+keybind = global:shift+cmd+alt+control+t=toggle_quick_terminal
