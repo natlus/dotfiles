@@ -7,7 +7,7 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
-  "vim_mode": true,
+  "vim_mode": false,
   "use_autoclose": true,
   "project_panel": {
     "dock": "right"
@@ -69,26 +69,26 @@
       }
     }
   },
-  "languages": {
-    "TypeScript": {
-      "language_servers": [
-        "deno",
-        "!typescript-language-server",
-        "!vtsls",
-        "!eslint"
-      ],
-      "formatter": "language_server"
-    },
-    "TSX": {
-      "language_servers": [
-        "deno",
-        "!typescript-language-server",
-        "!vtsls",
-        "!eslint"
-      ],
-      "formatter": "language_server"
-    }
-  },
+  // "languages": {
+  //   "TypeScript": {
+  //     "language_servers": [
+  //       "deno",
+  //       "!typescript-language-server",
+  //       "!vtsls",
+  //       "!eslint"
+  //     ],
+  //     "formatter": "language_server"
+  //   },
+  //   "TSX": {
+  //     "language_servers": [
+  //       "deno",
+  //       "!typescript-language-server",
+  //       "!vtsls",
+  //       "!eslint"
+  //     ],
+  //     "formatter": "language_server"
+  //   }
+  // },
 
   // vim
   "cursor_blink": true
