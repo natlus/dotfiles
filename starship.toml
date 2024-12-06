@@ -118,16 +118,16 @@ disabled = false
 
 [git_status]
 style = "bold italic #B1FCE5"
-format = "([ $ahead_behind$staged$modified$untracked$renamed$deleted$conflicted$stashed]($style))"
+format = "([ $ahead_behind $staged $modified $untracked $renamed $deleted $conflicted]($style))"
 # format = "([ $ahead_behind$modified$untracked$renamed$deleted$conflicted]($style))"
 conflicted = "[◪◦](italic bright-magenta)"
 ahead = "[▴[${count}](bold green)](italic green)"
 behind = "[▿[${count}](bold red)](italic red)"
-diverged = "[◇ ▴┤[${ahead_count}](regular white)│▿┤[${behind_count}](regular white)│](italic bright-magenta)"
+diverged = "[◇ ▴[${ahead_count}](regular white)▿[${behind_count}](regular white)](italic bright-magenta)"
 untracked = "[◌◦](italic bright-yellow)"
 stashed = "[◃◈](italic white)"
 modified = "[●◦](#F6C99F)"
-staged = "[▪┤[$count](bold white)│](italic bright-cyan)"
+staged = "[▪[$count](bold white)](italic bright-cyan)"
 # renamed = "[◎◦](italic bright-blue)"
 # deleted = "[✕](italic red)"
 
