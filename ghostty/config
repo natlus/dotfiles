@@ -7,6 +7,8 @@ font-feature = -dlig
 font-size = 15
 
 theme = vesper
+palette = 6=#ffffff
+palette = 14=#ffffff
 cursor-color = FFC799
 background-opacity = 0.85
 background-blur-radius = 20
