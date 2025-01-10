@@ -16,16 +16,15 @@ $status\
 symbol = ' '
 
 [custom.proxy]
-command = 'echo "(proxy)"'
-when = ''' test $http_proxy != "" '''
-# symbol = "󱞩"
+when = ''' test $https_proxy != "" '''
+symbol = ""
 style = "fg:#ffffff"
-format = '[$symbol $output]($style)'
+format = '[ $symbol]($style)'
 
 [character]
 format = "$symbol "
 success_symbol = "[▶](bold italic #F6C99F)"
-error_symbol = "[○](italic #F6C99F)"
+error_symbol = "[▶](italic #F6C99F)"
 vimcmd_symbol = "[■](italic dimmed #F6C99F)"
 # not supported in zsh
 vimcmd_replace_one_symbol = "◌"
@@ -118,7 +117,7 @@ disabled = false
 
 [git_status]
 style = "bold italic #B1FCE5"
-format = "([ $ahead_behind $staged $modified $untracked $renamed $deleted $conflicted]($style))"
+format = "([ $ahead_behind $staged $modified $untracked $conflicted]($style))"
 # format = "([ $ahead_behind$modified$untracked$renamed$deleted$conflicted]($style))"
 conflicted = "[◪◦](italic bright-magenta)"
 ahead = "[▴[${count}](bold green)](italic green)"
