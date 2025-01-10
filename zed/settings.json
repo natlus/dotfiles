@@ -7,6 +7,35 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "assistant": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-3-5-sonnet-latest"
+    },
+    "version": "2"
+  },
+  "ssh_connections": [
+    {
+      "host": "rp5",
+      "projects": [
+        {
+          "paths": [
+            "~/check-temps.ts"
+          ]
+        },
+        {
+          "paths": [
+            "~/monitor"
+          ]
+        },
+        {
+          "paths": [
+            "~/monitor.ts"
+          ]
+        }
+      ]
+    }
+  ],
   "vim_mode": false,
   "use_autoclose": true,
   "project_panel": {
