@@ -13,10 +13,14 @@ cursor-color = FFC799
 background-opacity = 0.85
 background-blur-radius = 20
 macos-titlebar-style = tabs
+macos-icon = xray
 
 window-padding-x = 12,12
 window-padding-y = 12,12
 
 window-save-state = always
 
-keybind = global:shift+cmd+alt+control+t=toggle_quick_terminal
+#keybind = global:shift+cmd+alt+control+t=toggle_quick_terminal
+
+auto-update = check
+auto-update-channel = stable
