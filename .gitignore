@@ -23,6 +23,10 @@ fish/fish_*
 !fish/functions/proxyoff.fish
 !fish/fish_plugins
 
+# nushell
+!nushell/config.nu
+!nushell/env.nu
+
 # starship
 !starship.toml
 

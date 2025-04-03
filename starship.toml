@@ -16,7 +16,7 @@ $status\
 symbol = ' '
 
 [custom.proxy]
-when = ''' test $https_proxy != "" '''
+when = ''' test $env.https_proxy != "" '''
 symbol = ""
 style = "fg:#ffffff"
 format = '[ $symbol]($style)'
