@@ -8,6 +8,11 @@
     }
   },
   {
+    "bindings": {
+      "cmd-shift-d": "git_panel::ToggleFocus"
+    }
+  },
+  {
     "context": "ProjectPanel",
     "bindings": {
       "cmd-left": "project_panel::CollapseAllEntries"
