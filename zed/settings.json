@@ -7,14 +7,32 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "edit_predictions": {
+    "mode": "eager",
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null
+    },
+    "enabled_in_text_threads": false
+  },
+  "features": {
+    "edit_prediction_provider": "copilot",
+    "copilot": true
+  },
   "git_panel": {
     "dock": "right"
   },
   "icon_theme": "Catppuccin Latte",
-  "assistant": {
+  "agent": {
+    "always_allow_tool_actions": true,
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "gemini-2.0-flash-001"
+    },
+    "dock": "left",
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-3-5-sonnet-latest"
+      "provider": "copilot_chat",
+      "model": "gemini-2.5-pro"
     },
     "version": "2"
   },
@@ -44,12 +62,34 @@
       "show": "never"
     }
   },
-  "ui_font_size": 19,
+  "ui_font_size": 18,
   "theme": "Vesper",
   "experimental.theme_overrides": {
-    "border": "#202020"
+    "border": "#262626",
+    "editor.indent_guide_active": "#565656",
+    "editor.active_wrap_guide": "#FFFFFF20",
+
+    // transparent Zed
+    "background.appearance": "blurred",
+    "scrollbar.thumb.background": "#343434DF",
+    "scrollbar.track.background": "#10101010",
+    "editor.active_line.background": "#10101009",
+    "search.match_background": "#FFFFFF30",
+    "ghost_element.background": "#10101010",
+    "ghost_element.hover": "#10101099",
+    "background": "#101010E0",
+    "editor.background": "#10101000",
+    "editor.gutter.background": "#10101008",
+    "title_bar.background": "#101010",
+    "toolbar.background": "#10101010",
+    "terminal.background": "#10101000",
+    "status_bar.background": "#101010DF",
+    "tab.active_background": "#D6D6D610",
+    "tab.inactive_background": "#10101010",
+    "tab_bar.background": "#10101008",
+    "panel.background": "#10101000"
   },
-  "buffer_font_size": 16,
+  "buffer_font_size": 15.0,
   "ui_font_family": "Geist",
   "buffer_font_family": "GeistMono Nerd Font",
   "terminal": {
@@ -70,7 +110,9 @@
   "tab_bar": {
     "show_nav_history_buttons": false
   },
-  "wrap_guides": [2, 120],
+  // "wrap_guides": [120, 120],
+  "preferred_line_length": 120,
+  "soft_wrap": "bounded",
   "file_scan_exclusions": [
     "**/.git",
     "**/.svn",
@@ -85,10 +127,6 @@
     ".vercel",
     "tsconfig.tsbuildinfo"
   ],
-  "features": {
-    "edit_prediction_provider": "zed",
-    "copilot": false
-  },
   "format_on_save": "on",
   "inlay_hints": {
     "enabled": false
@@ -97,8 +135,17 @@
     "breadcrumbs": true,
     "quick_actions": true
   },
-
+  // "formatter": {
+  //   "language_server": {
+  //     "name": "biome"
+  //   }
+  // },
   "lsp": {
+    // "biome": {
+    //   "settings": {
+    //     "require_config_file": true
+    //   }
+    // },
     "deno": {
       "settings": {
         "deno": {
@@ -107,26 +154,6 @@
       }
     }
   },
-  // "languages": {
-  //   "TypeScript": {
-  //     "language_servers": [
-  //       "deno",
-  //       "!typescript-language-server",
-  //       "!vtsls",
-  //       "!eslint"
-  //     ],
-  //     "formatter": "language_server"
-  //   },
-  //   "TSX": {
-  //     "language_servers": [
-  //       "deno",
-  //       "!typescript-language-server",
-  //       "!vtsls",
-  //       "!eslint"
-  //     ],
-  //     "formatter": "language_server"
-  //   }
-  // },
 
   // vim
   "cursor_blink": true

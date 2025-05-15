@@ -4,12 +4,17 @@
     "bindings": {
       "cmd-alt-right": "editor::SelectLargerSyntaxNode",
       "cmd-alt-left": "editor::SelectSmallerSyntaxNode",
-      "cmd-e": "editor::Format"
+      "cmd-e": "editor::Format",
+      "cmd-k": "assistant::InlineAssist"
     }
   },
   {
     "bindings": {
-      "cmd-shift-d": "git_panel::ToggleFocus"
+      "cmd-shift-d": "git_panel::ToggleFocus",
+      "ctrl-alt-right": "pane::SplitRight",
+      "ctrl-alt-left": "pane::SplitLeft",
+      "ctrl-alt-up": "pane::SplitUp",
+      "ctrl-alt-down": "pane::SplitDown"
     }
   },
   {
