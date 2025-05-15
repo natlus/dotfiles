@@ -24,7 +24,6 @@ $env.PROXY_URL = "http://proxy.sr.se:8080"
 $env.NO_PROXY = "*.local, 169.254/16, .sr.se, .dm.sr.se, .srse.dm.sr.se"
 $env.http_proxy = ""
 $env.https_proxy = ""
-$env.no_proxy = ""
 $env.RSYNC_PROXY = ""
 
 # PATH
@@ -39,11 +38,12 @@ alias co = git checkout
 alias gl = git log --oneline --decorate=no
 alias gst = git status
 alias prco = gh pr checkout
+alias rcli = redis-cli
 
 def --env proxyon [] {
     $env.http_proxy = $env.PROXY_URL
     $env.https_proxy = $env.PROXY_URL
-    $env.no_proxy = $env.NO_PROXY
+    # $env.no_proxy = "*.local, 169.254/16, .sr.se, .dm.sr.se, .srse.dm.sr.se"
     $env.RSYNC_PROXY = $env.PROXY_URL
 
     git config --global http.proxy $env.PROXY_URL
@@ -60,7 +60,7 @@ def --env proxyon [] {
 def --env proxyoff [] {
     $env.http_proxy = ""
     $env.https_proxy = ""
-    $env.no_proxy = ""
+    # $env.no_proxy = ""
     $env.RSYNC_PROXY = ""
 
     npm config --global delete proxy
@@ -77,3 +77,5 @@ def --env proxyoff [] {
 # Starship
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+
+fnm use
