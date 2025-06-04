@@ -10,7 +10,7 @@ theme = vesper
 palette = 6=#ffffff
 palette = 14=#ffffff
 cursor-color = FFC799
-background-opacity = 0.8
+background-opacity = 0.85
 background-blur-radius = 20
 macos-titlebar-style = tabs
 macos-icon = retro
@@ -23,4 +23,4 @@ window-save-state = always
 #keybind = global:shift+cmd+alt+control+t=toggle_quick_terminal
 
 auto-update = check
-auto-update-channel = stable
+auto-update-channel = tip
