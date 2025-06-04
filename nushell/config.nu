@@ -18,7 +18,9 @@
 # them for future reference.
 
 $env.config.buffer_editor = 'zed'
+# $env.EDITOR = "zed"
 $env.config.show_banner = false
+$env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
 
 $env.PROXY_URL = "http://proxy.sr.se:8080"
 $env.NO_PROXY = "*.local, 169.254/16, .sr.se, .dm.sr.se, .srse.dm.sr.se"
@@ -35,6 +37,8 @@ $env.PATH = ($env.PATH | append $"($env.FNM_MULTISHELL_PATH)/bin")
 alias c = code
 alias z = zed
 alias co = git checkout
+alias cm = git commit -m
+alias ca = git commit -am
 alias gl = git log --oneline --decorate=no
 alias gst = git status
 alias prco = gh pr checkout
@@ -79,3 +83,5 @@ mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
 
 fnm use
+
+source ~/.cache/carapace/init.nu
