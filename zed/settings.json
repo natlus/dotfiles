@@ -7,18 +7,22 @@
 // custom settings, run the `open default settings` command
 // from the command palette or from `Zed` application menu.
 {
+  "search": {
+    "button": false
+  },
   "edit_predictions": {
     "mode": "eager",
     "copilot": {
       "proxy": null,
       "proxy_no_verify": null
     },
-    "enabled_in_text_threads": false
+    "enabled_in_text_threads": true
   },
   "features": {
-    "edit_prediction_provider": "copilot",
-    "copilot": true
+    "edit_prediction_provider": "zed",
+    "copilot": false
   },
+  "agent_font_size": 18,
   "git_panel": {
     "dock": "right"
   },
@@ -26,13 +30,13 @@
   "agent": {
     "always_allow_tool_actions": true,
     "inline_assistant_model": {
-      "provider": "copilot_chat",
-      "model": "gemini-2.0-flash-001"
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-latest"
     },
     "dock": "left",
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "gemini-2.5-pro"
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-thinking-latest"
     },
     "version": "2"
   },
@@ -52,7 +56,6 @@
       ]
     }
   ],
-  "vim_mode": true,
   "use_autoclose": true,
   "project_panel": {
     "dock": "right",
@@ -75,8 +78,8 @@
     "scrollbar.track.background": "#10101010",
     "editor.active_line.background": "#10101009",
     "search.match_background": "#FFFFFF30",
-    "ghost_element.background": "#10101010",
-    "ghost_element.hover": "#10101099",
+    // "ghost_element.background": "#10101010",
+    // "ghost_element.hover": "#10101099",
     "background": "#101010E0",
     "editor.background": "#10101000",
     "editor.gutter.background": "#10101008",
@@ -87,7 +90,8 @@
     "tab.active_background": "#D6D6D610",
     "tab.inactive_background": "#10101010",
     "tab_bar.background": "#10101008",
-    "panel.background": "#10101000"
+    "panel.background": "#10101000",
+    "error.background": "#893232"
   },
   "buffer_font_size": 15.0,
   "ui_font_family": "Geist",
@@ -154,7 +158,16 @@
       }
     }
   },
+  // "languages": {
+  //   "TypeScript": {
+  //     "language_servers": ["tsgo"]
+  //   }
+  // },
 
   // vim
-  "cursor_blink": true
+  "vim_mode": true,
+  "cursor_blink": true,
+  "vim": {
+    "toggle_relative_line_numbers": true
+  }
 }
