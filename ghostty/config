@@ -12,15 +12,29 @@ palette = 14=#ffffff
 cursor-color = FFC799
 background-opacity = 0.85
 background-blur-radius = 20
-macos-titlebar-style = tabs
+macos-titlebar-style = hidden
 macos-icon = retro
+macos-window-shadow = false
+mouse-hide-while-typing = true
 
-window-padding-x = 12,12
-window-padding-y = 12,12
+window-padding-x = 6,6
+window-padding-y = 6,0
 
 window-save-state = always
 
 #keybind = global:shift+cmd+alt+control+t=toggle_quick_terminal
+#keybind = ctrl+h=goto_split:previous
+#keybind = ctrl+j=goto_split:bottom
+#keybind = ctrl+k=goto_split:top
+#keybind = ctrl+l=goto_split:next
+#keybind = ctrl+s>r=reload_config
+#keybind = ctrl+s>s=new_split:down
+#keybind = ctrl+s>v=new_split:right
+#keybind = ctrl+s>f=toggle_split_zoom
+#keybind = ctrl+s>o=toggle_tab_overview
+#keybind = ctrl+s>c=new_tab
+#keybind = ctrl+s>p=previous_tab
+#keybind = ctrl+s>n=next_tab
 
 auto-update = check
-auto-update-channel = tip
+auto-update-channel = stable
