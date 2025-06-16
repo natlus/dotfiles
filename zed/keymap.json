@@ -12,13 +12,56 @@
   {
     "context": "Editor && (extension==js || extension==jsx || extension==ts || extension==tsx )",
     "bindings": {
-      "cmd-shift-l": ["workspace::SendKeystrokes", "escape v i w y o console.log(' cmd-v : ', cmd-v ) escape"]
+      "space l": ["workspace::SendKeystrokes", "escape v i w y o console.log(' cmd-v : ', cmd-v ) escape"]
     }
   },
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
       "j k": "vim::NormalBefore"
+    }
+  },
+  {
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "bindings": {
+      "space": null,
+      "space o": "tab_switcher::Toggle",
+      "space space": "file_finder::Toggle",
+      "space p": "command_palette::Toggle",
+      "space r": "editor::Rename",
+      "space e": "project_panel::ToggleFocus",
+      // "space s": "pane::SplitDown",
+      // "space v": "pane::SplitRight",
+      // "space h": "workspace::ActivatePreviousPane",
+      // "space l": "workspace::ActivateNextPane",
+      // "space j": "workspace::ActivatePaneDown",
+      // "space k": "workspace::ActivatePaneUp",
+      "space c": "vim::ToggleComments",
+      "L": "pane::ActivateNextItem",
+      "H": "pane::ActivatePreviousItem",
+      "space b": ["workspace::SendKeystrokes", "escape \" a"]
+    }
+  },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "space e": "workspace::ToggleRightDock"
+    }
+  },
+  // {
+  //   "context": "!Editor",
+  //   "bindings": {
+  //     "space e": "project_panel::ToggleFocus",
+  //     "space a": "agent::ToggleFocus",
+  //     "space d": "git_panel::ToggleFocus"
+  //   }
+  // },
+  {
+    "context": "!Editor && TabSwitcher",
+    "bindings": {
+      "d": "tab_switcher::CloseSelectedItem",
+      "j": ["workspace::SendKeystrokes", "down"],
+      "k": ["workspace::SendKeystrokes", "up"]
     }
   },
   {

@@ -22,6 +22,7 @@
     "edit_prediction_provider": "zed",
     "copilot": false
   },
+  "extend_comment_on_newline": false,
   "agent_font_size": 18,
   "git_panel": {
     "dock": "right"
@@ -36,7 +37,7 @@
     "dock": "left",
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4-thinking-latest"
+      "model": "claude-sonnet-4"
     },
     "version": "2"
   },
