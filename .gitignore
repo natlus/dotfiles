@@ -40,3 +40,5 @@ raycast/
 # zed
 !zed/settings.json
 !zed/keymap.json
+
+!aerospace/aerospace.toml
