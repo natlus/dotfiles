@@ -43,4 +43,5 @@ raycast/
 
 !aerospace/aerospace.toml
 !nvim/**/*
-!tmux/
+tmux/plugins
+!tmux/tmux.conf
