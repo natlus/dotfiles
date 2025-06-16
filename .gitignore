@@ -42,3 +42,5 @@ raycast/
 !zed/keymap.json
 
 !aerospace/aerospace.toml
+!nvim/**/*
+!tmux/
