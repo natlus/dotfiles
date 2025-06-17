@@ -10,7 +10,7 @@
     }
   },
   {
-    "context": "Editor && (extension==js || extension==jsx || extension==ts || extension==tsx )",
+    "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && (extension==js || extension==jsx || extension==ts || extension==tsx )",
     "bindings": {
       "space l": ["workspace::SendKeystrokes", "escape v i w y o console.log(' cmd-v : ', cmd-v ) escape"]
     }
@@ -42,12 +42,12 @@
       "space b": ["workspace::SendKeystrokes", "escape \" a"]
     }
   },
-  {
-    "context": "Workspace",
-    "bindings": {
-      "space e": "workspace::ToggleRightDock"
-    }
-  },
+  // {
+  //   "context": "Workspace && !Editor",
+  //   "bindings": {
+  //     "space e": "workspace::ToggleRightDock"
+  //   }
+  // },
   // {
   //   "context": "!Editor",
   //   "bindings": {
