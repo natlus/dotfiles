@@ -1,13 +1,14 @@
 add_newline = false
 continuation_prompt = "[▸▹ ](dimmed white)"
 
-format = """($nix_shell$container$fill$localip $git_metrics  \n)\
+format = """($nix_shell$container$fill$localip \n)\
+${custom.proxy}\
 $directory\
 $git_branch\
+$git_metrics\
 $git_commit\
 $git_state\
 $git_status\
-${custom.proxy}\
 $custom\
 $status\
 \n$character"""
@@ -17,7 +18,7 @@ symbol = ' '
 
 [custom.proxy]
 when = ''' test $env.https_proxy != "" '''
-symbol = ""
+symbol = " "
 style = "fg:#ffffff"
 format = '[ $symbol]($style)'
 
@@ -57,7 +58,7 @@ use_os_path_sep = true
 style = "italic #B1FCE5"
 format = '[$path]($style)[$read_only]($read_only_style)'
 repo_root_style = 'bold #B1FCE5'
-repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) [△](bold #F6C99F)'
+repo_root_format = '[$before_root_path]($before_repo_root_style)[$repo_root]($repo_root_style)[$path]($style)[$read_only]($read_only_style) ' 
 
 [cmd_duration]
 format = "[◄ $duration ](italic white)"
@@ -109,15 +110,15 @@ style = "italic #F6C99F"
 only_attached = true
 
 [git_metrics]
-format = '([▴$added]($added_style))([▿$deleted]($deleted_style))'
-added_style = 'italic dimmed green'
-deleted_style = 'italic dimmed red'
+format = ' ([▴$added]($added_style))([▿$deleted]($deleted_style))'
+added_style = 'bold green'
+deleted_style = 'bold red'
 ignore_submodules = true
 disabled = false
 
 [git_status]
 style = "bold italic #B1FCE5"
-format = "([ $ahead_behind $staged $modified $untracked $conflicted]($style))"
+format = "([$ahead_behind $staged $untracked $conflicted]($style))"
 # format = "([ $ahead_behind$modified$untracked$renamed$deleted$conflicted]($style))"
 conflicted = "[◪◦](italic bright-magenta)"
 ahead = "[▴[${count}](bold green)](italic green)"
