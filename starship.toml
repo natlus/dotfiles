@@ -101,7 +101,7 @@ threshold = 70
 style = "italic dimmed yellow"
 
 [git_branch]
-format = " [$branch(:$remote_branch)]($style)"
+format = "[$branch(:$remote_branch)]($style)"
 symbol = "[△](bold italic #F6C99F)"
 style = "italic #F6C99F"
 # truncation_symbol = "⋯"
