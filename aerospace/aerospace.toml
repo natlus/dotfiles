@@ -72,7 +72,7 @@ run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.cisco.secureclient.gui'
-run = 'layout floating'
+run = ['layout floating', 'move-node-to-workspace 6']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'activity'
