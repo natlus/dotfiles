@@ -74,7 +74,7 @@
     "editor.active_wrap_guide": "#FFFFFF20",
 
     // transparent Zed
-    "background.appearance": "blurred",
+    "background.appearance": "transparent",
     "scrollbar.thumb.background": "#343434DF",
     "scrollbar.track.background": "#10101010",
     "editor.active_line.background": "#10101009",
