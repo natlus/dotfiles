@@ -140,17 +140,12 @@
     "breadcrumbs": true,
     "quick_actions": true
   },
-  // "formatter": {
-  //   "language_server": {
-  //     "name": "biome"
-  //   }
-  // },
   "lsp": {
-    // "biome": {
-    //   "settings": {
-    //     "require_config_file": true
-    //   }
-    // },
+    "biome": {
+      "settings": {
+        "require_config_file": true
+      }
+    },
     "deno": {
       "settings": {
         "deno": {
@@ -159,6 +154,7 @@
       }
     }
   },
+
   // "languages": {
   //   "TypeScript": {
   //     "language_servers": ["tsgo"]
