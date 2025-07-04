@@ -31,12 +31,12 @@
   "agent": {
     "always_allow_tool_actions": true,
     "inline_assistant_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4-latest"
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
     },
     "dock": "left",
     "default_model": {
-      "provider": "zed.dev",
+      "provider": "copilot_chat",
       "model": "claude-sonnet-4"
     },
     "version": "2"
