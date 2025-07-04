@@ -30,16 +30,11 @@
       "space p": "command_palette::Toggle",
       "space r": "editor::Rename",
       "space e": "project_panel::ToggleFocus",
-      // "space s": "pane::SplitDown",
-      // "space v": "pane::SplitRight",
-      // "space h": "workspace::ActivatePreviousPane",
-      // "space l": "workspace::ActivateNextPane",
-      // "space j": "workspace::ActivatePaneDown",
-      // "space k": "workspace::ActivatePaneUp",
       "space c": "vim::ToggleComments",
+      "space x": ["workspace::SendKeystrokes", "escape \" a"],
+      "space b": "editor::ToggleBreakpoint",
       "L": "pane::ActivateNextItem",
-      "H": "pane::ActivatePreviousItem",
-      "space b": ["workspace::SendKeystrokes", "escape \" a"]
+      "H": "pane::ActivatePreviousItem"
     }
   },
   // {
