@@ -1,46 +1,28 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run the `open default settings` command
-// from the command palette or from `Zed` application menu.
 {
-  "search": {
-    "button": false
+  // vim mode
+  "vim_mode": true,
+  "cursor_blink": false,
+  "vim": {
+    "toggle_relative_line_numbers": true
   },
-  "edit_predictions": {
-    "mode": "eager",
-    "copilot": {
-      "proxy": null,
-      "proxy_no_verify": null
-    },
-    "enabled_in_text_threads": true
-  },
-  "features": {
-    "edit_prediction_provider": "zed",
-    "copilot": false
-  },
-  "extend_comment_on_newline": false,
-  "agent_font_size": 18,
-  "git_panel": {
-    "dock": "right"
-  },
+  "vertical_scroll_margin": 8,
+
+  // look and feel
+  "theme": "Vesper",
   "icon_theme": "Catppuccin Latte",
-  "agent": {
-    "always_allow_tool_actions": true,
-    "inline_assistant_model": {
-      "provider": "copilot_chat",
-      "model": "claude-sonnet-4"
-    },
-    "dock": "left",
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-sonnet-4"
-    }
+  "ui_font_size": 18,
+  "agent_font_size": 18,
+  "buffer_font_size": 15.0,
+  "ui_font_family": "Geist",
+  "buffer_font_family": "GeistMono Nerd Font",
+  "buffer_font_features": {
+    "liga": false
   },
-  "use_autoclose": true,
+  "terminal": {
+    "font_family": "GeistMono Nerd Font",
+    "font_size": 14,
+    "line_height": "standard"
+  },
   "project_panel": {
     "dock": "right",
     "folder_icons": true,
@@ -49,8 +31,27 @@
       "show": "never"
     }
   },
-  "ui_font_size": 18,
-  "theme": "Vesper",
+  "inlay_hints": {
+    "enabled": false
+  },
+  "toolbar": {
+    "breadcrumbs": true,
+    "quick_actions": false
+  },
+  "search": {
+    "button": false
+  },
+  "git_panel": {
+    "dock": "right"
+  },
+  "tabs": {
+    "git_status": true,
+    "file_icons": true
+  },
+  "tab_bar": {
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false
+  },
   "experimental.theme_overrides": {
     "border": "#262626",
     "editor.indent_guide_active": "#565656",
@@ -78,33 +79,45 @@
     "panel.background": "#10101000",
     "error.background": "#893232"
   },
-  "buffer_font_size": 15.0,
-  "ui_font_family": "Geist",
-  "buffer_font_family": "GeistMono Nerd Font",
-  "vertical_scroll_margin": 8,
-  "terminal": {
-    "font_family": "GeistMono Nerd Font",
-    "font_size": 14,
-    "line_height": "standard"
-  },
-  "buffer_font_features": {
-    "liga": false
-  },
+
+  // features
+  "format_on_save": "on",
+  "extend_comment_on_newline": false,
+  "use_autoclose": true,
   "preview_tabs": {
     "enabled": true,
     "enable_preview_from_file_finder": false,
     "enable_preview_from_code_navigation": true
   },
-  "tabs": {
-    "git_status": true,
-    "file_icons": true
-  },
-  "tab_bar": {
-    "show_nav_history_buttons": false
-  },
-  // "wrap_guides": [120, 120],
   "preferred_line_length": 120,
   "soft_wrap": "bounded",
+
+  // ai
+  "agent": {
+    "always_allow_tool_actions": true,
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
+    },
+    "dock": "left",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
+    }
+  },
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "edit_predictions": {
+    "mode": "eager",
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null
+    },
+    "enabled_in_text_threads": true
+  },
+
+  // hide files
   "file_scan_exclusions": [
     "**/.git",
     "**/.svn",
@@ -119,14 +132,8 @@
     ".vercel",
     "tsconfig.tsbuildinfo"
   ],
-  "format_on_save": "on",
-  "inlay_hints": {
-    "enabled": false
-  },
-  "toolbar": {
-    "breadcrumbs": true,
-    "quick_actions": true
-  },
+
+  // lsp
   "lsp": {
     "biome": {
       "settings": {
@@ -141,17 +148,15 @@
       }
     }
   },
-
-  // "languages": {
-  //   "TypeScript": {
-  //     "language_servers": ["tsgo"]
-  //   }
-  // },
-
-  // vim
-  "vim_mode": true,
-  "cursor_blink": true,
-  "vim": {
-    "toggle_relative_line_numbers": true
+  "languages": {
+    "TypeScript": {
+      "inlay_hints": {
+        "enabled": true,
+        "show_parameter_hints": false,
+        "show_other_hints": true,
+        "show_type_hints": true
+      }
+      // "language_servers": ["tsgo"]
+    }
   }
 }
