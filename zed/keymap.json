@@ -30,14 +30,25 @@
       "space space": "command_palette::Toggle",
       "space o": "command_palette::Toggle",
       "space r": "editor::Rename",
-      "space s v": "project_panel::ToggleFocus",
+      "space s v": "pane::RevealInProjectPanel",
       "gcc": "vim::ToggleComments",
       "space x": ["workspace::SendKeystrokes", "escape \" _"],
       "space b": "editor::ToggleBreakpoint",
       "ctrl-l": "pane::ActivateNextItem",
       "ctrl-h": "pane::ActivatePreviousItem",
       "space a": "agent::ToggleFocus",
-      "g d": ["workspace::SendKeystrokes", "g d z z"]
+      "s": "vim::PushSneak",
+      "g d": ["workspace::SendKeystrokes", "g d z z"],
+      "space g h d": "editor::ToggleSelectedDiffHunks",
+      "shift-s": "vim::PushSneakBackward",
+      "space 1": ["pane::ActivateItem", 0],
+      "space 2": ["pane::ActivateItem", 1],
+      "space 3": ["pane::ActivateItem", 2],
+      "space 4": ["pane::ActivateItem", 3],
+      "space 5": ["pane::ActivateItem", 4],
+      "space 6": ["pane::ActivateItem", 5],
+      "space 7": ["pane::ActivateItem", 6],
+      "space 8": ["pane::ActivateItem", 7]
     }
   },
   {
