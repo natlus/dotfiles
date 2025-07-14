@@ -38,25 +38,8 @@
     "default_model": {
       "provider": "copilot_chat",
       "model": "claude-sonnet-4"
-    },
-    "version": "2"
-  },
-  "ssh_connections": [
-    {
-      "host": "rp5",
-      "projects": [
-        {
-          "paths": ["~/check-temps.ts"]
-        },
-        {
-          "paths": ["~/monitor"]
-        },
-        {
-          "paths": ["~/monitor.ts"]
-        }
-      ]
     }
-  ],
+  },
   "use_autoclose": true,
   "project_panel": {
     "dock": "right",
@@ -81,6 +64,7 @@
     "search.match_background": "#FFFFFF30",
     // "ghost_element.background": "#10101010",
     // "ghost_element.hover": "#10101099",
+    "ghost_element.selected": "#ffffff30",
     "background": "#101010D0",
     "editor.background": "#10101000",
     "editor.gutter.background": "#10101008",
@@ -97,6 +81,7 @@
   "buffer_font_size": 15.0,
   "ui_font_family": "Geist",
   "buffer_font_family": "GeistMono Nerd Font",
+  "vertical_scroll_margin": 8,
   "terminal": {
     "font_family": "GeistMono Nerd Font",
     "font_size": 14,
@@ -106,7 +91,9 @@
     "liga": false
   },
   "preview_tabs": {
-    "enabled": false
+    "enabled": true,
+    "enable_preview_from_file_finder": false,
+    "enable_preview_from_code_navigation": true
   },
   "tabs": {
     "git_status": true,
