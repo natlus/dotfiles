@@ -12,7 +12,7 @@
   "icon_theme": "Catppuccin Latte",
   "ui_font_size": 18,
   "agent_font_size": 18,
-  "buffer_font_size": 15.0,
+  "buffer_font_size": 16.0,
   "ui_font_family": "Geist",
   "buffer_font_family": "GeistMono Nerd Font",
   "buffer_font_features": {
@@ -59,7 +59,7 @@
     "editor.active_wrap_guide": "#FFFFFF20",
 
     // transparent Zed
-    "background.appearance": "transparent",
+    "background.appearance": "blurred",
     "scrollbar.thumb.background": "#343434DF",
     "scrollbar.track.background": "#10101010",
     "editor.active_line.background": "#10101009",
@@ -78,7 +78,8 @@
     "tab.inactive_background": "#10101010",
     "tab_bar.background": "#10101008",
     "panel.background": "#10101000",
-    "error.background": "#893232"
+    "error.background": "#893232",
+    "panel.overlay_background": "#101010ff"
   },
 
   // features
@@ -88,7 +89,7 @@
   "preview_tabs": {
     "enabled": true,
     "enable_preview_from_file_finder": false,
-    "enable_preview_from_code_navigation": true
+    "enable_preview_from_code_navigation": false
   },
   "preferred_line_length": 120,
   "soft_wrap": "bounded",
@@ -152,12 +153,12 @@
   "languages": {
     "TypeScript": {
       "inlay_hints": {
-        "enabled": true,
+        "enabled": false,
         "show_parameter_hints": false,
         "show_other_hints": true,
         "show_type_hints": true
       }
-      // "language_servers": ["tsgo"]
+      // "language_servers": ["!tsgo", "!biome"]
     }
   }
 }
