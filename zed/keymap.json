@@ -40,13 +40,7 @@
       "space g h d": "editor::ToggleSelectedDiffHunks",
       "shift-s": "vim::PushSneakBackward",
       "space a": "pane::TogglePinTab",
-      "space e": "tab_switcher::Toggle",
-      "cmd-1": ["pane::ActivateItem", 0],
-      "cmd-2": ["pane::ActivateItem", 1],
-      "cmd-3": ["pane::ActivateItem", 2],
-      "cmd-4": ["pane::ActivateItem", 3],
-      "cmd-5": ["pane::ActivateItem", 4],
-      "cmd-6": ["pane::ActivateItem", 5]
+      "space e": "tab_switcher::Toggle"
     }
   },
   {
@@ -74,15 +68,19 @@
   },
   {
     "bindings": {
+      "cmd-1": ["pane::ActivateItem", 0],
+      "cmd-2": ["pane::ActivateItem", 1],
+      "cmd-3": ["pane::ActivateItem", 2],
+      "cmd-4": ["pane::ActivateItem", 3],
+      "cmd-5": ["pane::ActivateItem", 4],
+      "cmd-6": ["pane::ActivateItem", 5],
+
       "cmd-shift-d": "git_panel::ToggleFocus",
       "ctrl-alt-right": "pane::SplitRight",
       "ctrl-alt-left": "pane::SplitLeft",
       "ctrl-alt-up": "pane::SplitUp",
-      "ctrl-alt-down": "pane::SplitDown"
-    }
-  },
-  {
-    "bindings": {
+      "ctrl-alt-down": "pane::SplitDown",
+
       "cmd-[": "pane::SwapItemLeft",
       "cmd-]": "pane::SwapItemRight"
     }
