@@ -36,7 +36,8 @@
       "ctrl-l": "pane::ActivateNextItem",
       "ctrl-h": "pane::ActivatePreviousItem",
       "s": "vim::PushSneak",
-      "g d": ["workspace::SendKeystrokes", "g d z z"],
+      "g d": "editor::GoToDefinition",
+      "g r r": "editor::FindAllReferences",
       "space g h d": "editor::ToggleSelectedDiffHunks",
       "shift-s": "vim::PushSneakBackward",
       "space a": "pane::TogglePinTab",
@@ -46,8 +47,8 @@
   {
     "context": "Editor && (vim_mode == visual && !VimWating && !menu)",
     "bindings": {
-      "J": "editor::MoveLineUp",
-      "K": "editor::MoveLineDown",
+      "K": "editor::MoveLineUp",
+      "J": "editor::MoveLineDown",
       "space p": ["workspace::SendKeystrokes", "\" _ d P"]
     }
   },
@@ -88,7 +89,8 @@
   {
     "context": "ProjectPanel",
     "bindings": {
-      "cmd-left": "project_panel::CollapseAllEntries"
+      "cmd-left": "project_panel::CollapseAllEntries",
+      "cmd-shift-e": "workspace::ToggleRightDock"
     }
   }
 ]
