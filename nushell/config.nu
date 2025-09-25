@@ -17,9 +17,23 @@
 # You can remove these comments if you want or leave
 # them for future reference.
 
-$env.config.buffer_editor = 'zed'
+$env.config = {
+	buffer_editor: 'zed'
+	show_banner: false
+	# edit_mode: vi
+	# cursor_shape: {
+	#         vi_insert: line # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (block is the default)
+	#         vi_normal: block # block, underscore, line, blink_block, blink_underscore, blink_line, inherit to skip setting cursor shape (underscore is the default)
+	# }
+}
+
+
+$env.PROMPT_INDICATOR_VI_NORMAL = ""
+$env.PROMPT_INDICATOR_VI_INSERT = ""
+
+# $env.config.buffer_editor = 'zed'
 # $env.EDITOR = "zed"
-$env.config.show_banner = false
+# $env.config.show_banner = false
 $env.CARAPACE_BRIDGES = 'zsh,fish,bash,inshellisense'
 
 $env.PROXY_URL = "http://proxy.sr.se:8080"

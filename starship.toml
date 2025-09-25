@@ -24,6 +24,7 @@ format = '[ $symbol]($style)'
 
 [character]
 format = "[▶](bold italic #F6C99F) "
+vicmd_symbol = "[N] >>>"
 
 [directory]
 home_symbol = "~"
