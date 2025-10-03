@@ -99,12 +99,12 @@
     "always_allow_tool_actions": true,
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4"
+      "model": "claude-sonnet-4.5"
     },
     "dock": "left",
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4"
+      "model": "claude-sonnet-4.5"
     }
   },
   "features": {
