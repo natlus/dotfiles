@@ -92,6 +92,24 @@ def --env proxyoff [] {
     echo "proxy is off 🚫"
 }
 
+# session helper for dtach
+def session [
+    name: string,
+    ...cmd: string
+] {
+    # Directory to store dtach socket files
+    let sockdir = $"($nu.home-path)/.local/share/dtach"
+    mkdir $sockdir | ignore
+
+    # Full path to the socket file
+    let sockfile = $"($sockdir)/($name).sock"
+
+    # Default command is bash unless user provides one
+    let command = if ($cmd | is-empty) { "nu" } else { ($cmd | str join " ") }
+
+    ^dtach -A $sockfile $command
+}
+
 # Starship
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
