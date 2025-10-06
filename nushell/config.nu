@@ -92,51 +92,120 @@ def --env proxyoff [] {
     echo "proxy is off 🚫"
 }
 
-# session helper for dtach
-def session [
-    name: string,
-    ...cmd: string
-] {
- let sockdir = $"($nu.home-path)/.local/share/dtach"
-    mkdir $sockdir | ignore
+# # session helper for dtach
+# def session [
+#     name: string,
+#     ...cmd: string
+# ] {
+#  let sockdir = $"($nu.home-path)/.local/share/dtach"
+#     mkdir $sockdir | ignore
+#
+#     # Normalize: trim + remove trailing .sock (exactly once)
+#     let clean_name = (
+#         $name
+#         | str trim
+#         | str replace '\.sock$' '' 
+#     )
+#
+#     let sockfile = $"($sockdir)/($clean_name).sock"
+#     let command  = if ($cmd | is-empty) { "nu" } else { ($cmd | str join " ") }
+#
+#     ^dtach -A $sockfile $command
+# }
 
-    # Normalize: trim + remove trailing .sock (exactly once)
-    let clean_name = (
-        $name
-        | str trim
-        | str replace '\.sock$' '' 
-    )
+def session [name: string] {
+    if (which tmux | is-empty) {
+        print "❌ tmux not found. Please install tmux first."
+        return
+    }
 
-    let sockfile = $"($sockdir)/($clean_name).sock"
-    let command  = if ($cmd | is-empty) { "nu" } else { ($cmd | str join " ") }
+    let clean_name = ($name | str trim)
 
-    ^dtach -A $sockfile $command
+    if ($clean_name | is-empty) {
+        print "Usage: tmux-session <name>"
+        return
+    }
+
+    # Check whether the tmux session exists (by exit code)
+    let exists = ((^tmux has-session -t $clean_name | complete).exit_code == 0)
+
+    if $exists {
+        print $"Attaching to existing tmux session: ($clean_name)"
+        ^tmux attach -t $clean_name
+    } else {
+        print $"Creating new tmux session: ($clean_name)"
+        ^tmux new -s $clean_name
+    }
 }
 
-def sessions [] {
-    let sockdir = $"($nu.home-path)/.local/share/dtach"
-    mkdir $sockdir | ignore
+# def sessions [] {
+#     let sockdir = $"($nu.home-path)/.local/share/dtach"
+#     mkdir $sockdir | ignore
+#
+#     # Get all socket filenames safely
+#     let sessions = (
+#         ls $sockdir
+#         | get name
+#         | path basename
+#         | where {|n| $n | str ends-with ".sock"}
+#         | each {|n| $n | str replace --regex '\.sock$' '' }  # <-- regex flag fixed
+#     )
+#
+#     let picked = (
+#         $sessions
+#         | str join (char nl)
+#         | ^fzf --prompt "Select or type session > " --no-sort
+#         | str trim
+#     )
+#
+#     if ($picked | is-empty) {
+#         print "No session selected."
+#     } else {
+#         session $picked
+#     }
+# }
 
-    # Get all socket filenames safely
-    let sessions = (
-        ls $sockdir
-        | get name
-        | path basename
-        | where {|n| $n | str ends-with ".sock"}
-        | each {|n| $n | str replace --regex '\.sock$' '' }  # <-- regex flag fixed
-    )
+def sessions [] {
+    if (which tmux | is-empty) {
+        print "❌ tmux not found. Please install it first."
+        return
+    }
+
+    # Capture tmux ls safely (won't crash if no sessions)
+    let list_result = (^tmux ls | complete)
+
+    # Determine if tmux ls succeeded (exit_code 0 means sessions exist)
+    let has_sessions = ($list_result.exit_code == 0)
+
+    let sessions = if $has_sessions {
+        $list_result.stdout
+        | lines
+        | each {|l| $l | str replace --regex '^([^:]+):.*$' '$1' }
+    } else {
+        []
+    }
 
     let picked = (
         $sessions
         | str join (char nl)
-        | ^fzf --prompt "Select or type session > " --no-sort
+        | ^fzf --prompt "Select or type tmux session > " --print-query
         | str trim
     )
 
     if ($picked | is-empty) {
         print "No session selected."
+        return
+    }
+
+    # Check if selected session exists (again, use exit_code)
+    let exists = ((^tmux has-session -t $picked | complete).exit_code == 0)
+
+    if $exists {
+        print $"Attaching to session: ($picked)"
+        ^tmux attach -t $picked
     } else {
-        session $picked
+        print $"Creating new session: ($picked)"
+        ^tmux new -s $picked
     }
 }
 
