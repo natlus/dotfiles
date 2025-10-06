@@ -21,7 +21,8 @@
   "terminal": {
     "font_family": "GeistMono Nerd Font",
     "font_size": 14,
-    "line_height": "standard"
+    "line_height": "standard",
+    "button": false
   },
   "project_panel": {
     "dock": "right",
@@ -52,6 +53,9 @@
     "show": true,
     "show_nav_history_buttons": false,
     "show_tab_bar_buttons": false
+  },
+  "notification_panel": {
+    "button": false
   },
   "experimental.theme_overrides": {
     "border": "#262626",
