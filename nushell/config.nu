@@ -97,17 +97,47 @@ def session [
     name: string,
     ...cmd: string
 ] {
-    # Directory to store dtach socket files
+ let sockdir = $"($nu.home-path)/.local/share/dtach"
+    mkdir $sockdir | ignore
+
+    # Normalize: trim + remove trailing .sock (exactly once)
+    let clean_name = (
+        $name
+        | str trim
+        | str replace '\.sock$' '' 
+    )
+
+    let sockfile = $"($sockdir)/($clean_name).sock"
+    let command  = if ($cmd | is-empty) { "nu" } else { ($cmd | str join " ") }
+
+    ^dtach -A $sockfile $command
+}
+
+def sessions [] {
     let sockdir = $"($nu.home-path)/.local/share/dtach"
     mkdir $sockdir | ignore
 
-    # Full path to the socket file
-    let sockfile = $"($sockdir)/($name).sock"
+    # Get all socket filenames safely
+    let sessions = (
+        ls $sockdir
+        | get name
+        | path basename
+        | where {|n| $n | str ends-with ".sock"}
+        | each {|n| $n | str replace --regex '\.sock$' '' }  # <-- regex flag fixed
+    )
 
-    # Default command is bash unless user provides one
-    let command = if ($cmd | is-empty) { "nu" } else { ($cmd | str join " ") }
+    let picked = (
+        $sessions
+        | str join (char nl)
+        | ^fzf --prompt "Select or type session > " --no-sort
+        | str trim
+    )
 
-    ^dtach -A $sockfile $command
+    if ($picked | is-empty) {
+        print "No session selected."
+    } else {
+        session $picked
+    }
 }
 
 # Starship
