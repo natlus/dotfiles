@@ -5,6 +5,11 @@ end
 ## Settings ##
 
 set -U fish_prompt_pwd_dir_length 0
+set -gx STARSHIP_DISABLE_RPROMPT 1
+set -gx STARSHIP_SKIP_INIT 1
+set -Ux STARSHIP_SHELL fish
+set -Ux STARSHIP_LOG  "error"
+set -Ux STARSHIP_TIMEOUT 10
 
 # proxy
 set -gx PROXY_URL "http://proxy.sr.se:8080"
@@ -12,7 +17,15 @@ set -gx NO_PROXY "*.local, 169.254/16, .sr.se, .dm.sr.se, .srse.dm.sr.se"
 
 # Homebrew env
 eval "$(/opt/homebrew/bin/brew shellenv)"
-starship init fish | source
+
+# Starship
+## Guard: avoid duplicate inits if sourced again
+if not set -q STARSHIP_INIT_DONE
+    set -gx STARSHIP_INIT_DONE 1
+    # Now load Starship only once (left‑prompt only)
+    starship init fish | source
+end
+# starship init fish | source
 
 # pnpm
 set -gx PNPM_HOME "/Users/jessul01/Library/pnpm"
@@ -36,7 +49,6 @@ fzf --fish | source
 
 # fnm
 fnm env --use-on-cd --shell fish | source
-# fnm use
 
 ## Aliases ##
 

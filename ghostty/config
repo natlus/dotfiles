@@ -26,7 +26,7 @@ macos-icon-ghost-color = #ffffff
 macos-icon-screen-color = #000000
 
 window-padding-x = 12,12
-window-padding-y = 12,6
+window-padding-y = 12,10
 window-save-state = always
 
 #keybind = global:shift+cmd+alt+control+t=toggle_quick_terminal
