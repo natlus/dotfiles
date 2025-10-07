@@ -15,15 +15,9 @@ yarn/
 
 # fish
 fish/fish_*
-!fish/functions/z.fish
-!fish/functions/c.fish
-!fish/functions/co.fish
-!fish/functions/gl.fish
-!fish/functions/gst.fish
-!fish/functions/prco.fish
-!fish/functions/proxyon.fish
-!fish/functions/proxyoff.fish
+!fish/config.fish
 !fish/fish_plugins
+!fish/functions/*
 
 # nushell
 !nushell/config.nu
