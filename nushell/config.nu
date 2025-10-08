@@ -152,3 +152,5 @@ def sessions [] {
     }
 }
 
+# zoxide
+source ~/.zoxide.nu
