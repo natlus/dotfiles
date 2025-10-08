@@ -44,6 +44,8 @@ alias gl = git log --oneline --decorate=no
 alias gst = git status
 alias prco = gh pr checkout
 alias rcli = redis-cli
+alias cat = bat
+alias CAT = cat
 
 # functions
 
