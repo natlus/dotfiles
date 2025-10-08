@@ -1,5 +1,3 @@
-command = /opt/homebrew/bin/fish
-
 font-family = GeistMono Nerd Font
 font-style-italic = false
 font-synthetic-style = false
