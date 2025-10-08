@@ -27,6 +27,10 @@ if not set -q STARSHIP_INIT_DONE
 end
 # starship init fish | source
 
+# Carapace
+set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional
+carapace _carapace | source
+
 # pnpm
 set -gx PNPM_HOME "/Users/jessul01/Library/pnpm"
 if not string match -q -- $PNPM_HOME $PATH
