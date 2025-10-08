@@ -8,7 +8,6 @@ argocd
 phoenix/
 iterm2/
 configstore/
-bat/
 github-copilot/
 simple-update-notifier/
 yarn/
@@ -36,7 +35,15 @@ raycast/
 !zed/settings.json
 !zed/keymap.json
 
+# aerospace
 !aerospace/aerospace.toml
+
+# nvim
 !nvim/**/*
+
+# tmux
 tmux/plugins
 !tmux/tmux.conf
+
+# bat
+!bat/themes/*

@@ -17,6 +17,7 @@ $env.NO_PROXY = "*.local, 169.254/16, .sr.se, .dm.sr.se, .srse.dm.sr.se"
 $env.http_proxy = ""
 $env.https_proxy = ""
 $env.RSYNC_PROXY = ""
+$env.BAT_THEME = "Vesper"
 
 # PATH
 $env.PATH = ($env.PATH | split row (char esep) | prepend '/opt/homebrew/bin')
