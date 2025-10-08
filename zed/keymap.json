@@ -41,7 +41,8 @@
       "space g h d": "editor::ToggleSelectedDiffHunks",
       "shift-s": "vim::PushSneakBackward",
       "space a": "pane::TogglePinTab",
-      "space e": "tab_switcher::Toggle"
+      "space e": "tab_switcher::Toggle",
+      "space w": "workspace::Save"
     }
   },
   {
