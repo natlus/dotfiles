@@ -11,6 +11,18 @@ set -Ux STARSHIP_SHELL fish
 set -Ux STARSHIP_LOG  "error"
 set -Ux STARSHIP_TIMEOUT 10
 
+# Optimizations
+if test -x /opt/homebrew/bin/git
+    alias git='/opt/homebrew/bin/git'
+end
+function fish_prompt
+    echo -n '❯ '
+end
+set -gx __fish_uname (uname)
+function fish_right_prompt; end
+function fish_mode_prompt; end
+function fish_vcs_prompt; end
+
 # proxy
 set -gx PROXY_URL "http://proxy.sr.se:8080"
 set -gx NO_PROXY "*.local, 169.254/16, .sr.se, .dm.sr.se, .srse.dm.sr.se"
@@ -19,13 +31,7 @@ set -gx NO_PROXY "*.local, 169.254/16, .sr.se, .dm.sr.se, .srse.dm.sr.se"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Starship
-## Guard: avoid duplicate inits if sourced again
-if not set -q STARSHIP_INIT_DONE
-    set -gx STARSHIP_INIT_DONE 1
-    # Now load Starship only once (left‑prompt only)
-    starship init fish | source
-end
-# starship init fish | source
+starship init fish | source
 
 # Carapace
 set -Ux CARAPACE_BRIDGES 'zsh,fish,bash,inshellisense' # optional

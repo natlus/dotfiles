@@ -1,7 +1,7 @@
 add_newline = false
 continuation_prompt = "[▸▹ ](dimmed white)"
 
-format = """($nix_shell$container$fill$localip \n)\
+format = """($container$fill \n)\
 ${custom.proxy}\
 $directory\
 $git_branch\
@@ -17,7 +17,9 @@ $status\
 symbol = ' '
 
 [custom.proxy]
-when = ''' test $https_proxy != "" '''
+disabled = false
+shell = ["bash"]
+when = 'test -n "$https_proxy"'
 symbol = " "
 style = "fg:#ffffff"
 format = '[ $symbol]($style)'
@@ -58,4 +60,18 @@ format = "([$ahead_behind]($style))"
 ahead = "[▴[${count}](bold green)](green)"
 behind = "[▿[${count}](bold red)](red)"
 
+[package]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[python]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[localip]
+disabled = true
 
