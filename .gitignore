@@ -20,7 +20,7 @@ fish/fish_*
 
 # nushell
 !nushell/config.nu
-nushell/env.nu
+!nushell/env.nu
 
 # starship
 !starship.toml
