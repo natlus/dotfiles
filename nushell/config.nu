@@ -34,6 +34,9 @@ fnm env --json | from json | load-env
 $env.PATH = ($env.PATH | append $"($env.FNM_MULTISHELL_PATH)/bin")
 fnm use
 
+# zoxide
+source ~/.zoxide.nu
+
 # aliases
 
 alias c = code
@@ -152,5 +155,43 @@ def sessions [] {
     }
 }
 
-# zoxide
-source ~/.zoxide.nu
+def gitc [] {
+  # Get all branches (local and remote)
+  let branches = (
+    git branch --all
+    | lines
+    | each { |line|
+        $line
+        | str replace '^\*?\s*' ''
+        | str replace '^remotes/' ''
+        | str trim
+      }
+    | uniq
+    | where $it != ''
+  )
+
+  # Check if we have any branches
+  if ($branches | is-empty) {
+    print "No git branches found"
+    return
+  }
+
+  # Use fzf to select a branch
+  let selected = (
+    $branches
+    | str join "\n"
+    | fzf --height=40% --reverse --prompt="Select branch: "
+      --preview="git log --oneline --color=always {} | head -20"
+  )
+
+  # Check if a branch was selected
+  if ($selected | is-empty) {
+    print "No branch selected"
+    return
+  }
+
+  # Extract branch name and checkout
+  let branch = ($selected | str trim)
+  print $"Checking out branch: ($branch)"
+  git checkout $branch
+}
