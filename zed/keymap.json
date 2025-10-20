@@ -93,5 +93,10 @@
       "cmd-left": "project_panel::CollapseAllEntries",
       "cmd-shift-e": "workspace::ToggleRightDock"
     }
+  },
+  {
+    "bindings": {
+      "cmd-o": null
+    }
   }
 ]
