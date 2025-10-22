@@ -5,6 +5,40 @@
             "complex_modifications": {
                 "rules": [
                     {
+                        "description": "Backslash to å",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "input_sources": [{ "language": "sv" }],
+                                        "type": "input_source_if"
+                                    }
+                                ],
+                                "description": "Remap Å",
+                                "from": { "key_code": "backslash" },
+                                "to": [{ "key_code": "open_bracket" }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
+                        "description": "Pipe to Å",
+                        "manipulators": [
+                            {
+                                "conditions": [
+                                    {
+                                        "input_sources": [{ "language": "sv" }],
+                                        "type": "input_source_if"
+                                    }
+                                ],
+                                "description": "Remap Å",
+                                "from": { "key_code": "backslash", "modifiers": ["left_shift"] },
+                                "to": [{ "key_code": "open_bracket", "modifiers": ["left_shift"] }],
+                                "type": "basic"
+                            }
+                        ]
+                    },
+                    {
                         "description": "Hyper Key (⌃⌥⇧⌘)",
                         "manipulators": [
                             {
@@ -52,16 +86,16 @@
                     },
                     "simple_modifications": [
                         {
+                            "from": { "key_code": "grave_accent_and_tilde" },
+                            "to": [{ "key_code": "non_us_backslash" }]
+                        },
+                        {
                             "from": { "key_code": "left_command" },
                             "to": [{ "key_code": "left_option" }]
                         },
                         {
                             "from": { "key_code": "left_option" },
                             "to": [{ "key_code": "left_command" }]
-                        },
-                        {
-                            "from": { "key_code": "grave_accent_and_tilde" },
-                            "to": [{ "key_code": "non_us_backslash" }]
                         }
                     ]
                 }
