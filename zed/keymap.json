@@ -38,7 +38,6 @@
       "s": "vim::PushSneak",
       "g d": "editor::GoToDefinition",
       "g r r": "editor::FindAllReferences",
-      "space g h d": "editor::ToggleSelectedDiffHunks",
       "shift-s": "vim::PushSneakBackward",
       "space a": "pane::TogglePinTab",
       "space e": "tab_switcher::Toggle",
