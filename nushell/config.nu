@@ -50,6 +50,7 @@ alias prco = gh pr checkout
 alias rcli = redis-cli
 alias cat = bat
 alias CAT = cat
+alias pn = pnpm
 
 # functions
 
