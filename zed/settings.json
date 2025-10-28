@@ -11,7 +11,7 @@
   "theme": "Vesper",
   "icon_theme": "Catppuccin Latte",
   "ui_font_size": 18,
-  "agent_font_size": 18,
+  "agent_ui_font_size": 18,
   "buffer_font_size": 16.0,
   "ui_font_family": "Geist",
   "buffer_font_family": "GeistMono Nerd Font",
