@@ -77,6 +77,9 @@ run = 'move-node-to-workspace 3'
 if.app-id = 'org.webkit.Playwright'
 run = 'move-node-to-workspace 3'
 
+[[on-window-detected]]
+if.app-id = 'com.figma.Desktop'
+run = 'move-node-to-workspace 5'
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'finder'
@@ -118,10 +121,10 @@ preset = 'qwerty'
 [gaps]
 inner.horizontal = 2
 inner.vertical = 2
-outer.left = 1
+outer.left = 0
 outer.bottom = 0
-outer.top = 1
-outer.right = 1
+outer.top = 0
+outer.right = 0
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
