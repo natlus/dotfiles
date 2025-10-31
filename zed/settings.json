@@ -6,6 +6,7 @@
     "toggle_relative_line_numbers": true
   },
   "vertical_scroll_margin": 8,
+  "max_tabs": 6,
 
   // look and feel
   "theme": "Vesper",
