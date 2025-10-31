@@ -21,7 +21,7 @@ style = "fg:#ffffff"
 format = '[ $symbol]($style)'
 
 [character]
-format = "[ ](bold italic #F6C99F)"
+format = "[: ](bold italic #F6C99F)"
 vicmd_symbol = "[N] >>>"
 
 [directory]
