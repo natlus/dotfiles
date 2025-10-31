@@ -1,17 +1,13 @@
 add_newline = false
 continuation_prompt = "[▸▹ ](dimmed white)"
 
-format = """($container$fill \n)\
+format = """($container$fill $git_metrics $git_commit $git_state $git_status\n)\
 ${custom.proxy}\
 $directory\
 $git_branch\
-$git_metrics\
-$git_commit\
-$git_state\
-$git_status\
 $custom\
 $status\
-\n$character"""
+$character"""
 
 [fill]
 symbol = ' '
@@ -25,7 +21,7 @@ style = "fg:#ffffff"
 format = '[ $symbol]($style)'
 
 [character]
-format = "[▶](bold italic #F6C99F) "
+format = "[ ](bold italic #F6C99F)"
 vicmd_symbol = "[N] >>>"
 
 [directory]
@@ -48,7 +44,7 @@ style = "italic #F6C99F"
 only_attached = true
 
 [git_metrics]
-format = ' ([+$added]($added_style))([-$deleted]($deleted_style)) '
+format = '([+$added]($added_style))([-$deleted]($deleted_style))'
 added_style = 'bold green'
 deleted_style = 'bold red'
 ignore_submodules = true
