@@ -30,7 +30,7 @@
   {
     "context": "Workspace && !Editor || Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
-      "space s f": "file_finder::Toggle",
+      "space f": "file_finder::Toggle",
       "space p": "command_palette::Toggle",
       "space o": "command_palette::Toggle"
     }
