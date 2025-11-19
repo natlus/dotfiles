@@ -1,0 +1,11 @@
+theme = "vesper"
+
+[editor]
+scrolloff = 8
+line-number = "relative"
+
+[editor.cursor-shape]
+insert = "bar"
+
+[keys.normal.space]
+w = ":write"
