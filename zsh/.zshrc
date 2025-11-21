@@ -132,16 +132,14 @@ function gitc() {
         return 1
     fi
 
-    # Get all branches (local and remote)
-    # 1. git branch --all: lists all branches
-    # 2. sed: removes leading '*', whitespace, and 'remotes/' prefix
-    # 3. awk: trims whitespace and filters out empty lines
-    # 4. sort -u: sorts and removes duplicates (uniq)
+    # Get all branches sorted by commit date (descending)
+    # 1. git for-each-ref: iterates over refs
+    # 2. --sort=-committerdate: sorts by date (newest first)
+    # 3. --format: formats the output to show only the ref name
+    # 4. sed: strips 'refs/heads/' and 'refs/remotes/' to leave clean branch names
     local branches
-    branches=$(git branch --all | \
-        sed 's/^\*//; s/^[[:space:]]*//; s/^remotes\///' | \
-        awk '{$1=$1};1' | \
-        sort -u)
+    branches=$(git for-each-ref --sort=-committerdate refs/heads/ refs/remotes/ \
+        --format='%(refname:short)')
 
     # Check if we have any branches
     if [[ -z "$branches" ]]; then
@@ -155,18 +153,26 @@ function gitc() {
         fzf --height=40% --reverse --prompt="Select branch: " \
             --preview="git log --oneline --color=always {} | head -20")
 
-    # Check if a branch was selected (exit if variable is empty)
+    # Check if a branch was selected
     if [[ -z "$selected" ]]; then
         echo "No branch selected"
         return 1
     fi
 
-    # Extract branch name (trimming is handled by implicit variable expansion, but xargs is safer)
+    # Extract branch name (trimming handled by xargs)
     local branch
     branch=$(echo "$selected" | xargs)
 
-    echo "Checking out branch: $branch"
-    git checkout "$branch"
+    # If the branch is a remote branch (starts with origin/), checkout properly
+    if [[ "$branch" == origin/* ]]; then
+        # Remove 'origin/' to get local tracking name
+        local local_branch=${branch#*/}
+        echo "Checking out remote branch as local: $local_branch"
+        git checkout -b "$local_branch" "$branch" 2>/dev/null || git checkout "$local_branch"
+    else
+        echo "Checking out branch: $branch"
+        git checkout "$branch"
+    fi
 }
 
 function proxyon() {
