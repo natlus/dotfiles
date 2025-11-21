@@ -1,6 +1,11 @@
 autoload -Uz compinit; compinit
 export PATH=/opt/homebrew/bin:$PATH
 export BAT_THEME="Vesper"
+export PROXY_URL="http://proxy.sr.se:8080"
+export NO_PROXY="*.local, 169.254/16, .sr.se, .dm.sr.se, .srse.dm.sr.se"
+export http_proxy=""
+export https_proxy=""
+export RSYNC_PROXY=""
 
 export LB_USERNAME=$(security find-generic-password -s "LB_USERNAME" -w | tr -d '\n')
 export LB_PASSWORD=$(security find-generic-password -s "LB_PASSWORD" -w | tr -d '\n')
