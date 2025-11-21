@@ -44,7 +44,6 @@ alias c="zed"
 alias co="git checkout"
 alias cm="git commit -m"
 alias ca="git commit -am"
-alias gl="git log --oneline --decorate=no"
 alias gst="git status"
 alias prco="gh pr checkout"
 alias rcli="redis-cli"
@@ -175,6 +174,34 @@ function gitc() {
     fi
 }
 
+function gl() {
+    if ! git rev-parse --is-inside-work-tree &> /dev/null; then
+        echo "❌ Not a git repository"
+        return 1
+    fi
+
+    # 1. git log: Generates the list (No color here to ensure hash is clean text)
+    # 2. fzf:
+    #    --preview: Uses color=always so the side view looks nice
+    #    {1}: represents the commit hash
+    local selected
+    selected=$(git log --oneline --decorate=no | \
+        fzf --reverse --height=80% \
+            --prompt="Select commit: " \
+            --preview="git show --color=always {1} | head -500")
+
+    # Exit if nothing was selected (e.g. User pressed Esc)
+    if [[ -z "$selected" ]]; then
+        return 0
+    fi
+
+    # Extract just the hash (the first word of the line)
+    local hash
+    hash=$(echo "$selected" | awk '{print $1}')
+
+    # Print the hash to stdout
+    echo "$hash"
+}
 function proxyon() {
     # Ensure PROXY_URL is set before trying to use it
     if [[ -z "$PROXY_URL" ]]; then
