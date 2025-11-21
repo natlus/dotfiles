@@ -1,3 +1,5 @@
+command = /bin/zsh
+
 font-family = GeistMono Nerd Font
 font-style-italic = false
 font-synthetic-style = false
