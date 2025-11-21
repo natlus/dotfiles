@@ -7,3 +7,8 @@ $env.LB_USERNAME = (^security find-generic-password -s "LB_USERNAME" -w | str tr
 $env.LB_PASSWORD = (^security find-generic-password -s "LB_PASSWORD" -w | str trim)
 
 $env.NPM_TOKEN = (^security find-generic-password -s "NPM_TOKEN" -w | str trim)
+
+# pnpm
+$env.PNPM_HOME = "/Users/jessul01/Library/pnpm"
+$env.PATH = ($env.PATH | split row (char esep) | prepend $env.PNPM_HOME )
+# pnpm end

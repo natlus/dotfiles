@@ -8,7 +8,6 @@ $env.config = {
 	# }
 }
 
-
 $env.PROMPT_INDICATOR_VI_NORMAL = ""
 $env.PROMPT_INDICATOR_VI_INSERT = ""
 
@@ -38,7 +37,6 @@ fnm use
 source ~/.zoxide.nu
 
 # aliases
-
 alias c = code
 alias z = zed
 alias co = git checkout
