@@ -4,6 +4,9 @@ theme = "vesper"
 scrolloff = 8
 line-number = "relative"
 
+[editor.file-picker]
+hidden = false
+
 [editor.cursor-shape]
 insert = "bar"
 
