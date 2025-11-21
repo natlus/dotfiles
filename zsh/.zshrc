@@ -1,5 +1,6 @@
 autoload -Uz compinit; compinit
 export PATH=/opt/homebrew/bin:$PATH
+export BAT_THEME="Vesper"
 
 export LB_USERNAME=$(security find-generic-password -s "LB_USERNAME" -w | tr -d '\n')
 export LB_PASSWORD=$(security find-generic-password -s "LB_PASSWORD" -w | tr -d '\n')
