@@ -22,9 +22,6 @@ macos-window-buttons = hidden
 macos-window-shadow = true
 mouse-hide-while-typing = true
 window-new-tab-position = end
-macos-icon = custom-style
-macos-icon-ghost-color = #ffffff
-macos-icon-screen-color = #000000
 
 window-padding-x = 12,12
 window-padding-y = 12,10
