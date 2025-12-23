@@ -2,3 +2,5 @@
 tmux/plugins/
 zsh/.zcompdump
 zsh/.zsh_history
+zsh/.zprofile
+zed/prompts
