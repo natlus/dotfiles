@@ -1,4 +1,6 @@
 autoload -Uz compinit; compinit
+
+# envs
 export PATH=/opt/homebrew/bin:$PATH
 export BAT_THEME="Vesper"
 export PROXY_URL="http://proxy.sr.se:8080"
@@ -17,29 +19,18 @@ case ":$PATH:" in
   *":$PNPM_HOME:"*) ;;
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
-# pnpm end
 
-# Starship
+# inits
 eval "$(starship init zsh)"
-
-# fzf
 source <(fzf --zsh)
-
-# fnm
 eval "$(fnm env --use-on-cd --shell zsh)"
-
-# carapace
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
 zstyle ':completion:*' menu select
 source <(carapace _carapace)
-
-# autosuggestions like fish
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# zoxide
 eval "$(zoxide init zsh)"
 
-# alias
+# aliases
 alias c="zed"
 alias co="git checkout"
 alias cm="git commit -m"
@@ -202,6 +193,7 @@ function gl() {
     # Print the hash to stdout
     echo "$hash"
 }
+
 function proxyon() {
     # Ensure PROXY_URL is set before trying to use it
     if [[ -z "$PROXY_URL" ]]; then
