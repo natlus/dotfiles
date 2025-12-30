@@ -87,6 +87,7 @@
     "tab_bar.background": "#10101008",
     "panel.background": "#10101000",
     "error.background": "#893232",
+    "warning.background": "#45372b",
     "panel.overlay_background": "#101010ff",
   },
 
