@@ -22,6 +22,7 @@ macos-window-buttons = hidden
 macos-window-shadow = true
 mouse-hide-while-typing = true
 window-new-tab-position = end
+split-preserve-zoom = navigation
 
 window-padding-x = 12,12
 window-padding-y = 12,10
