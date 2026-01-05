@@ -148,7 +148,7 @@ return {
 			vim.diagnostic.config({
 				severity_sort = true,
 				float = { border = "rounded", source = "if_many" },
-				underline = { severity = vim.diagnostic.severity.ERROR },
+				underline = {},
 				signs = vim.g.have_nerd_font and {
 					text = {
 						[vim.diagnostic.severity.ERROR] = "󰅚 ",
@@ -158,7 +158,8 @@ return {
 					},
 				} or {},
 				virtual_text = {
-					source = "if_many",
+					source = true,
+					current_line = true,
 					spacing = 2,
 					format = function(diagnostic)
 						local diagnostic_message = {
@@ -198,7 +199,7 @@ return {
 				--    https://github.com/pmizio/typescript-tools.nvim
 				--
 				-- But for many setups, the LSP (`ts_ls`) will work just fine
-				-- ts_ls = {},
+				ts_ls = {},
 				--
 
 				lua_ls = {
@@ -232,7 +233,9 @@ return {
 			-- for you, so that they are available from within Neovim.
 			local ensure_installed = vim.tbl_keys(servers or {})
 			vim.list_extend(ensure_installed, {
-				"stylua", -- Used to format Lua code
+				"stylua",
+				"eslint",
+				"prettier",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
