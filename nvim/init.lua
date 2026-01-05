@@ -7,6 +7,7 @@ vim.opt.shiftwidth = 2
 
 vim.o.number = true
 vim.o.relativenumber = true
+vim.opt.signcolumn = "yes"
 
 vim.o.mouse = "a"
 vim.o.showmode = false
