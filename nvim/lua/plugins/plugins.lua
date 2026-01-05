@@ -1,33 +1,7 @@
 return {
-	{
-		"datsfilipe/vesper.nvim",
-		priority = 1000, -- Make sure to load this before all the other start plugins.
-		config = function()
-			---@diagnostic disable-next-line: missing-fields
-			local colors = require("vesper.colors")
-			local mix = require("vesper.utils").mix
 
-			require("vesper").setup({
-				transparent = true,
-
-				overrides = {
-					CursorLine = { bg = mix(colors.bgOption, "#000000", math.abs(0.7)) },
-					Visual = { bg = mix(colors.orange, "#000000", math.abs(0.25)) },
-					GitSignsAdd = { fg = colors.greenLight },
-					GitSignsDelete = { fg = "#ff8080" },
-					GitSignsChange = { fg = colors.orange },
-				},
-
-				palette_overrides = {
-					orange = "#ffc799",
-					orangeLight = "#ffc799",
-					green = "#99ffe4",
-					greenLight = "#99ffe4",
-					fg = "white",
-				},
-			})
-			vim.cmd.colorscheme("vesper")
-		end,
+	{ -- custom theme
+		require("vesper-ns").setup(),
 	},
 
 	"NMAC427/guess-indent.nvim",
@@ -40,7 +14,7 @@ return {
 				add = { text = "▌" },
 				change = { text = "▌" },
 				delete = { text = "󰍟" },
-				topdelete = { text = "┃" },
+				topdelete = { text = "󰍟" },
 				changedelete = { text = "~" },
 				untracked = { text = "┆" },
 			},
@@ -50,7 +24,7 @@ return {
 				delay = 0,
 			},
 			current_line_blame_formatter_nc = "",
-			current_line_blame_formatter = "<author>, <author_time:%R>",
+			current_line_blame_formatter = "     <author>, <author_time:%R>",
 		},
 	},
 

@@ -1,4 +1,5 @@
 vim.cmd([[set noswapfile]])
+vim.g.have_nerd_font = true
 
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
