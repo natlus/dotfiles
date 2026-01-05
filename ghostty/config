@@ -7,6 +7,7 @@ font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
 font-size = 16
+adjust-cell-height = 10%
 
 theme = vesper
 palette = 6=#ffffff
