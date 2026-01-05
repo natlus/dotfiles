@@ -7,7 +7,12 @@
       "cmd-3": ["pane::ActivateItem", 2],
       "cmd-4": ["pane::ActivateItem", 3],
       "cmd-5": ["pane::ActivateItem", 4],
-      "cmd-6": ["pane::ActivateItem", 5],
+
+      "space 1": ["pane::ActivateItem", 0],
+      "space 2": ["pane::ActivateItem", 1],
+      "space 3": ["pane::ActivateItem", 2],
+      "space 4": ["pane::ActivateItem", 3],
+      "space 5": ["pane::ActivateItem", 4],
 
       "cmd-shift-d": "git_panel::ToggleFocus",
       "ctrl-alt-right": "pane::SplitRight",
@@ -16,36 +21,30 @@
       "ctrl-alt-down": "pane::SplitDown",
 
       "cmd-[": "pane::SwapItemLeft",
-      "cmd-]": "pane::SwapItemRight"
-    }
+      "cmd-]": "pane::SwapItemRight",
+    },
   },
   {
     "context": "Editor",
     "bindings": {
       "cmd-e": "editor::Format",
       "cmd-k": "assistant::InlineAssist",
-      "cmd-shift-l": ["workspace::SendKeystrokes", "cmd-c end enter console.log(\"value: \", cmd-v)"]
-    }
+      "cmd-shift-l": ["workspace::SendKeystrokes", "cmd-c end enter console.log(\"value: \", cmd-v)"],
+    },
   },
   {
     "context": "Workspace && !Editor || Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
-      "space f": "file_finder::Toggle",
+      "space s f": "file_finder::Toggle",
       "space p": "command_palette::Toggle",
-      "space o": "command_palette::Toggle"
-    }
+      "space o": "command_palette::Toggle",
+    },
   },
   {
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && (extension==js || extension==jsx || extension==ts || extension==tsx )",
     "bindings": {
-      "space l": ["workspace::SendKeystrokes", "escape v i w y o console.log(' cmd-v : ', cmd-v ) escape"]
-    }
-  },
-  {
-    "context": "Editor && vim_mode == insert",
-    "bindings": {
-      "j k": "vim::NormalBefore"
-    }
+      "space l": ["workspace::SendKeystrokes", "escape v i w y o console.log(' cmd-v : ', cmd-v ) escape"],
+    },
   },
   {
     "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
@@ -63,22 +62,22 @@
       "shift-s": "vim::PushSneakBackward",
       "space a": "pane::TogglePinTab",
       "space e": "tab_switcher::Toggle",
-      "space w": "workspace::Save"
-    }
+      "space w": "workspace::Save",
+    },
   },
   {
     "context": "Editor && (vim_mode == visual && !VimWating && !menu)",
     "bindings": {
       "K": "editor::MoveLineUp",
       "J": "editor::MoveLineDown",
-      "space p": ["workspace::SendKeystrokes", "\" _ d P"]
-    }
+      "space p": ["workspace::SendKeystrokes", "\" _ d P"],
+    },
   },
   {
     "context": "Editor && ((vim_mode == visual || vim_mode == normal) && !VimWating && !menu)",
     "bindings": {
-      "space d": ["workspace::SendKeystrokes", "\" _ d"]
-    }
+      "space d": ["workspace::SendKeystrokes", "\" _ d"],
+    },
   },
   {
     "context": "!Editor && TabSwitcher",
@@ -86,14 +85,14 @@
       "d": "tab_switcher::CloseSelectedItem",
       "j": ["workspace::SendKeystrokes", "down"],
       "k": ["workspace::SendKeystrokes", "up"],
-      "space e": ["workspace::SendKeystrokes", "escape"]
-    }
+      "space e": ["workspace::SendKeystrokes", "escape"],
+    },
   },
   {
     "context": "ProjectPanel",
     "bindings": {
       "cmd-left": "project_panel::CollapseAllEntries",
-      "cmd-shift-e": "workspace::ToggleRightDock"
-    }
-  }
+      "cmd-shift-e": "workspace::ToggleRightDock",
+    },
+  },
 ]
