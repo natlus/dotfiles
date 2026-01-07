@@ -299,7 +299,7 @@ local function set_highlights(p)
 
 	-- LSP Semantic Token Modifiers (for imports)
 	hl(0, "@lsp.typemod.function.defaultLibrary", { fg = p.accent })
-	hl(0, "@lsp.typemod.variable.defaultLibrary", { fg = p.fg_muted })
+	hl(0, "@lsp.typemod.variable.defaultLibrary", { fg = p.fg })
 	hl(0, "@lsp.typemod.class.defaultLibrary", { fg = p.accent })
 
 	-- Diagnostics
@@ -408,6 +408,7 @@ local function set_highlights(p)
 	hl(0, "typescriptTemplateSB", { fg = p.fg_muted })
 	hl(0, "typescriptTernaryOp", { fg = p.fg_muted })
 	hl(0, "typescriptBinaryOp", { fg = p.fg_muted })
+	hl(0, "typescriptUnaryOp", { fg = p.fg_muted })
 	hl(0, "typescriptTypeBrackets", { fg = p.fg_muted })
 	hl(0, "typescriptMemberOptionality", { fg = p.fg_muted })
 
