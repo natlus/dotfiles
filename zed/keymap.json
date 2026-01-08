@@ -8,12 +8,6 @@
       "cmd-4": ["pane::ActivateItem", 3],
       "cmd-5": ["pane::ActivateItem", 4],
 
-      "space 1": ["pane::ActivateItem", 0],
-      "space 2": ["pane::ActivateItem", 1],
-      "space 3": ["pane::ActivateItem", 2],
-      "space 4": ["pane::ActivateItem", 3],
-      "space 5": ["pane::ActivateItem", 4],
-
       "cmd-shift-d": "git_panel::ToggleFocus",
       "ctrl-alt-right": "pane::SplitRight",
       "ctrl-alt-left": "pane::SplitLeft",
@@ -38,6 +32,12 @@
       "space s f": "file_finder::Toggle",
       "space p": "command_palette::Toggle",
       "space o": "command_palette::Toggle",
+      "space m": "vim::ToggleMarksView",
+      "space 1": ["pane::ActivateItem", 0],
+      "space 2": ["pane::ActivateItem", 1],
+      "space 3": ["pane::ActivateItem", 2],
+      "space 4": ["pane::ActivateItem", 3],
+      "space 5": ["pane::ActivateItem", 4],
     },
   },
   {
