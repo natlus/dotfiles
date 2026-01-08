@@ -14,6 +14,7 @@
   "ui_font_size": 18,
   "agent_ui_font_size": 18,
   "buffer_font_size": 16.0,
+  "buffer_line_height": "comfortable",
   "ui_font_family": "Geist",
   "buffer_font_family": "GeistMono Nerd Font",
   "buffer_font_features": {
@@ -97,7 +98,12 @@
   "use_autoclose": true,
   "preview_tabs": {
     "enabled": true,
-    "enable_preview_from_file_finder": false,
+    "enable_preview_from_project_panel": true,
+    "enable_preview_from_file_finder": true,
+    "enable_preview_from_multibuffer": true,
+    "enable_preview_multibuffer_from_code_navigation": true,
+    "enable_preview_file_from_code_navigation": true,
+    "enable_keep_preview_on_code_navigation": true,
   },
   "preferred_line_length": 120,
   "soft_wrap": "bounded",
@@ -143,6 +149,13 @@
     "tsconfig.tsbuildinfo",
   ],
 
+  "diagnostics": {
+    "inline": {
+      "enabled": true,
+      "max_severity": "error",
+    },
+  },
+
   // lsp
   "lsp": {
     "biome": {
@@ -170,9 +183,13 @@
     "TypeScript": {
       "inlay_hints": {
         "enabled": false,
-        "show_parameter_hints": false,
+        "show_type_hints": false,
+        "show_parameter_hints": true,
         "show_other_hints": true,
-        "show_type_hints": true,
+        "show_background": true,
+        "edit_debounce_ms": 700,
+        "scroll_debounce_ms": 50,
+        "toggle_on_modifiers_press": null,
       },
       // "language_servers": ["!tsgo", "!biome"]
     },
