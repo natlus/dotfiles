@@ -6,7 +6,7 @@ font-synthetic-style = false
 font-feature = -calt
 font-feature = -liga
 font-feature = -dlig
-font-size = 16
+font-size = 15
 font-thicken = true
 adjust-cell-height = 10%
 
