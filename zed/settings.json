@@ -11,9 +11,9 @@
   // look and feel
   "theme": "Vesper",
   "icon_theme": "Catppuccin Latte",
-  "ui_font_size": 16,
+  "ui_font_size": 18,
   "agent_ui_font_size": 16,
-  "buffer_font_size": 15.0,
+  "buffer_font_size": 16.0,
   "buffer_line_height": "comfortable",
   "ui_font_family": "Geist",
   "buffer_font_family": "GeistMono Nerd Font",
