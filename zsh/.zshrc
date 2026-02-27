@@ -253,3 +253,6 @@ function proxyoff() {
 
     echo "proxy is off 🚫"
 }
+
+# bun completions
+[ -s "/Users/jessul01/.bun/_bun" ] && source "/Users/jessul01/.bun/_bun"
