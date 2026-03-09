@@ -16,6 +16,8 @@ vim.o.cursorline = true
 vim.o.scrolloff = 10
 vim.o.confirm = true
 
+vim.opt.exrc = true
+
 -- use OS clipboard
 vim.schedule(function()
 	vim.o.clipboard = "unnamedplus"
