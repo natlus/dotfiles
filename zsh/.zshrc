@@ -190,8 +190,9 @@ function gl() {
     local hash
     hash=$(echo "$selected" | awk '{print $1}')
 
-    # Print the hash to stdout
-    echo "$hash"
+    # Copy the hash to clipboard
+    echo -n "$hash" | pbcopy
+    echo "Copied $hash to clipboard"
 }
 
 function proxyon() {
