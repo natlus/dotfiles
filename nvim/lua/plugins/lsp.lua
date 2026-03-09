@@ -235,7 +235,6 @@ return {
 			vim.list_extend(ensure_installed, {
 				"stylua",
 				"eslint",
-				"prettier",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
