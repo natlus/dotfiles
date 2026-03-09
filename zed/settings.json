@@ -113,8 +113,10 @@
 
   // ai
   "agent": {
+    "tool_permissions": {
+      "default": "allow",
+    },
     "dock": "left",
-    "always_allow_tool_actions": true,
     "inline_assistant_model": {
       "provider": "copilot_chat",
       "model": "claude-opus-4.5",
@@ -124,10 +126,8 @@
       "model": "gemini-3-pro-preview",
     },
   },
-  "features": {
-    "edit_prediction_provider": "zed",
-  },
   "edit_predictions": {
+    "provider": "zed",
     "mode": "eager",
     "copilot": {
       "proxy": null,
@@ -161,18 +161,6 @@
 
   // lsp
   "lsp": {
-    "biome": {
-      "settings": {
-        "require_config_file": true,
-      },
-    },
-    "deno": {
-      "settings": {
-        "deno": {
-          "enable": true,
-        },
-      },
-    },
     "tailwindcss-language-server": {
       "settings": {
         "classFunctions": ["cva", "cx", "cn"],
