@@ -1,0 +1,12 @@
+[theme]
+name = "vesper"
+
+[colors]
+AlertInfo = "#a6e3a1"
+AlertWarn = "#ffffff"
+AlertError = "#FFC799"
+Annotation = "#ffffff"
+Base = "#ffffff"
+Guidance = "#8b8b8b"
+Important = "#f38ba8"
+Title = "#f2cdcd"

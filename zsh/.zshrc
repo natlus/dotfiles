@@ -257,3 +257,7 @@ function proxyoff() {
 
 # bun completions
 [ -s "/Users/jessul01/.bun/_bun" ] && source "/Users/jessul01/.bun/_bun"
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init --disable-up-arrow zsh)"
