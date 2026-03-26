@@ -185,6 +185,14 @@
         },
       },
     },
+    "roslyn": {
+      "binary": {
+        "env": {
+          "DOTNET_ROOT": "/opt/homebrew/opt/dotnet/libexec",
+          "DOTNET_ROOT_ARM64": "/opt/homebrew/opt/dotnet/libexec",
+        },
+      },
+    },
   },
   "languages": {
     "TypeScript": {
@@ -199,6 +207,9 @@
         "toggle_on_modifiers_press": null,
       },
       // "language_servers": ["!tsgo", "!biome"]
+    },
+    "CSharp": {
+      "formatter": "language_server",
     },
   },
 }
