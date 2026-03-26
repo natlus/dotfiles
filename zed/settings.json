@@ -1,5 +1,6 @@
 {
   // vim mode
+  "diff_view_style": "unified",
   "vim_mode": true,
   "cursor_blink": false,
   "vim": {
