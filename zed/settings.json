@@ -13,7 +13,8 @@
   "theme": "Vesper",
   "icon_theme": "Catppuccin Latte",
   "ui_font_size": 18,
-  "agent_ui_font_size": 16,
+  "agent_ui_font_size": 18,
+  "agent_buffer_font_size": 16.0,
   "buffer_font_size": 16.0,
   "buffer_line_height": "comfortable",
   "ui_font_family": "Geist",
@@ -23,7 +24,7 @@
   },
   "terminal": {
     "font_family": "GeistMono Nerd Font",
-    "font_size": 14,
+    "font_size": 16,
     "line_height": "standard",
     "button": false,
   },
@@ -63,6 +64,7 @@
   "notification_panel": {
     "button": false,
   },
+  "resize_all_panels_in_dock": ["left", "bottom", "right"],
   "gutter": {
     "breakpoints": false,
     "runnables": false,
@@ -109,7 +111,7 @@
     "enable_preview_file_from_code_navigation": true,
     "enable_keep_preview_on_code_navigation": true,
   },
-  "preferred_line_length": 120,
+  "preferred_line_length": 110,
   "soft_wrap": "bounded",
 
   // ai

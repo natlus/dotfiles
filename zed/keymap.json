@@ -7,6 +7,7 @@
       "cmd-3": ["pane::ActivateItem", 2],
       "cmd-4": ["pane::ActivateItem", 3],
       "cmd-5": ["pane::ActivateItem", 4],
+      "ctrl-.": "agent::ToggleFocus",
 
       "cmd-shift-d": "git_panel::ToggleFocus",
       "ctrl-alt-right": "pane::SplitRight",
@@ -19,6 +20,12 @@
     },
   },
   {
+    "context": "!Editor",
+    "bindings": {
+      "ctrl-l": "editor::ToggleFocus",
+    },
+  },
+  {
     "context": "Editor",
     "bindings": {
       "cmd-e": "editor::Format",
@@ -27,7 +34,7 @@
     },
   },
   {
-    "context": "Workspace && !Editor || Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+    "context": "!Terminal && Workspace && !Editor || Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
     "bindings": {
       "space s f": "file_finder::Toggle",
       "space p": "command_palette::Toggle",
