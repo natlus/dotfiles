@@ -120,9 +120,10 @@
       "default": "allow",
     },
     "dock": "left",
+    "flexible": false,
     "inline_assistant_model": {
       "provider": "copilot_chat",
-      "model": "claude-opus-4.5",
+      "model": "claude-sonnet-4.6",
     },
     "default_model": {
       "provider": "copilot_chat",
@@ -168,16 +169,16 @@
       "settings": {
         "typescript": {
           "updateImportsOnFileMove": {
-            "enabled": "always"
-          }
+            "enabled": "always",
+          },
         },
         "javascript": {
           "updateImportsOnFileMove": {
-            "enabled": "always"
-          }
-        }
+            "enabled": "always",
+          },
+        },
       },
-      "enable_lsp_tasks": true
+      "enable_lsp_tasks": true,
     },
     "tailwindcss-language-server": {
       "settings": {
@@ -197,19 +198,6 @@
     },
   },
   "languages": {
-    "TypeScript": {
-      "inlay_hints": {
-        "enabled": false,
-        "show_type_hints": false,
-        "show_parameter_hints": true,
-        "show_other_hints": true,
-        "show_background": true,
-        "edit_debounce_ms": 700,
-        "scroll_debounce_ms": 50,
-        "toggle_on_modifiers_press": null,
-      },
-      // "language_servers": ["!tsgo", "!biome"]
-    },
     "CSharp": {
       "formatter": "language_server",
     },
