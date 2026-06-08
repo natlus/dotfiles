@@ -40,7 +40,7 @@
     "enabled": false,
   },
   "title_bar": {
-    "show_branch_icon": true,
+    "show_branch_status_icon": true,
   },
   "toolbar": {
     "breadcrumbs": true,
@@ -60,9 +60,6 @@
     "show": true,
     "show_nav_history_buttons": false,
     "show_tab_bar_buttons": false,
-  },
-  "notification_panel": {
-    "button": false,
   },
   "resize_all_panels_in_dock": ["left", "bottom", "right"],
   "gutter": {
@@ -137,7 +134,6 @@
       "proxy": null,
       "proxy_no_verify": null,
     },
-    "enabled_in_text_threads": true,
   },
 
   // hide files
