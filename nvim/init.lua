@@ -1,36 +1,28 @@
-vim.cmd([[set noswapfile]])
-vim.g.have_nerd_font = true
+require("ns.options")
+require("ns.remap")
 
-vim.opt.tabstop = 2
-vim.opt.softtabstop = 2
-vim.opt.shiftwidth = 2
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
+end
+vim.opt.rtp:prepend(lazypath)
 
-vim.o.number = true
-vim.o.relativenumber = true
-vim.opt.signcolumn = "yes"
-
-vim.o.mouse = "a"
-vim.o.showmode = false
-vim.o.ignorecase = true
-vim.o.cursorline = true
-vim.o.scrolloff = 10
-vim.o.confirm = true
-
-vim.opt.exrc = true
-
--- use OS clipboard
-vim.schedule(function()
-	vim.o.clipboard = "unnamedplus"
-end)
-
--- Highlight when yanking text
-vim.api.nvim_create_autocmd("TextYankPost", {
-	desc = "Highlight when yanking (copying) text",
-	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
-	callback = function()
-		vim.hl.hl_op()
-	end,
+require("lazy").setup({
+	spec = {
+		{ import = "ns.plugins" },
+	},
+	install = { colorscheme = { "habamax" } },
+	checker = { enabled = true },
 })
 
-require("config.remap")
-require("config.lazy")
+require("ns.themes.vesper").setup()
