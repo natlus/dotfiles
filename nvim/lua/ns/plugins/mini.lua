@@ -27,6 +27,20 @@ return {
 				active = function()
 					local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
 					local git = statusline.section_git({ trunc_width = 40 })
+					local git_status = vim.b.gitsigns_status_dict or {}
+					local git_diff = statusline.combine_groups({
+						{ strings = { git_status.added and git_status.added > 0 and ("+" .. git_status.added) or "" } },
+						{
+							strings = {
+								git_status.changed and git_status.changed > 0 and ("~" .. git_status.changed) or "",
+							},
+						},
+						{
+							strings = {
+								git_status.removed and git_status.removed > 0 and ("-" .. git_status.removed) or "",
+							},
+						},
+					})
 					local diagnostics = statusline.section_diagnostics({ trunc_width = 75 })
 					local clients = vim.lsp.get_clients({ bufnr = 0 })
 					local hidden_lsp_clients = { oxfmt = true, stylua = true }
@@ -45,7 +59,7 @@ return {
 
 					return statusline.combine_groups({
 						{ hl = mode_hl, strings = { mode } },
-						{ hl = "MiniStatuslineDevinfo", strings = { git, diagnostics } },
+						{ hl = "MiniStatuslineDevinfo", strings = { git, git_diff, diagnostics } },
 						"%<",
 						{ hl = "MiniStatuslineFilename", strings = { filename } },
 						"%=",
