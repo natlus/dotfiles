@@ -237,4 +237,84 @@ return {
 			})
 		end,
 	},
+
+	{
+		"nickjvandyke/opencode.nvim",
+		version = "*", -- Latest stable release
+		config = function()
+			---@type opencode.Opts
+			vim.g.opencode_opts = {
+				-- Your configuration, if any; goto definition on the type or field for details
+			}
+
+			vim.o.autoread = true -- Required for `vim.g.opencode_opts.events.reload`
+
+			-- Recommended/example keymaps
+			vim.keymap.set({ "n", "x" }, "<leader>oa", function()
+				require("opencode").ask("@this: ")
+			end, { desc = "Ask OpenCode…" })
+			vim.keymap.set({ "n", "x" }, "<leader>os", function()
+				require("opencode").select()
+			end, { desc = "Select OpenCode…" })
+
+			vim.keymap.set({ "n", "x" }, "go", function()
+				return require("opencode").operator("@this ")
+			end, { desc = "Append range to OpenCode", expr = true })
+			vim.keymap.set("n", "goo", function()
+				return require("opencode").operator("@this ") .. "_"
+			end, { desc = "Append line to OpenCode", expr = true })
+
+			vim.keymap.set("n", "<S-C-u>", function()
+				require("opencode").command("session.half.page.up")
+			end, { desc = "Scroll OpenCode up" })
+			vim.keymap.set("n", "<S-C-d>", function()
+				require("opencode").command("session.half.page.down")
+			end, { desc = "Scroll OpenCode down" })
+		end,
+	},
+
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		---@type snacks.Config
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			bigfile = { enabled = true },
+			dashboard = { enabled = true },
+			explorer = { enabled = true },
+			indent = { enabled = true },
+			input = { enabled = true }, -- Enhances opencode.nvim `ask()`
+			picker = {
+				enabled = true, -- Enhances opencode.nvim `select()`
+				actions = {
+					---@param picker snacks.Picker
+					opencode_send = function(picker)
+						local items = vim.tbl_map(function(item) ---@param item snacks.picker.Item
+							return item.file
+								and require("opencode").format({ path = item.file, from = item.pos, to = item.end_pos })
+								or item.text
+						end, picker:selected({ fallback = true }))
+
+						require("opencode").prompt(table.concat(items, ", ") .. " ")
+					end,
+				},
+				win = {
+					input = {
+						keys = {
+							["<a-a>"] = { "opencode_send", mode = { "n", "i" } },
+						},
+					},
+				},
+			},
+			notifier = { enabled = true },
+			quickfile = { enabled = true },
+			scope = { enabled = true },
+			scroll = { enabled = true },
+			statuscolumn = { enabled = true },
+			words = { enabled = true },
+		},
+	},
 }
