@@ -42,6 +42,7 @@ alias cat="bat"
 alias CAT="cat"
 alias pn="pnpm"
 alias pnx="pnpx"
+alias oc="opencode --port"
 
 function session() {
     local session_name="$1"
@@ -123,13 +124,12 @@ function gitc() {
         return 1
     fi
 
-    # Get all branches sorted by commit date (descending)
+    # Get local branches sorted by commit date (descending)
     # 1. git for-each-ref: iterates over refs
     # 2. --sort=-committerdate: sorts by date (newest first)
     # 3. --format: formats the output to show only the ref name
-    # 4. sed: strips 'refs/heads/' and 'refs/remotes/' to leave clean branch names
     local branches
-    branches=$(git for-each-ref --sort=-committerdate refs/heads/ refs/remotes/ \
+    branches=$(git for-each-ref --sort=-committerdate refs/heads/ \
         --format='%(refname:short)')
 
     # Check if we have any branches
@@ -154,16 +154,8 @@ function gitc() {
     local branch
     branch=$(echo "$selected" | xargs)
 
-    # If the branch is a remote branch (starts with origin/), checkout properly
-    if [[ "$branch" == origin/* ]]; then
-        # Remove 'origin/' to get local tracking name
-        local local_branch=${branch#*/}
-        echo "Checking out remote branch as local: $local_branch"
-        git checkout -b "$local_branch" "$branch" 2>/dev/null || git checkout "$local_branch"
-    else
-        echo "Checking out branch: $branch"
-        git checkout "$branch"
-    fi
+    echo "Checking out branch: $branch"
+    git checkout "$branch"
 }
 
 function gl() {
