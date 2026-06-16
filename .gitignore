@@ -3,4 +3,6 @@ tmux/plugins/
 zsh/.zcompdump
 zsh/.zsh_history
 zsh/.zprofile
+zsh/.zsh_sessions
 zed/prompts
+opencode/opencode-notifier-state.json
