@@ -16,7 +16,7 @@ return {
 				opencode_send = function(picker)
 					local items = vim.tbl_map(function(item) ---@param item snacks.picker.Item
 						return item.file
-							and require("opencode").format({ path = item.file, from = item.pos, to = item.end_pos })
+								and require("opencode").format({ path = item.file, from = item.pos, to = item.end_pos })
 							or item.text
 					end, picker:selected({ fallback = true }))
 
