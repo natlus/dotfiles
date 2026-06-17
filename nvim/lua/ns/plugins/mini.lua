@@ -53,7 +53,7 @@ return {
 						end, clients)
 					)
 					local lsp = table.concat(client_names, ", ")
-					local filename = statusline.section_filename({ trunc_width = 140 })
+					local filename = vim.fn.expand("%:.")
 					local location = statusline.section_location({ trunc_width = 75 })
 					local search = statusline.section_searchcount({ trunc_width = 75 })
 
