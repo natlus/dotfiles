@@ -15,9 +15,18 @@ return {
 	},
 	config = function()
 		require("telescope").setup({
+			defaults = {
+				file_ignore_patterns = {
+					"%.git/",
+					"%.next/",
+					"%.next%-dev/",
+					"node_modules/",
+				},
+			},
 			pickers = {
 				find_files = {
 					hidden = true,
+					no_ignore = true,
 				},
 			},
 			extensions = {
