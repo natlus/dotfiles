@@ -43,6 +43,7 @@ alias CAT="cat"
 alias pn="pnpm"
 alias pnx="pnpx"
 alias oc="opencode --port"
+alias nv="nvim"
 
 function session() {
     local session_name="$1"
