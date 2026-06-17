@@ -10,14 +10,17 @@ return {
 				-- type = "copilot",
 
 				-- Zeta-2 (best local)
-				type = "zeta-2",
-				url = "http://localhost:8000",
-				max_tokens = 64,
-				model = "zeta-2-mlx-4bit",
-				temperature = 0.1,
+				-- type = "zeta-2",
+				-- url = "http://localhost:8000",
+				-- max_tokens = 24,
+				-- -- context_size = 128,
+				-- model = "zeta-2.1-mlx-4bit",
+				-- temperature = 0.1,
 
 				-- Qwen3.5-0.8B (fastest local, defaults to "inline")
-				-- url = "http://localhost:11434",
+				url = "http://localhost:8000",
+				model = "Qwen3.5-0.8B-MLX-8bit",
+				max_tokens = 128,
 
 				-- sweep-next-edit-0.5B/1.5B (fastest local)
 				-- type = "sweep",
