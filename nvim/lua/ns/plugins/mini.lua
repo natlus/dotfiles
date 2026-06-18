@@ -20,51 +20,78 @@ return {
 		require("mini.cmdline").setup()
 
 		local statusline = require("mini.statusline")
+		vim.api.nvim_set_hl(0, "NsStatuslineBasename", { fg = "#ffffff" })
+		local mode_names = {
+			n = "normal",
+			no = "normal",
+			nov = "normal",
+			noV = "normal",
+			["no\22"] = "normal",
+			niI = "normal",
+			niR = "normal",
+			niV = "normal",
+			nt = "normal",
+			v = "visual",
+			vs = "visual",
+			V = "visual-line",
+			Vs = "visual-line",
+			["\22"] = "visual-block",
+			["\22s"] = "visual-block",
+			s = "select",
+			S = "select-line",
+			["\19"] = "select-block",
+			i = "insert",
+			ic = "insert",
+			ix = "insert",
+			R = "replace",
+			Rc = "replace",
+			Rx = "replace",
+			Rv = "virtual-replace",
+			Rvc = "virtual-replace",
+			Rvx = "virtual-replace",
+			c = "command",
+			cv = "vim-ex",
+			ce = "ex",
+			r = "prompt",
+			rm = "more",
+			["r?"] = "confirm",
+			["!"] = "shell",
+			t = "terminal",
+		}
 
 		statusline.setup({
 			use_icons = true,
 			content = {
 				active = function()
-					local mode, mode_hl = statusline.section_mode({ trunc_width = 120 })
-					local git = statusline.section_git({ trunc_width = 40 })
+					local mode_name = mode_names[vim.fn.mode()]
+					local mode = "--" .. mode_name:upper() .. "--"
+					local git = vim.b.gitsigns_head or ""
 					local git_status = vim.b.gitsigns_status_dict or {}
-					local git_diff = statusline.combine_groups({
-						{ strings = { git_status.added and git_status.added > 0 and ("+" .. git_status.added) or "" } },
-						{
-							strings = {
-								git_status.changed and git_status.changed > 0 and ("~" .. git_status.changed) or "",
-							},
-						},
-						{
-							strings = {
-								git_status.removed and git_status.removed > 0 and ("-" .. git_status.removed) or "",
-							},
-						},
-					})
-					local diagnostics = statusline.section_diagnostics({ trunc_width = 75 })
-					local clients = vim.lsp.get_clients({ bufnr = 0 })
-					local hidden_lsp_clients = { oxfmt = true, stylua = true }
-					local client_names = vim.tbl_filter(
-						function(name)
-							return not hidden_lsp_clients[name]
-						end,
-						vim.tbl_map(function(client)
-							return client.name
-						end, clients)
-					)
-					local lsp = table.concat(client_names, ", ")
+					local deleted = git_status.removed or 0
+					local added = git_status.added or 0
+					local git_deleted = deleted > 0 and ("%#GitSignsDelete#-" .. deleted) or ""
+					local git_added = added > 0 and ("%#GitSignsAdd#+" .. added) or ""
 					local filename = vim.fn.expand("%:.")
-					local location = statusline.section_location({ trunc_width = 75 })
-					local search = statusline.section_searchcount({ trunc_width = 75 })
+					local path = filename:match("^(.*/)") or ""
+					local basename = vim.fn.fnamemodify(filename, ":t")
+					local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
+					local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
+					local diagnostics = statusline.combine_groups({
+						{ strings = { errors > 0 and ("%#GitSignsDelete#e:" .. errors) or "" } },
+						{ strings = { warnings > 0 and ("%#GitSignsChange#w:" .. warnings) or "" } },
+					})
+					local filetype = vim.bo.filetype
+					local location = statusline.section_location()
 
 					return statusline.combine_groups({
-						{ hl = mode_hl, strings = { mode } },
-						{ hl = "MiniStatuslineDevinfo", strings = { git, git_diff, diagnostics } },
+						{ strings = { mode } },
+						{ strings = { git, git_deleted .. git_added .. "%#MiniStatuslineFilename#" } },
 						"%<",
-						{ hl = "MiniStatuslineFilename", strings = { filename } },
+						{ hl = "MiniStatuslineFilename", strings = { path .. "%#NsStatuslineBasename#" .. basename } },
+						{ strings = { diagnostics .. "%#MiniStatuslineFilename#" } },
 						"%=",
-						{ hl = "MiniStatuslineFileinfo", strings = { lsp } },
-						{ hl = mode_hl, strings = { search, location } },
+						{ hl = "MiniStatuslineFileinfo", strings = { filetype } },
+						{ strings = { location } },
 					})
 				end,
 			},
