@@ -30,3 +30,9 @@ end)
 map("n", "K", function()
 	vim.lsp.buf.hover({ border = "single" })
 end)
+
+-- native undotree
+vim.keymap.set("n", "<leader>u", function()
+	vim.cmd.packadd("nvim.undotree")
+	require("undotree").open()
+end, { desc = "Toggle Builtin Undotree" })
