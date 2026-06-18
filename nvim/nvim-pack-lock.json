@@ -8,6 +8,10 @@
       "rev": "44d1e90e1f66e077268191e3ee9d2ac97cc18e65",
       "src": "https://github.com/mason-org/mason.nvim"
     },
+    "mini.nvim": {
+      "rev": "bf8169f3e518be8de3f88073ace37d91f576cb04",
+      "src": "https://github.com/nvim-mini/mini.nvim"
+    },
     "none-ls-extras.nvim": {
       "rev": "517f87c1e6cd511e787d77127d7fdb12b7b79db3",
       "src": "https://github.com/nvimtools/none-ls-extras.nvim"

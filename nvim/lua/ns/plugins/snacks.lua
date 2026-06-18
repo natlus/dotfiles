@@ -8,7 +8,7 @@ return {
 		dashboard = { enabled = false },
 		explorer = { enabled = false },
 		indent = { enabled = true },
-		input = { enabled = false },
+		input = { enabled = true },
 		picker = {
 			enabled = true,
 			actions = {
