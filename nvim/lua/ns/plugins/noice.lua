@@ -1,5 +1,5 @@
 return {
-	-- "MeanderingProgramme	"folke/noice.nvim",
+	"folke/noice.nvim",
 	event = "VeryLazy",
 	dependencies = {
 		"MunifTanjim/nui.nvim",
