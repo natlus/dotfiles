@@ -107,6 +107,20 @@ return {
 			desc = "Goto Definition",
 		},
 		{
+			"gD",
+			function()
+				Snacks.picker.lsp_declarations()
+			end,
+			desc = "Goto Declaration",
+		},
+		{
+			"gy",
+			function()
+				Snacks.picker.lsp_type_definitions()
+			end,
+			desc = "Goto T[y]pe Definition",
+		},
+		{
 			"gI",
 			function()
 				Snacks.picker.lsp_implementations()
