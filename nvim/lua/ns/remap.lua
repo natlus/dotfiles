@@ -26,3 +26,7 @@ end)
 map("n", "gh", function()
 	vim.diagnostic.open_float()
 end)
+
+map("n", "K", function()
+	vim.lsp.buf.hover({ border = "single" })
+end)
