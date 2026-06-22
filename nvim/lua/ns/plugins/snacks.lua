@@ -30,6 +30,13 @@ return {
 		input = { enabled = true },
 		picker = {
 			enabled = true,
+			sources = {
+				files = {
+					hidden = true,
+					ignored = true,
+					exclude = { ".next", ".next-dev", "node_modules" },
+				},
+			},
 			actions = {
 				---@param picker snacks.Picker
 				opencode_send = function(picker)
