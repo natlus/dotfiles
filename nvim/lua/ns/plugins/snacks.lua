@@ -4,6 +4,25 @@ return {
 	lazy = false,
 	---@type snacks.Config
 	opts = {
+		terminal = {
+			enabled = true,
+			win = {
+				position = "float",
+				width = 0.75,
+				height = 0.55,
+				border = "rounded",
+				title = " Terminal ",
+				title_pos = "center",
+				backdrop = 60,
+				wo = {
+					statusline = "%#SnacksTitle# %{mode() ==# 't' ? 'INSERT' : 'NORMAL'} %*",
+				},
+				on_win = function(win)
+					win:add_padding()
+					Snacks.util.wo(win.win, win.opts.wo)
+				end,
+			},
+		},
 		bigfile = { enabled = false },
 		dashboard = { enabled = false },
 		explorer = { enabled = false },
@@ -49,6 +68,13 @@ return {
 		words = { enabled = true },
 	},
 	keys = {
+		{
+			"<leader>ft",
+			function()
+				Snacks.terminal.toggle()
+			end,
+			desc = "Toggle Floating Terminal",
+		},
 		{
 			"<leader>sf",
 			function()
