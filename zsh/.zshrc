@@ -1,5 +1,35 @@
 autoload -Uz compinit; compinit
 
+# prompt
+setopt PROMPT_SUBST
+
+function git_prompt_info() {
+    git rev-parse --is-inside-work-tree &>/dev/null || return
+
+    local branch ahead behind added deleted
+    branch=$(git symbolic-ref --quiet --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
+
+    if git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' &>/dev/null; then
+        local counts
+        counts=$(git rev-list --left-right --count HEAD...@{upstream} 2>/dev/null)
+        ahead=${counts%%$'\t'*}
+        behind=${counts##*$'\t'}
+    fi
+
+    local diff_stats
+    diff_stats=$(git diff --numstat 2>/dev/null)
+    added=$(awk '{ added += $1 } END { print added + 0 }' <<< "$diff_stats")
+    deleted=$(awk '{ deleted += $2 } END { print deleted + 0 }' <<< "$diff_stats")
+
+    print -n "%F{#F6C99F}△ ${branch}%f"
+    [[ "$ahead" -gt 0 ]] && print -n " %F{green}▴${ahead}%f"
+    [[ "$behind" -gt 0 ]] && print -n " %F{red}▿${behind}%f"
+    [[ "$added" -gt 0 ]] && print -n " %F{green}+${added}%f"
+    [[ "$deleted" -gt 0 ]] && print -n "%F{red}-${deleted}%f"
+}
+
+PROMPT=$'%F{#B1FCE5}%~%f $(git_prompt_info)\n%F{#F6C99F}▶%f '
+
 # envs
 export PATH=/opt/homebrew/bin:$PATH
 export BAT_THEME="Vesper"
@@ -21,7 +51,6 @@ case ":$PATH:" in
 esac
 
 # inits
-eval "$(starship init zsh)"
 source <(fzf --zsh)
 eval "$(fnm env --use-on-cd --shell zsh)"
 export CARAPACE_BRIDGES='zsh,fish,bash,inshellisense' # optional
