@@ -17,6 +17,8 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+require("ns.themes.vesper").setup()
+
 require("lazy").setup({
 	spec = {
 		{ import = "ns.plugins" },
@@ -24,5 +26,3 @@ require("lazy").setup({
 	install = { colorscheme = { "habamax" } },
 	checker = { enabled = true },
 })
-
-require("ns.themes.vesper").setup()
