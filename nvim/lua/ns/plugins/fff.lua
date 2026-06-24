@@ -24,8 +24,12 @@ return {
 
 			layout = {
 				width = 0.8,
-				preview_size = 0.5,
-				flex = false,
+				preview_position = "right",
+				preview_size = function(width)
+					return width < 130 and 0.35 or 0.5
+				end,
+				flex = { size = 130, wrap = "top" },
+				min_list_height = 0,
 			},
 			preview = {
 				enabled = true,
@@ -63,6 +67,10 @@ return {
 				db_path = vim.fn.stdpath("data") .. "/fff_queries",
 				min_combo_count = 3, -- file will get a boost if it was selected 3 in a row times per specific query
 				combo_boost_score_multiplier = 100, -- Score multiplier for combo matches
+			},
+			keymaps = {
+				preview_scroll_up = "<C-u>",
+				preview_scroll_down = "<C-d>",
 			},
 		})
 	end,
