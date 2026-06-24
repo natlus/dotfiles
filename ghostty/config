@@ -29,7 +29,7 @@ unfocused-split-opacity = 0.5
 split-divider-color = #262626
 
 window-padding-x = 12,12
-window-padding-y = 12,10
+window-padding-y = 0
 window-save-state = always
 
 #keybind = global:shift+cmd+alt+control+t=toggle_quick_terminal
