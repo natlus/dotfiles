@@ -8,8 +8,8 @@ return {
 			enabled = true,
 			win = {
 				position = "float",
-				width = 0.75,
-				height = 0.55,
+				width = 0.8,
+				height = 0.65,
 				border = "rounded",
 				title = " Terminal ",
 				title_pos = "center",
