@@ -10,6 +10,7 @@ return {
 			handlers = {
 				cursor = {
 					enable = true,
+					symbols = { "", "", "", "" },
 				},
 				search = {
 					enable = true,
@@ -22,9 +23,9 @@ return {
 				gitsigns = {
 					enable = true,
 					signs = {
-						add = "▌",
-						change = "▌",
-						delete = "▌",
+						add = "",
+						change = "",
+						delete = "",
 					},
 				},
 				marks = {
