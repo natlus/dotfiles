@@ -8,7 +8,7 @@ font-feature = -liga
 font-feature = -dlig
 font-size = 16
 font-thicken = true
-adjust-cell-height = 20%
+adjust-cell-height = 30%
 
 theme = vesper
 palette = 6=#ffffff
