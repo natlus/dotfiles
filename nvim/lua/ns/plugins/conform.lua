@@ -159,6 +159,7 @@ return {
 			javascriptreact = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
 			typescript = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
 			typescriptreact = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
+			astro = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
 			json = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
 			jsonc = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
 		},
