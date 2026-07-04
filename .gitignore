@@ -6,4 +6,7 @@ zsh/.zprofile
 zsh/.zsh_sessions
 zed/prompts
 opencode/opencode-notifier-state.json
+opencode/plugins
+herdr/*.log
+herdr/session.json
 

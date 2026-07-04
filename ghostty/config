@@ -19,7 +19,7 @@ cursor-color = FFC799
 cursor-style-blink = false
 background-opacity = 0.82
 background-blur = 250
-macos-titlebar-style = tabs
+macos-titlebar-style = hidden
 macos-window-buttons = hidden
 macos-window-shadow = true
 mouse-hide-while-typing = true
@@ -29,31 +29,46 @@ unfocused-split-opacity = 0.5
 split-divider-color = #262626
 
 window-padding-x = 12,12
-window-padding-y = 0
+window-padding-y = 6,0
 window-save-state = always
 
 #keybind = global:shift+cmd+alt+control+t=toggle_quick_terminal
-keybind = ctrl+h=goto_split:previous
-keybind = ctrl+j=goto_split:bottom
-keybind = ctrl+k=goto_split:top
-keybind = ctrl+l=goto_split:next
+#keybind = ctrl+h=goto_split:previous
+#keybind = ctrl+j=goto_split:bottom
+#keybind = ctrl+k=goto_split:top
+#keybind = ctrl+l=goto_split:next
 
-keybind = ctrl+s>r=reload_config
-keybind = ctrl+s>s=new_split:down
-keybind = ctrl+s>v=new_split:right
-keybind = ctrl+s>f=toggle_split_zoom
-keybind = ctrl+s>o=toggle_tab_overview
-keybind = ctrl+s>c=new_tab
-keybind = ctrl+s>p=previous_tab
-keybind = ctrl+s>n=next_tab
-keybind = "ctrl+s>1=goto_tab:1"
-keybind = "ctrl+s>2=goto_tab:2"
-keybind = "ctrl+s>3=goto_tab:3"
-keybind = "cmd+4=goto_tab:4"
-keybind = "cmd+5=goto_tab:5"
-keybind = "cmd+7=goto_tab:7"
-keybind = "cmd+8=goto_tab:8"
-keybind = "cmd+9=goto_tab:9"
+keybind = ctrl+a>r=reload_config
+keybind = ctrl+a>s=new_split:down
+keybind = ctrl+a>v=new_split:right
+keybind = ctrl+a>f=toggle_split_zoom
+keybind = ctrl+a>o=toggle_tab_overview
+keybind = ctrl+a>c=new_tab
+keybind = ctrl+a>p=previous_tab
+keybind = ctrl+a>n=next_tab
+keybind = "ctrl+a>1=goto_tab:1"
+keybind = "ctrl+a>2=goto_tab:2"
+keybind = "ctrl+a>4=goto_tab:3"
+
+# disable cmd+digit keybinds to avoid conflicts with herdr
+keybind = cmd+digit_1=unbind
+keybind = cmd+digit_2=unbind
+keybind = cmd+digit_3=unbind
+keybind = cmd+digit_4=unbind
+keybind = cmd+digit_5=unbind
+keybind = cmd+digit_6=unbind
+keybind = cmd+digit_7=unbind
+keybind = cmd+digit_8=unbind
+keybind = cmd+digit_9=unbind
+keybind = cmd+1=unbind
+keybind = cmd+2=unbind
+keybind = cmd+3=unbind
+keybind = cmd+4=unbind
+keybind = cmd+5=unbind
+keybind = cmd+6=unbind
+keybind = cmd+7=unbind
+keybind = cmd+8=unbind
+keybind = cmd+9=unbind
 
 scrollback-limit = 50000000
 
