@@ -2,6 +2,7 @@ onboarding = false
 
 [theme]
 name = "vesper"
+auto_switch = false
 
 [terminal]
 # Executable used for new interactive panes.
@@ -141,6 +142,8 @@ show_agent_labels_on_pane_borders = true
 # accent = "cyan"
 
 # Background notification popup delivery
+agent_panel_sort = "spaces"
+
 [ui.toast]
 # off = disable pop-up notifications
 # herdr = show in-app toasts
