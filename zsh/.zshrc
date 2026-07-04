@@ -72,74 +72,45 @@ alias nv="nvim"
 function session() {
     local session_name="$1"
 
-    # Check if tmux is installed
-    if ! command -v tmux &> /dev/null; then
-        echo "❌ tmux not found. Please install tmux first."
+    if ! command -v herdr &> /dev/null; then
+        echo "❌ herdr not found. Please install herdr first."
         return 1
     fi
 
-    # Check if argument is provided
     if [[ -z "$session_name" ]]; then
         echo "Usage: session <name>"
         return 1
     fi
 
-    # Check if session exists
-    if tmux has-session -t "$session_name" 2>/dev/null; then
-        echo "Attaching to existing tmux session: ${session_name}"
-        tmux attach -t "$session_name"
-    else
-        echo "Creating new tmux session: ${session_name}"
-        tmux new -s "$session_name"
-    fi
+    herdr session attach "$session_name"
 }
 
 function sessions() {
-    # Check if tmux is installed
-    if ! command -v tmux &> /dev/null; then
-        echo "❌ tmux not found. Please install it first."
+    if ! command -v herdr &> /dev/null; then
+        echo "❌ herdr not found. Please install herdr first."
         return 1
     fi
 
-    # Check if fzf is installed (required for the menu)
     if ! command -v fzf &> /dev/null; then
         echo "❌ fzf not found. Please install it first."
         return 1
     fi
 
-    # Get list of sessions
-    # -F "#{session_name}" prints only the name, cleaner than parsing the default output
     local session_list
-    session_list=$(tmux list-sessions -F "#{session_name}" 2>/dev/null)
-
-    # Run fzf
-    # --print-query allows us to capture what the user typed if no match was found
-    local fzf_output
-    fzf_output=$(echo "$session_list" | fzf --prompt "Select or type tmux session > " --print-query)
-
-    # fzf returns lines. The last line is the selection, the first line is the query (if --print-query is used)
-    # If a selection was made, fzf outputs:
-    #   query_string
-    #   selected_item
-    # If no existing item was selected (user typed a new name and hit enter), fzf outputs:
-    #   query_string
+    session_list=$(herdr session list 2>/dev/null | while read -r name _; do
+        [[ "$name" == "name" || -z "$name" ]] && continue
+        print -r -- "$name"
+    done)
 
     local picked
-    picked=$(echo "$fzf_output" | tail -n 1 | xargs)
+    picked=$(print -r -- "$session_list" | fzf --prompt "Select herdr session > ")
 
     if [[ -z "$picked" ]]; then
         echo "No session selected."
         return 1
     fi
 
-    # Check if selected session exists
-    if tmux has-session -t "$picked" 2>/dev/null; then
-        echo "Attaching to session: ${picked}"
-        tmux attach -t "$picked"
-    else
-        echo "Creating new session: ${picked}"
-        tmux new -s "$picked"
-    fi
+    herdr session attach "$picked"
 }
 
 function gitc() {
