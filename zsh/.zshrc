@@ -4,21 +4,30 @@ autoload -Uz compinit; compinit
 setopt PROMPT_SUBST
 
 function git_prompt_info() {
-    git rev-parse --is-inside-work-tree &>/dev/null || return
+    local status_output
+    status_output=$(git status --porcelain=v2 --branch 2>/dev/null) || return
 
-    local branch ahead behind changed
-    branch=$(git symbolic-ref --quiet --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
-    changed=$(git status --porcelain 2>/dev/null)
+    local branch ahead=0 behind=0 changed=0
 
-    if git rev-parse --abbrev-ref --symbolic-full-name '@{upstream}' &>/dev/null; then
-        local counts
-        counts=$(git rev-list --left-right --count HEAD...@{upstream} 2>/dev/null)
-        ahead=${counts%%$'\t'*}
-        behind=${counts##*$'\t'}
-    fi
+    while IFS= read -r line; do
+        case "$line" in
+            '# branch.head '*)  branch="${line#'# branch.head '}" ;;
+            '# branch.ab '*)
+                local ab="${line#'# branch.ab '}"
+                ahead="${ab%% *}"
+                ahead="${ahead#+}"
+                behind="${ab##* }"
+                behind="${behind#-}"
+                ;;
+            '#'*) ;;
+            *) changed=1 ;;
+        esac
+    done <<< "$status_output"
+
+    [[ "$branch" == "(detached)" ]] && branch=$(git rev-parse --short HEAD 2>/dev/null)
 
     print -n "%F{#F6C99F}△ ${branch}%f"
-    [[ -n "$changed" ]] && print -n " %F{white}[+]%f"
+    [[ "$changed" -eq 1 ]] && print -n " %F{white}[+]%f"
     [[ "$ahead" -gt 0 ]] && print -n " %F{green}▴${ahead}%f"
     [[ "$behind" -gt 0 ]] && print -n " %F{red}▿${behind}%f"
 }
