@@ -9,7 +9,7 @@ shell_mode = "auto"
 new_cwd = "follow"
 
 [update]
-channel = "stable"
+channel = "preview"
 
 [keys]
 prefix = "ctrl+s"
@@ -77,6 +77,8 @@ sidebar_min_width = 18
 
 # Maximum sidebar width when expanded (columns)
 sidebar_max_width = 36
+
+sidebar_collapsed_mode = "compact"
 
 # Capture mouse input for Herdr's mouse UI.
 # Set false to let the terminal handle normal clicks, such as Cmd-clicking URLs.
