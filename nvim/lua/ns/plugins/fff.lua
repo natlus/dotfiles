@@ -15,7 +15,7 @@ return {
 				enabled = false,
 				show_scores = false,
 			},
-			title = "Find Files",
+			title = " Open File ",
 			max_threads = 4, -- Maximum threads for fuzzy search
 			lazy_sync = true,
 			git = {
@@ -23,29 +23,13 @@ return {
 			},
 
 			layout = {
-				width = 0.8,
-				preview_position = "right",
-				preview_size = function(width)
-					return width < 130 and 0.35 or 0.5
-				end,
-				flex = { size = 130, wrap = "top" },
+				width = 0.55,
+				prompt_position = "top",
+				preview_size = 0,
 				min_list_height = 0,
 			},
 			preview = {
-				enabled = true,
-				max_lines = 100,
-				max_size = 10 * 1024 * 1024, -- 1MB
-				chunk_size = 8192,
-				binary_file_threshold = 1024,
-				line_numbers = false,
-				wrap_lines = false,
-				show_file_info = true,
-				history = {
-					enabled = true,
-					db_path = vim.fn.stdpath("data") .. "/fff_queries",
-					min_combo_count = 3, -- file will get a boost if it was selected 3 in a row times per specific query
-					combo_boost_score_multiplier = 100, -- Score multiplier for combo matches
-				},
+				enabled = false,
 			},
 			hl = {
 				grep_match = "FFFLiveGrepMatch",
@@ -55,7 +39,8 @@ return {
 				git_renamed = "GitSignsRename", -- Renamed files
 				git_added = "GitSignsAdd",
 				winhl = {
-					preview = "Normal:Normal,FloatBorder:FloatBorder,FloatTitle:Title,IncSearch:FFFLiveGrepMatch",
+					input = "Normal:NormalFloat,FloatBorder:FloatBorder,FloatTitle:Title,IncSearch:FFFLiveGrepMatch",
+					list = "Normal:NormalFloat,FloatBorder:FloatBorder,FloatTitle:Title,IncSearch:FFFLiveGrepMatch",
 				},
 			},
 			frecency = {
@@ -67,10 +52,6 @@ return {
 				db_path = vim.fn.stdpath("data") .. "/fff_queries",
 				min_combo_count = 3, -- file will get a boost if it was selected 3 in a row times per specific query
 				combo_boost_score_multiplier = 100, -- Score multiplier for combo matches
-			},
-			keymaps = {
-				preview_scroll_up = "<C-u>",
-				preview_scroll_down = "<C-d>",
 			},
 		})
 	end,
