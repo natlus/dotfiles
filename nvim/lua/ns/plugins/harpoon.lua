@@ -6,8 +6,33 @@ return {
 		local harpoon = require("harpoon")
 		harpoon:setup({})
 
+		local function toggle_snacks_picker(harpoon_files)
+			local items = {}
+			for idx, item in ipairs(harpoon_files.items) do
+				table.insert(items, {
+					idx = idx,
+					file = item.value,
+					text = item.value,
+				})
+			end
+
+			Snacks.picker({
+				title = "Harpoon",
+				items = items,
+				format = function(item)
+					return { { item.idx .. ": ", "SnacksPickerIdx" }, { item.file } }
+				end,
+				confirm = function(picker, item)
+					picker:close()
+					if item then
+						harpoon_files:select(item.idx)
+					end
+				end,
+			})
+		end
+
 		vim.keymap.set("n", "<leader>e", function()
-			harpoon.ui:toggle_quick_menu(harpoon:list())
+			toggle_snacks_picker(harpoon:list())
 		end, { desc = "Open harpoon window" })
 
 		vim.keymap.set("n", "<leader>a", function()
