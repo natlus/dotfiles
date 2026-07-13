@@ -30,6 +30,28 @@ return {
 		input = { enabled = true },
 		picker = {
 			enabled = true,
+			---@type snacks.picker.Config
+			layout = {
+				preset = "select",
+				preview = false,
+				layout = {
+					width = 0.55,
+				},
+			},
+			win = {
+				input = {
+					title = " Open File ",
+					title_pos = "center",
+					wo = {
+						winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,FloatTitle:Title,IncSearch:SnacksPickerMatch",
+					},
+				},
+				list = {
+					wo = {
+						winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,FloatTitle:Title,IncSearch:SnacksPickerMatch",
+					},
+				},
+			},
 			sources = {
 				files = {
 					hidden = true,
