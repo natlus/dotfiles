@@ -43,6 +43,10 @@ export http_proxy=""
 export https_proxy=""
 export RSYNC_PROXY=""
 
+if [[ "$HERDR_ENV" == "1" && "$TERM" == "xterm-256color" ]]; then
+    export TERM="xterm-ghostty"
+fi
+
 export LB_USERNAME=$(security find-generic-password -s "LB_USERNAME" -w | tr -d '\n')
 export LB_PASSWORD=$(security find-generic-password -s "LB_PASSWORD" -w | tr -d '\n')
 export NPM_TOKEN=$(security find-generic-password -s "NPM_TOKEN" -w | tr -d '\n')
