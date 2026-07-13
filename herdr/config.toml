@@ -9,7 +9,7 @@ shell_mode = "auto"
 new_cwd = "follow"
 
 [update]
-channel = "preview"
+channel = "stable"
 
 [keys]
 prefix = "ctrl+s"
