@@ -34,9 +34,6 @@ return {
 			layout = {
 				preset = "select",
 				preview = false,
-				layout = {
-					width = 0.55,
-				},
 			},
 			win = {
 				input = {
@@ -85,13 +82,6 @@ return {
 			end,
 			desc = "Toggle Floating Terminal",
 		},
-		-- {
-		-- 	"<leader>sf",
-		-- 	function()
-		-- 		Snacks.picker.files()
-		-- 	end,
-		-- 	desc = "Find Files",
-		-- },
 		{
 			"<leader>f.",
 			function()
@@ -156,12 +146,5 @@ return {
 			end,
 			desc = "File Explorer",
 		},
-		-- {
-		-- 	"<leader>/",
-		-- 	function()
-		-- 		Snacks.picker.grep()
-		-- 	end,
-		-- 	desc = "Grep",
-		-- },
 	},
 }
