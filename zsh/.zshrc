@@ -34,6 +34,10 @@ function git_prompt_info() {
 
 PROMPT=$'%F{#B1FCE5}%~%f $(git_prompt_info)\n%F{#F6C99F}▶%f '
 
+for _f in ${HOME}/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.zsh(N); do
+  source $_f; break
+done
+
 # envs
 export PATH=/opt/homebrew/bin:$PATH
 export BAT_THEME="Vesper"
