@@ -162,6 +162,7 @@ return {
 			astro = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
 			json = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
 			jsonc = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
+			yaml = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
 		},
 		formatters = {
 			oxfmt = {
