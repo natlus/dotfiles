@@ -1,0 +1,17 @@
+theme = "custom" 
+mode = "auto"        # auto, split, stack
+vcs = "git"          # git, jj, sl
+watch = false
+exclude_untracked = false
+line_numbers = true
+wrap_lines = false
+menu_bar = true
+side_bar = true
+agent_notes = false
+prompt_save_view_preferences = true
+transparent_background = false
+
+[custom_theme]
+base = "vesper"
+background = "#101010"
+panel = "#101010"

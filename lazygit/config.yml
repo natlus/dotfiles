@@ -1,0 +1,35 @@
+git:
+  pagers:
+    - colorArg: always
+      pager: hunk pager
+
+gui:
+  theme:
+    activeBorderColor:
+      - "#FFC799"
+      - bold
+    inactiveBorderColor:
+      - "#505050"
+    searchingActiveBorderColor:
+      - "#FFC799"
+      - bold
+    optionsTextColor:
+      - "#A0A0A0"
+    selectedLineBgColor:
+      - "#232323"
+    inactiveViewSelectedLineBgColor:
+      - "#161616"
+    cherryPickedCommitBgColor:
+      - "#473A2F"
+    cherryPickedCommitFgColor:
+      - "#FFC799"
+    markedBaseCommitBgColor:
+      - "#343434"
+    markedBaseCommitFgColor:
+      - "#FFFFFF"
+    unstagedChangesColor:
+      - "#FF8080"
+    defaultFgColor:
+      - "#FFFFFF"
+  authorColors:
+    "*": "#99FFE4"
