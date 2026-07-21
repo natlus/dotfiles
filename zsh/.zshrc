@@ -26,13 +26,13 @@ function git_prompt_info() {
 
     [[ "$branch" == "(detached)" ]] && branch=$(git rev-parse --short HEAD 2>/dev/null)
 
-    print -n "%F{#F6C99F}△ ${branch}%f"
+    print -n "%F{#F6C99F}${branch}%f"
     [[ "$changed" -eq 1 ]] && print -n " %F{white}[+]%f"
     [[ "$ahead" -gt 0 ]] && print -n " %F{green}▴${ahead}%f"
     [[ "$behind" -gt 0 ]] && print -n " %F{red}▿${behind}%f"
 }
 
-PROMPT=$'%F{#B1FCE5}%~%f $(git_prompt_info)\n%F{#F6C99F}▶%f '
+PROMPT=$'%F{#B1FCE5}%1~%f: $(git_prompt_info) %F{white}$%f '
 
 for _f in ${HOME}/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.zsh(N); do
   source $_f; break
