@@ -136,7 +136,20 @@ return {
 						"astro",
 					},
 				},
-				tsgo = {},
+				tsgo = {
+					settings = {
+						typescript = {
+							preferences = {
+								importModuleSpecifier = "non-relative",
+							},
+						},
+						javascript = {
+							preferences = {
+								importModuleSpecifier = "non-relative",
+							},
+						},
+					},
+				},
 				lua_ls = {
 					settings = {
 						Lua = {
