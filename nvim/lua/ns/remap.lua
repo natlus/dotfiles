@@ -3,7 +3,7 @@ local map = vim.keymap.set
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-map("n", "<leader>sv", vim.cmd.Ex)
+map("n", "<leader>sv", vim.cmd.Ex, { desc = "File Explorer" })
 map("n", "<leader>w", ":write<CR>", { desc = "[W]rite" })
 map({ "n", "v" }, "<leader>o", ":update<CR> :source<CR>", { desc = "source current" })
 

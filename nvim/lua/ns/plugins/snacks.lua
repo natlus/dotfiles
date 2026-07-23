@@ -139,12 +139,5 @@ return {
 			end,
 			desc = "LSP Workspace Symbols",
 		},
-		{
-			"<leader>se",
-			function()
-				Snacks.explorer()
-			end,
-			desc = "File Explorer",
-		},
 	},
 }
