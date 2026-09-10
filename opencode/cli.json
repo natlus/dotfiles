@@ -1,0 +1,24 @@
+{
+  "theme": {
+    "name": "vesper-neo"
+  },
+  "diffs": {
+    "wrap": "word"
+  },
+  "session": {
+    "sidebar": "auto",
+    "scrollbar": true,
+    "thinking": "show",
+    "markdown": "rendered"
+  },
+  "animations": true,
+  "autoupdate": true,
+  "tabs": {
+    "layout": "vertical",
+    "scope": "cwd",
+    "indicators": "numbers"
+  },
+  "prompt": {
+    "paste": "full"
+  }
+}

@@ -7,6 +7,8 @@ zsh/.zsh_sessions
 zed/prompts
 opencode/opencode-notifier-state.json
 opencode/plugins
+opencode/herdr-tui-session.js
+opencode/service.json
 herdr/*.log
 herdr/session.json
 
