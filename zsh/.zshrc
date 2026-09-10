@@ -267,3 +267,7 @@ function proxyoff() {
 . "$HOME/.atuin/bin/env"
 
 eval "$(atuin init --disable-up-arrow zsh)"
+
+# opencode
+export PATH=/Users/jessul01/.opencode/bin:$PATH
+export PATH="$HOME/.local/bin:$PATH"
