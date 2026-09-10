@@ -11,7 +11,15 @@
     "vesperError": "#FF8080",
     "vesperWarning": "#FFC799",
     "vesperSuccess": "#99FFE4",
-    "vesperMuted": "#A0A0A0"
+    "vesperMuted": "#A0A0A0",
+    "vesperSurface": "#101010",
+    "vesperSurfacePanel": "#161616",
+    "vesperSurfaceElement": "#1C1C1C",
+    "vesperSurfaceMenu": "#222222",
+    "vesperSurfaceLight": "#FFFFFF",
+    "vesperSurfacePanelLight": "#F7F7F7",
+    "vesperSurfaceElementLight": "#EEEEEE",
+    "vesperSurfaceMenuLight": "#E6E6E6"
   },
   "theme": {
     "primary": {
@@ -51,16 +59,20 @@
       "light": "vesperMuted"
     },
     "background": {
-      "dark": "none",
-      "light": "#FFF"
+      "dark": "vesperSurface",
+      "light": "vesperSurfaceLight"
     },
     "backgroundPanel": {
-      "dark": "none",
-      "light": "#F0F0F0"
+      "dark": "vesperSurfacePanel",
+      "light": "vesperSurfacePanelLight"
     },
     "backgroundElement": {
-      "dark": "#000000",
-      "light": "#E0E0E0"
+      "dark": "vesperSurfaceElement",
+      "light": "vesperSurfaceElementLight"
+    },
+    "backgroundMenu": {
+      "dark": "vesperSurfaceMenu",
+      "light": "vesperSurfaceMenuLight"
     },
     "border": {
       "dark": "#282828",
