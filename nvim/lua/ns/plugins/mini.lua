@@ -1,5 +1,6 @@
 return {
 	"nvim-mini/mini.nvim",
+	dependencies = { "SmiteshP/nvim-navic" },
 	config = function()
 		require("mini.ai").setup({ n_lines = 500 })
 		require("mini.surround").setup({
@@ -20,6 +21,12 @@ return {
 		require("mini.cmdline").setup()
 
 		local statusline = require("mini.statusline")
+		local navic = require("nvim-navic")
+		navic.setup({
+			icons = { enabled = false },
+			separator = " > ",
+			lsp = { auto_attach = true },
+		})
 		vim.api.nvim_set_hl(0, "NsStatuslineBasename", { fg = "#ffffff" })
 		local mode_names = {
 			n = "NOR",
@@ -73,6 +80,7 @@ return {
 					local filename = vim.fn.expand("%:.")
 					local path = filename:match("^(.*/)") or ""
 					local basename = vim.fn.fnamemodify(filename, ":t")
+					local breadcrumbs = navic.is_available() and (" > " .. navic.get_location()) or ""
 					local errors = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
 					local warnings = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN })
 					local diagnostics = statusline.combine_groups({
@@ -85,7 +93,10 @@ return {
 					return statusline.combine_groups({
 						{ strings = { mode } },
 						"%<",
-						{ hl = "MiniStatuslineFilename", strings = { path .. "%#NsStatuslineBasename#" .. basename } },
+						{
+							hl = "MiniStatuslineFilename",
+							strings = { path .. "%#NsStatuslineBasename#" .. basename .. breadcrumbs },
+						},
 						{ strings = { git_info .. "%#MiniStatuslineFilename#" } },
 						{ strings = { diagnostics .. "%#MiniStatuslineFilename#" } },
 						"%=",

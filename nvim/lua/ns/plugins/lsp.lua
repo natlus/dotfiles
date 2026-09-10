@@ -136,7 +136,7 @@ return {
 						"astro",
 					},
 				},
-				tsgo = {
+				tsc = {
 					settings = {
 						typescript = {
 							preferences = {
@@ -148,6 +148,19 @@ return {
 								importModuleSpecifier = "non-relative",
 							},
 						},
+					},
+				},
+				tailwindcss = {
+					filetypes = {
+						"astro",
+						"css",
+						"html",
+						"javascript",
+						"javascriptreact",
+						"typescript",
+						"typescriptreact",
+						"svelte",
+						"vue",
 					},
 				},
 				lua_ls = {
@@ -167,7 +180,7 @@ return {
 				"oxlint",
 				"stylua",
 				-- kept only to provide a standard `typescript/lib` tsdk for the astro LSP;
-				-- tsgo (the Go binary) is not a valid tsdk for astro.
+				-- the native tsc/tsgo binary is not a valid tsdk for astro.
 				"typescript-language-server",
 			})
 			require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
