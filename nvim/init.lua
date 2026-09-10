@@ -26,3 +26,8 @@ require("lazy").setup({
 	install = { colorscheme = { "habamax" } },
 	checker = { enabled = true },
 })
+
+-- lazy.nvim resets 'packpath' (performance.rtp.reset), which breaks vim.pack
+-- since it installs into stdpath("data")/site/pack/core/opt. Project-local
+-- configs (exrc) that call vim.pack.add() error without this.
+vim.opt.packpath:append(vim.fn.stdpath("data") .. "/site")
