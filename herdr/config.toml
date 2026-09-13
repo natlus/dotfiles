@@ -98,7 +98,7 @@ confirm_close = true
 prompt_new_tab_name = false
 
 # Draw borders around split panes.
-pane_borders = true
+pane_borders = "off"
 
 # Keep split panes visually separated instead of sharing divider borders.
 pane_gaps = true
@@ -112,7 +112,19 @@ agent_panel_sort = "spaces"
 
 # Accent color for highlights, borders, and navigation UI.
 # Accepts: hex (#89b4fa), named colors (cyan, blue, magenta), or rgb(r,g,b)
-accent = "cyan"
+accent = "#ffc799"
+
+[ui.sidebar.spaces]
+row_gap = 0
+rows = [
+  ["state_icon", "workspace", "branch", "git_status"],
+]
+
+[ui.sidebar.agents]
+row_gap = 0
+rows = [
+  ["state_icon", "workspace", "agent"],
+]
 
 [ui.toast]
 # off = disable pop-up notifications
