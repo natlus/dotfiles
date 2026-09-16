@@ -4,6 +4,9 @@ onboarding = false
 name = "vesper"
 auto_switch = false
 
+[theme.custom]
+panel_bg = "reset"
+
 [terminal]
 shell_mode = "auto"
 new_cwd = "follow"
