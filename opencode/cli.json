@@ -20,5 +20,6 @@
   },
   "prompt": {
     "paste": "full"
-  }
+  },
+  "plugins": ["./herdr-opencode", "./pr-info"]
 }
