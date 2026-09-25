@@ -4,7 +4,7 @@
   "conform.nvim": { "branch": "master", "commit": "016802de402556da54c36bd7359b441266b01cdd" },
   "copilot-lsp": { "branch": "main", "commit": "1b6d8273594643f51bb4c0c1d819bdb21b42159d" },
   "copilot.lua": { "branch": "master", "commit": "f76a0a281de089e27b605ec8017093f1aab73b07" },
-  "fff.nvim": { "branch": "main", "commit": "e3f694a2e4f82bb755418e8d305dcff779c59c27" },
+  "fff.nvim": { "branch": "main", "commit": "708d57bb3559b0313a537f31a210e2ad6c9addc5" },
   "fidget.nvim": { "branch": "main", "commit": "9e0201673e08e997e7cf52afca5565c70bd117f3" },
   "git-conflict.nvim": { "branch": "main", "commit": "4bbfdd92d547d2862a75b4e80afaf30e73f7bbb4" },
   "gitsigns.nvim": { "branch": "main", "commit": "070a5d7b985546cc57e1fc61e5bc507fecac6045" },
