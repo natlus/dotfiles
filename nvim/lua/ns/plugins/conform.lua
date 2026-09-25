@@ -24,6 +24,11 @@ local function package_json(ctx)
 end
 
 local function has_oxfmt_config(_, ctx)
+	local filetype = vim.bo[ctx.buf].filetype
+	if filetype == "json" or filetype == "jsonc" then
+		return true
+	end
+
 	if vim.fs.find({
 		".oxfmtrc.json",
 		".oxfmtrc.jsonc",
@@ -160,8 +165,8 @@ return {
 			typescript = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
 			typescriptreact = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
 			astro = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
-			json = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
-			jsonc = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
+			json = { "oxfmt" },
+			jsonc = { "oxfmt" },
 			yaml = { "oxfmt", "prettierd", "prettier", stop_after_first = true },
 		},
 		formatters = {
