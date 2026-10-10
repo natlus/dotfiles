@@ -1,0 +1,31 @@
+git:
+  diffRenderers:
+    - colorArg: always
+      command: hunk pager
+gui:
+  mouseEvents: true
+  theme:
+    activeBorderColor:
+      - "#99FFE4"
+    inactiveBorderColor:
+      - "#505050"
+    searchingActiveBorderColor:
+      - "#99FFE4"
+    optionsTextColor:
+      - "#99FFE4"
+    selectedLineBgColor:
+      - "#232323"
+    inactiveViewSelectedLineBgColor:
+      - "#1C1C1C"
+    cherryPickedCommitFgColor:
+      - "#000000"
+    cherryPickedCommitBgColor:
+      - "#99FFE4"
+    markedBaseCommitFgColor:
+      - "#000000"
+    markedBaseCommitBgColor:
+      - "#99FFE4"
+    unstagedChangesColor:
+      - "#99FFE4"
+    defaultFgColor:
+      - "#FFFFFF"
