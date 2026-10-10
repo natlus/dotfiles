@@ -25,7 +25,7 @@ return {
 		navic.setup({
 			icons = { enabled = false },
 			separator = " > ",
-			lsp = { auto_attach = true },
+			lsp = { auto_attach = true, preference = { "tsc" } },
 		})
 		vim.api.nvim_set_hl(0, "NsStatuslineBasename", { fg = "#ffffff" })
 		local mode_names = {
