@@ -12,4 +12,6 @@ opencode/service.json
 herdr/*.log
 herdr/session.json
 herdr/session-snapshots
+herdr.sock.agent
+herdr/plugins
 
