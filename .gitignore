@@ -11,4 +11,5 @@ opencode/herdr-tui-session.js
 opencode/service.json
 herdr/*.log
 herdr/session.json
+herdr/session-snapshots
 
