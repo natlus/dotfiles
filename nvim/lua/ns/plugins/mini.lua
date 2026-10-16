@@ -5,10 +5,13 @@ return {
 		require("mini.ai").setup({ n_lines = 500 })
 		require("mini.surround").setup({
 			mappings = {
-				add = "sa",
-				delete = "ds",
-				find = "fs",
-				replace = "rs",
+				add = "gsa",
+				delete = "gsd",
+				find = "gsf",
+				find_left = "gsF",
+				highlight = "gsh",
+				replace = "gsr",
+				update_n_lines = "gsn",
 			},
 		})
 		require("mini.move").setup({
