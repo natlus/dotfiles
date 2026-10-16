@@ -14,9 +14,10 @@
   "animations": true,
   "autoupdate": true,
   "tabs": {
-    "layout": "vertical",
+    "layout": "horizontal",
     "scope": "cwd",
-    "indicators": "numbers"
+    "indicators": "numbers",
+    "mode": "auto"
   },
   "prompt": {
     "paste": "full"
