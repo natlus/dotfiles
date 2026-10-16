@@ -6,4 +6,7 @@
   "websearch": {
     "provider": "random"
   },
+  "worktree": {
+    "directory": ".claude/worktrees",
+  },
 }

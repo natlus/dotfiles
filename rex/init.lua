@@ -32,3 +32,6 @@ rex.bind("resize/right", "pane.resize", { direction = "right" })
 rex.bind("resize/up", "pane.resize", { direction = "up" })
 rex.bind("resize/down", "pane.resize", { direction = "down" })
 rex.bind("resize/enter", "client.mode.exit")
+
+require("worktree_mirror")
+rex.bind("ctrl+s>w", "worktree_mirror")
