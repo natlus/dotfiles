@@ -22,11 +22,11 @@ end
 
 -- Runs a shell command and returns its trimmed output and exit status.
 local function run(cmd)
-	local f = io.popen(cmd .. " 2>&1; printf '\\n%s' $?")
-	local out = f:read("*a")
-	f:close()
-	local body, code = out:match("^(.*)\n(%d+)$")
-	return (body or out):gsub("%s+$", ""), tonumber(code) or 1
+	local r, err = rex.exec({ "sh", "-c", cmd .. " 2>&1" })
+	if r == nil then
+		return err, 1
+	end
+	return (r.stdout:gsub("%s+$", "")), r.code
 end
 
 local function git(dir, args)

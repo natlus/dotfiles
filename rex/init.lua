@@ -39,3 +39,15 @@ rex.bind("resize/enter", "client.mode.exit")
 
 require("worktree_mirror")
 rex.bind("ctrl+s>w", "worktree_mirror")
+
+require("new_session_from_template")
+rex.bind("ctrl+s>n", "new_session_from_template")
+
+-- automatically restore sessions using rexurrect
+--
+rex.exec({
+	"env",
+	"REXURRECT_STATE_DIR=/Users/jessul01/.local/state/rexurrect",
+	"/Users/jessul01/.cargo/bin/rexurrect",
+	"auto-restore",
+})
