@@ -5,7 +5,7 @@
             "complex_modifications": {
                 "rules": [
                     {
-                        "description": "Backslash to å",
+                        "description": "Swedish: backslash to å/Å",
                         "manipulators": [
                             {
                                 "conditions": [
@@ -14,34 +14,11 @@
                                         "type": "input_source_if"
                                     }
                                 ],
-                                "description": "Remap Å",
-                                "from": { "key_code": "backslash" },
-                                "to": [{ "key_code": "open_bracket" }],
-                                "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "description": "Pipe to Å",
-                        "manipulators": [
-                            {
-                                "conditions": [
-                                    {
-                                        "input_sources": [{ "language": "sv" }],
-                                        "type": "input_source_if"
-                                    }
-                                ],
-                                "description": "Remap Å",
                                 "from": {
                                     "key_code": "backslash",
-                                    "modifiers": ["left_shift"]
+                                    "modifiers": { "optional": ["shift", "caps_lock"] }
                                 },
-                                "to": [
-                                    {
-                                        "key_code": "open_bracket",
-                                        "modifiers": ["left_shift"]
-                                    }
-                                ],
+                                "to": [{ "key_code": "open_bracket" }],
                                 "type": "basic"
                             }
                         ]
