@@ -2,6 +2,10 @@
 rex.bind("ctrl+s>f", "pane.zoom")
 rex.bind("ctrl+s>v", "pane.split", { direction = "right" })
 rex.bind("ctrl+s>s", "pane.split", { direction = "down" })
+rex.bind("cmd+[", "pane.focus_previous")
+rex.bind("cmd+]", "pane.focus_next")
+rex.bind("ctrl+[", "pane.focus_previous")
+rex.bind("ctrl+]", "pane.focus_next")
 
 rex.action({
 	name = "goto_session",
