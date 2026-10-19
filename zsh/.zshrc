@@ -266,6 +266,10 @@ function proxyoff() {
 
 eval "$(atuin init --disable-up-arrow zsh)"
 
+# rexurrect
+source "${ZDOTDIR:-$HOME/.config/zsh}/rexurrect.plugin.zsh"
+
 # opencode
 export PATH=/Users/jessul01/.opencode/bin:$PATH
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.cargo/bin:$PATH"
