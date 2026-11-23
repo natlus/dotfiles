@@ -54,6 +54,7 @@ fi
 export LB_USERNAME=$(security find-generic-password -s "LB_USERNAME" -w | tr -d '\n')
 export LB_PASSWORD=$(security find-generic-password -s "LB_PASSWORD" -w | tr -d '\n')
 export NPM_TOKEN=$(security find-generic-password -s "NPM_TOKEN" -w | tr -d '\n')
+export VAULT_ADDR=$(security find-generic-password -s "VAULT_HOST" -w | tr -d '\n')
 
 # pnpm
 export PNPM_HOME="/Users/jessul01/Library/pnpm"
