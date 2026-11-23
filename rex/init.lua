@@ -6,6 +6,7 @@ rex.bind("cmd+[", "pane.focus_previous")
 rex.bind("cmd+]", "pane.focus_next")
 rex.bind("ctrl+[", "pane.focus_previous")
 rex.bind("ctrl+]", "pane.focus_next")
+rex.bind("ctrl+s>m", "pane.minimize_all_floating")
 
 rex.action({
 	name = "goto_session",
@@ -40,14 +41,21 @@ rex.bind("resize/enter", "client.mode.exit")
 require("worktree_mirror")
 rex.bind("ctrl+s>w", "worktree_mirror")
 
-require("new_session_from_template")
-rex.bind("ctrl+s>n", "new_session_from_template")
+require("open_project")
+rex.bind("ctrl+s>n", "open_project")
+
+require("open_worktree")
 
 -- automatically restore sessions using rexurrect
 --
-rex.exec({
-	"env",
-	"REXURRECT_STATE_DIR=/Users/jessul01/.local/state/rexurrect",
-	"/Users/jessul01/.cargo/bin/rexurrect",
-	"auto-restore",
-})
+do
+	local r = rex.exec({ "/opt/homebrew/bin/rexurrect", "auto-restore" }, {
+		env = {
+			REXURRECT_STATE_DIR = "/Users/jessul01/.local/state/rexurrect",
+			REXURRECT_CONFIG = "/Users/jessul01/.config/rexurrect/config.toml",
+		},
+	})
+	if r then
+		io.stderr:write(r.stderr)
+	end
+end
