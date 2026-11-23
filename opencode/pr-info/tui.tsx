@@ -10,15 +10,9 @@ type PullRequest = {
   state: string
   isDraft: boolean
   reviewDecision: string
-  headRefName: string
-  baseRefName: string
-  additions: number
-  deletions: number
-  statusCheckRollup: Array<{ conclusion?: string; status?: string; state?: string }>
 }
 
-const FIELDS =
-  "number,title,url,state,isDraft,reviewDecision,headRefName,baseRefName,additions,deletions,statusCheckRollup"
+const FIELDS = "number,title,url,state,isDraft,reviewDecision"
 
 function fetchPullRequest(directory: string): Promise<PullRequest | undefined> {
   return new Promise((resolve) => {
@@ -31,19 +25,6 @@ function fetchPullRequest(directory: string): Promise<PullRequest | undefined> {
       }
     })
   })
-}
-
-function checksSummary(checks: PullRequest["statusCheckRollup"]) {
-  let passed = 0
-  let failed = 0
-  let pending = 0
-  for (const check of checks ?? []) {
-    const result = (check.conclusion || check.state || "").toUpperCase()
-    if (["SUCCESS", "NEUTRAL", "SKIPPED"].includes(result)) passed++
-    else if (["FAILURE", "ERROR", "CANCELLED", "TIMED_OUT", "ACTION_REQUIRED"].includes(result)) failed++
-    else pending++
-  }
-  return { passed, failed, pending, total: passed + failed + pending }
 }
 
 function PullRequestInfo(props: { sessionID: string }) {
@@ -83,9 +64,9 @@ function PullRequestInfo(props: { sessionID: string }) {
   const theme = context.theme
   const stateLabel = (value: PullRequest) => {
     if (value.isDraft) return { text: "Draft", fg: theme.text.muted }
-    if (value.state === "MERGED") return { text: "Merged", fg: theme.text.feedback.info }
-    if (value.state === "CLOSED") return { text: "Closed", fg: theme.text.feedback.error }
-    return { text: "Open", fg: theme.text.feedback.success }
+    if (value.state === "MERGED") return { text: "Merged", fg: theme.text.feedback.info.base }
+    if (value.state === "CLOSED") return { text: "Closed", fg: theme.text.feedback.error.base }
+    return { text: "Open", fg: theme.text.feedback.success.base }
   }
   const review = (value: PullRequest) =>
     ({ APPROVED: "Approved", CHANGES_REQUESTED: "Changes requested", REVIEW_REQUIRED: "Review required" })[
@@ -94,35 +75,21 @@ function PullRequestInfo(props: { sessionID: string }) {
 
   return (
     <Show when={pr()}>
-      {(value) => {
-        const checks = () => checksSummary(value().statusCheckRollup)
-        return (
-          <box flexDirection="column" paddingTop={1}>
-            <text fg={theme.text.base}>
-              <b>PR</b>
-            </text>
-            <text fg={theme.text.base}>
-              #{value().number} {value().title}
-            </text>
-            <text fg={stateLabel(value()).fg}>
-              {stateLabel(value()).text}
-              {review(value()) ? ` · ${review(value())}` : ""}
-            </text>
-            <text fg={theme.text.muted}>
-              {value().headRefName} → {value().baseRefName}
-            </text>
-            <text fg={theme.text.muted}>
-              +{value().additions} −{value().deletions}
-            </text>
-            <Show when={checks().total > 0}>
-              <text fg={checks().failed ? theme.text.feedback.error : theme.text.muted}>
-                Checks: {checks().passed}✓ {checks().failed}✗ {checks().pending}…
-              </text>
-            </Show>
-            <text fg={theme.text.muted}>{value().url}</text>
-          </box>
-        )
-      }}
+      {(value) => (
+        <box flexDirection="column" paddingTop={1}>
+          <text fg={theme.text.base}>
+            <b>PR</b>
+          </text>
+          <text fg={theme.text.base}>
+            #{value().number} {value().title}
+          </text>
+          <text fg={stateLabel(value()).fg}>
+            {stateLabel(value()).text}
+            {review(value()) ? ` · ${review(value())}` : ""}
+          </text>
+          <text fg={theme.text.muted}>{value().url}</text>
+        </box>
+      )}
     </Show>
   )
 }
