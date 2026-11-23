@@ -9,4 +9,21 @@
   "worktree": {
     "directory": ".claude/worktrees",
   },
+  "experimental": {
+    "todo": true,
+  },
+  "mcp": {
+    "servers": {
+      "browse": {
+        "type": "local",
+        "command": [
+          "/Users/jessul01/.local/bin/browse",
+          "mcp"
+        ],
+        "environment": {
+          "OPENCODE_BROWSER_RUNTIME": "auto-update"
+        }
+      }
+    }
+  },
 }
