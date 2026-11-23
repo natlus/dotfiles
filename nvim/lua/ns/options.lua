@@ -12,6 +12,7 @@ vim.opt.signcolumn = "yes"
 
 vim.o.mouse = "a"
 vim.o.showmode = false
+vim.o.cmdheight = 0
 vim.o.ignorecase = true
 vim.o.cursorline = true
 vim.o.scrolloff = 10
