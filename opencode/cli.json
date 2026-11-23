@@ -14,7 +14,7 @@
   "animations": true,
   "autoupdate": true,
   "tabs": {
-    "layout": "horizontal",
+    "layout": "vertical",
     "scope": "cwd",
     "indicators": "numbers",
     "mode": "auto"
@@ -22,5 +22,10 @@
   "prompt": {
     "paste": "full"
   },
-  "plugins": ["./pr-info"]
+  "plugins": [
+    "./pr-info"
+  ],
+  "scroll": {
+    "acceleration": true
+  }
 }
