@@ -29,7 +29,11 @@ function QuotaRow(props: { quota: Quota }) {
   const used = () => Math.min(100, Math.max(0, 100 - props.quota.percentRemaining))
   const filled = () => Math.round((used() / 100) * BAR_WIDTH)
   const color = () =>
-    used() >= 90 ? theme.text.feedback.error : used() >= 70 ? theme.text.feedback.warning : theme.text.feedback.success
+    used() >= 90
+      ? theme.text.feedback.error.base
+      : used() >= 70
+        ? theme.text.feedback.warning.base
+        : theme.text.feedback.success.base
   const label = LABELS[props.quota.id] ?? props.quota.id
 
   return (
@@ -63,11 +67,19 @@ function UsageDialog() {
   const context = usePlugin()
   const theme = context.theme
   const [usage] = createResource(async (): Promise<Usage | { error: string }> => {
-    try {
-      return (await context.client.rpc(UsageRpc).copilot({})) as Usage
-    } catch (error) {
-      const data = (error as { data?: { reason?: string } }).data
-      return { error: data?.reason ?? (error instanceof Error ? error.message : String(error)) }
+    // The server plugin loads lazily per location, so the first call can hit `rpc.unavailable`.
+    for (let attempt = 0; ; attempt++) {
+      try {
+        return (await context.client.rpc(UsageRpc).copilot({})) as Usage
+      } catch (error) {
+        const { type, data, message } = error as { type?: string; message?: string; data?: { reason?: string } }
+        const unavailable = type === "rpc.unavailable" || /RPC is unavailable/.test(message ?? "")
+        if (unavailable && attempt < 20) {
+          await new Promise((resolve) => setTimeout(resolve, 250))
+          continue
+        }
+        return { error: data?.reason ?? (error instanceof Error ? error.message : String(error)) }
+      }
     }
   })
 
@@ -81,7 +93,7 @@ function UsageDialog() {
           <text fg={theme.text.muted}>Loading…</text>
         </Match>
         <Match when={usage() && "error" in usage()!}>
-          <text fg={theme.text.feedback.error}>{(usage() as { error: string }).error}</text>
+          <text fg={theme.text.feedback.error.base}>{(usage() as { error: string }).error}</text>
           <text fg={theme.text.muted}>Log in to GitHub Copilot with /connect or run `gh auth login`.</text>
         </Match>
         <Match when={usage() as Usage | undefined}>
@@ -117,7 +129,7 @@ export default Plugin.define({
               title: "Show usage limits",
               group: "Usage",
               palette: true,
-              slash: { name: "usage" },
+              slash: { name: "usg" },
               run: () => {
                 context.ui.dialog.set({ size: "medium" })
                 context.ui.dialog.show(() => <UsageDialog />)
