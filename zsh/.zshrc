@@ -85,6 +85,7 @@ alias pn="pnpm"
 alias pnx="pnpx"
 alias oc="opencode --port"
 alias nv="nvim"
+alias ts='tailscale --socket="$HOME/.local/state/tailscale/tailscaled.sock"'
 
 function session() {
     local session_name="$1"
