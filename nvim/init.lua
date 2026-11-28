@@ -22,7 +22,7 @@ require("lazy").setup({
 	spec = {
 		{ import = "ns.plugins" },
 	},
-	install = { colorscheme = { "kanagawa-dragon", "habamax" } },
+	install = { colorscheme = { "lackluster", "habamax" } },
 	checker = { enabled = true },
 })
 

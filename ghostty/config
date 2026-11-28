@@ -10,10 +10,9 @@ font-size = 16
 font-thicken = true
 adjust-cell-height = 30%
 
-theme = Kanagawa Dragon
+theme = /Users/jessul01/dotfiles/ghostty/themes/lackluster
 shell-integration-features = no-cursor
 cursor-style = block
-cursor-color = b6927b
 cursor-style-blink = false
 background-opacity = 0.82
 background-blur = 250

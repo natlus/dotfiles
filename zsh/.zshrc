@@ -26,13 +26,13 @@ function git_prompt_info() {
 
     [[ "$branch" == "(detached)" ]] && branch=$(git rev-parse --short HEAD 2>/dev/null)
 
-    print -n "%F{#b6927b}${branch}%f"
+    print -n "%B%F{#708090}${branch}%f%b"
     [[ "$changed" -eq 1 ]] && print -n " %F{white}[+]%f"
     [[ "$ahead" -gt 0 ]] && print -n " %F{green}▴${ahead}%f"
     [[ "$behind" -gt 0 ]] && print -n " %F{red}▿${behind}%f"
 }
 
-PROMPT=$'%F{#8ea4a2}%1~%f: $(git_prompt_info) %F{white}$%f '
+PROMPT=$'%B%1~%b: $(git_prompt_info) %F{white}$%f '
 
 for _f in ${HOME}/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.zsh(N); do
   source $_f; break
@@ -40,7 +40,7 @@ done
 
 # envs
 export PATH=/opt/homebrew/bin:$PATH
-export BAT_THEME="Kanagawa Dragon"
+export BAT_THEME="Lackluster"
 export PROXY_URL="http://proxy.sr.se:8080"
 export NO_PROXY="*.local, 169.254/16, .sr.se, .dm.sr.se, .srse.dm.sr.se"
 export http_proxy=""

@@ -1,0 +1,12 @@
+[theme]
+name = "lackluster"
+
+[colors]
+AlertInfo = "#789978"
+AlertWarn = "#ffaa88"
+AlertError = "#d70000"
+Annotation = "#7a7a7a"
+Base = "#cccccc"
+Guidance = "#555555"
+Important = "#708090"
+Title = "#708090"

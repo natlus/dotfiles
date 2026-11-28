@@ -130,6 +130,7 @@ return {
 					enabled = false,
 				},
 				hl = {
+					cursor = "NsPickerCursorLine",
 					grep_match = "FFFLiveGrepMatch",
 					git_staged = "GitSignsStage", -- Files staged for commit
 					git_modified = "GitSignsChange", -- Modified unstaged files
@@ -288,6 +289,9 @@ return {
 					end,
 				},
 			})
+
+			-- re-apply ui.lua's statusline tweaks now that mini has defined its default highlight groups
+			vim.api.nvim_exec_autocmds("ColorScheme", { group = "ns-ui-tweaks" })
 
 			---@diagnostic disable-next-line: duplicate-set-field
 			statusline.section_location = function()
