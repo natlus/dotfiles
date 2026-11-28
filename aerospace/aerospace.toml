@@ -205,7 +205,6 @@ alt-5 = 'workspace 5'
 alt-6 = 'workspace 6'
 alt-c = 'workspace C'
 alt-e = 'workspace E'
-alt-f = 'workspace F'
 alt-s = 'workspace S'
 alt-t = 'workspace T'
 alt-a = 'workspace A'
@@ -219,10 +218,11 @@ alt-shift-5 = ['move-node-to-workspace 5', 'workspace 5']
 alt-shift-6 = ['move-node-to-workspace 6', 'workspace 6']
 alt-shift-c = ['move-node-to-workspace C', 'workspace C']
 alt-shift-e = ['move-node-to-workspace E', 'workspace E']
-alt-shift-f = ['move-node-to-workspace F', 'workspace F']
 alt-shift-s = ['move-node-to-workspace S', 'workspace S']
 alt-shift-t = ['move-node-to-workspace T', 'workspace T']
 alt-shift-a = ['move-node-to-workspace A', 'workspace A']
+
+alt-f = 'fullscreen --no-outer-gaps'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 # alt-tab = 'workspace-back-and-forth'
