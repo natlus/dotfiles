@@ -52,16 +52,16 @@
       }
     },
     "background": {
-      "base": "$hue.neutral.900",
+      "base": "#101010",
       "raised": {
-        "base": "$hue.neutral.800",
-        "high": "$hue.neutral.700",
-        "max": "$hue.neutral.600"
+        "base": "#141414",
+        "high": "#1a1a1a",
+        "max": "#222222"
       },
       "action": {
         "primary": {
           "base": "transparent",
-          "$hovered": "$hue.neutral.700",
+          "$hovered": "#1a1a1a",
           "$focused": "$hue.interactive.700",
           "$selected": "transparent"
         },
@@ -91,7 +91,7 @@
       }
     },
     "border": {
-      "base": "$hue.neutral.700"
+      "base": "#222222"
     },
     "scrollbar": {
       "base": "$hue.neutral.500"
@@ -106,7 +106,7 @@
       "background": {
         "added": "$hue.green.800",
         "removed": "$hue.orange.800",
-        "context": "$hue.neutral.800"
+        "context": "#141414"
       },
       "highlight": {
         "added": "$hue.green.200",
