@@ -52,7 +52,7 @@
       }
     },
     "background": {
-      "base": "#101010",
+      "base": "#0a0a0a",
       "raised": {
         "base": "#141414",
         "high": "#1a1a1a",

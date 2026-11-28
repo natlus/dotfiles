@@ -1,112 +1,51 @@
-local function project_root(ctx)
-	return vim.fs.root(ctx.filename, {
-		".git",
-		"package.json",
-		".prettierrc",
-		"prettier.config.js",
-		"oxlint.json",
-		".oxlintrc.json",
-	}) or vim.fs.dirname(ctx.filename)
+local function find_up(names, ctx)
+	return vim.fs.find(names, { path = ctx.filename, upward = true })[1] ~= nil
 end
 
 local function package_json(ctx)
-	local path = vim.fs.joinpath(project_root(ctx), "package.json")
-	if vim.fn.filereadable(path) == 0 then
-		return nil
-	end
+	local path = vim.fs.find("package.json", { path = ctx.filename, upward = true })[1]
+	local ok, package = pcall(function()
+		return vim.json.decode(table.concat(vim.fn.readfile(path), "\n"))
+	end)
+	return path and ok and package or {}
+end
 
-	local ok, package = pcall(vim.json.decode, table.concat(vim.fn.readfile(path), "\n"))
-	if not ok then
-		return nil
+-- true if package.json depends on any of `deps` or a script mentions oxfmt
+local function package_uses(package, deps)
+	for _, group in ipairs({ "dependencies", "devDependencies", "peerDependencies", "optionalDependencies" }) do
+		for _, dep in ipairs(deps) do
+			if (package[group] or {})[dep] then
+				return true
+			end
+		end
 	end
-
-	return package
+	for _, script in pairs(package.scripts or {}) do
+		if type(script) == "string" and script:find("oxfmt", 1, true) then
+			return true
+		end
+	end
+	return false
 end
 
 local function has_oxfmt_config(_, ctx)
-	local filetype = vim.bo[ctx.buf].filetype
-	if filetype == "json" or filetype == "jsonc" then
-		return true
-	end
-
-	if
-		vim.fs.find({
-			".oxfmtrc.json",
-			".oxfmtrc.jsonc",
-			"oxfmt.config.ts",
-			"vite.config.ts",
-			"vite.config.js",
-		}, { path = ctx.filename, upward = true })[1] ~= nil
-	then
-		return true
-	end
-
-	local package = package_json(ctx)
-	if not package then
-		return false
-	end
-
-	local dependency_groups = { "dependencies", "devDependencies", "peerDependencies", "optionalDependencies" }
-	for _, group in ipairs(dependency_groups) do
-		local dependencies = package[group]
-		if dependencies and dependencies.oxfmt then
-			return true
-		end
-	end
-
-	for _, script in pairs(package.scripts or {}) do
-		if type(script) == "string" and script:find("oxfmt", 1, true) then
-			return true
-		end
-	end
-
-	return false
+	local ft = vim.bo[ctx.buf].filetype
+	return ft == "json"
+		or ft == "jsonc"
+		or find_up({ ".oxfmtrc.json", ".oxfmtrc.jsonc", "oxfmt.config.ts", "vite.config.ts", "vite.config.js" }, ctx)
+		or package_uses(package_json(ctx), { "oxfmt" })
 end
 
-local function has_oxc_config(_, ctx)
-	if has_oxfmt_config(nil, ctx) then
-		return true
-	end
-
-	if vim.fs.find({
-		"oxlint.json",
-		".oxlintrc.json",
-	}, { path = ctx.filename, upward = true })[1] ~= nil then
-		return true
-	end
-
-	local package = package_json(ctx)
-	if not package then
-		return false
-	end
-
-	local dependency_groups = { "dependencies", "devDependencies", "peerDependencies", "optionalDependencies" }
-	for _, group in ipairs(dependency_groups) do
-		local dependencies = package[group]
-		if
-			dependencies
-			and (dependencies.oxc or dependencies.oxfmt or dependencies.oxlint or dependencies["@oxc-project/runtime"])
-		then
-			return true
-		end
-	end
-
-	for _, script in pairs(package.scripts or {}) do
-		if type(script) == "string" and script:find("oxfmt", 1, true) then
-			return true
-		end
-	end
-
-	return false
-end
-
+-- prettier only where the project has no oxc tooling
 local function has_prettier_config(_, ctx)
-	if has_oxc_config(nil, ctx) then
+	if has_oxfmt_config(nil, ctx) or find_up({ "oxlint.json", ".oxlintrc.json" }, ctx) then
 		return false
 	end
-
-	if
-		vim.fs.find({
+	local package = package_json(ctx)
+	if package_uses(package, { "oxc", "oxlint", "@oxc-project/runtime" }) then
+		return false
+	end
+	return package.prettier ~= nil
+		or find_up({
 			".prettierrc",
 			".prettierrc.json",
 			".prettierrc.json5",
@@ -125,13 +64,7 @@ local function has_prettier_config(_, ctx)
 			"prettier.config.ts",
 			"prettier.config.cts",
 			"prettier.config.mts",
-		}, { path = ctx.filename, upward = true })[1] ~= nil
-	then
-		return true
-	end
-
-	local package = package_json(ctx)
-	return package and package.prettier ~= nil
+		}, ctx)
 end
 
 return {
@@ -140,7 +73,7 @@ return {
 	cmd = { "ConformInfo" },
 	keys = {
 		{
-			"<leader>f",
+			"<leader>cf",
 			function()
 				require("conform").format({ async = true, lsp_format = "fallback" })
 			end,

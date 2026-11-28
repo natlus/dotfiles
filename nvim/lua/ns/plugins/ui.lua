@@ -20,6 +20,30 @@ return {
 				select = "#333333",
 				accent = "#ffffff",
 			}
+			local hl = {}
+			-- vesper-style tiers: one warm accent for functions/types/constants (incl. @lsp.*, since tsc's
+			-- semantic tokens win over treesitter); zenbones-style: keywords get weight, not brightness
+			for _, name in ipairs({
+				"Function", "@function", "@function.call", "@function.method",
+				"@function.method.call", "@function.builtin", "@constructor", "Type",
+				"@type", "@type.builtin", "@type.definition", "Constant",
+				"@constant", "@constant.builtin", "Number", "@number",
+				"@number.float", "Boolean", "@boolean", "@string.escape",
+				"@import.name", "@lsp.type.function", "@lsp.type.method", "@lsp.type.class",
+				"@lsp.type.interface", "@lsp.type.type", "@lsp.type.typeParameter", "@lsp.type.enum",
+				"@lsp.type.enumMember", "@tag",
+			}) do
+				hl[name] = { fg = c.accent }
+			end
+			for _, name in ipairs({
+				"Statement", "Keyword", "Conditional", "Repeat",
+				"Exception", "Include", "@keyword", "@keyword.function",
+				"@keyword.return", "@keyword.conditional", "@keyword.conditional.ternary", "@keyword.repeat",
+				"@keyword.import", "@keyword.operator", "@keyword.exception", "@keyword.modifier",
+				"@keyword.type", "@keyword.coroutine",
+			}) do
+				hl[name] = { fg = c.keyword, bold = true }
+			end
 			require("lackluster").setup({
 				tweak_background = { normal = "none" },
 				-- lift the most muted syntax (stock comments #3a3a3a, keywords #666666)
@@ -30,30 +54,7 @@ return {
 					keyword_exception = c.keyword,
 					builtin = c.mid,
 				},
-				tweak_highlight = {
-					-- vesper-style tiers: one warm accent for functions/types/constants, text for identifiers,
-					-- muted grey for grammar. @lsp.* too, since tsc's semantic tokens win over treesitter
-					Function = { fg = c.accent },
-					["@function"] = { fg = c.accent },
-					["@function.call"] = { fg = c.accent },
-					["@function.method"] = { fg = c.accent },
-					["@function.method.call"] = { fg = c.accent },
-					["@function.builtin"] = { fg = c.accent },
-					["@constructor"] = { fg = c.accent },
-					Type = { fg = c.accent },
-					["@type"] = { fg = c.accent },
-					["@type.builtin"] = { fg = c.accent },
-					["@type.definition"] = { fg = c.accent },
-					Constant = { fg = c.accent },
-					["@constant"] = { fg = c.accent },
-					["@constant.builtin"] = { fg = c.accent },
-					Number = { fg = c.accent },
-					["@number"] = { fg = c.accent },
-					["@number.float"] = { fg = c.accent },
-					Boolean = { fg = c.accent },
-					["@boolean"] = { fg = c.accent },
-					["@string.escape"] = { fg = c.accent },
-					["@import.name"] = { fg = c.accent },
+				tweak_highlight = vim.tbl_extend("force", hl, {
 					["@variable"] = { fg = c.text },
 					["@variable.member"] = { fg = c.text },
 					["@variable.parameter"] = { fg = c.text },
@@ -63,39 +64,12 @@ return {
 					Operator = { fg = c.keyword },
 					["@punctuation.bracket"] = { fg = c.dim },
 					["@punctuation.delimiter"] = { fg = c.dim },
-					["@lsp.type.function"] = { fg = c.accent },
-					["@lsp.type.method"] = { fg = c.accent },
-					["@lsp.type.class"] = { fg = c.accent },
-					["@lsp.type.interface"] = { fg = c.accent },
-					["@lsp.type.type"] = { fg = c.accent },
-					["@lsp.type.typeParameter"] = { fg = c.accent },
-					["@lsp.type.enum"] = { fg = c.accent },
-					["@lsp.type.enumMember"] = { fg = c.accent },
 					["@lsp.type.namespace"] = { fg = c.mid },
 					["@lsp.type.variable"] = { fg = c.text },
 					["@lsp.type.property"] = { fg = c.text },
 					["@lsp.type.parameter"] = { fg = c.text },
 					["@lsp.typemod.variable.readonly"] = { fg = c.text },
 					["@lsp.typemod.variable.defaultLibrary"] = { fg = c.mid },
-					-- zenbones-style: keywords get weight instead of brightness
-					Statement = { fg = c.keyword, bold = true },
-					Keyword = { fg = c.keyword, bold = true },
-					Conditional = { fg = c.keyword, bold = true },
-					Repeat = { fg = c.keyword, bold = true },
-					Exception = { fg = c.keyword, bold = true },
-					Include = { fg = c.keyword, bold = true },
-					["@keyword"] = { fg = c.keyword, bold = true },
-					["@keyword.function"] = { fg = c.keyword, bold = true },
-					["@keyword.return"] = { fg = c.keyword, bold = true },
-					["@keyword.conditional"] = { fg = c.keyword, bold = true },
-					["@keyword.conditional.ternary"] = { fg = c.keyword, bold = true },
-					["@keyword.repeat"] = { fg = c.keyword, bold = true },
-					["@keyword.import"] = { fg = c.keyword, bold = true },
-					["@keyword.operator"] = { fg = c.keyword, bold = true },
-					["@keyword.exception"] = { fg = c.keyword, bold = true },
-					["@keyword.modifier"] = { fg = c.keyword, bold = true },
-					["@keyword.type"] = { fg = c.keyword, bold = true },
-					["@keyword.coroutine"] = { fg = c.keyword, bold = true },
 					CursorLineNr = { bold = true },
 					Directory = { fg = c.mid, bold = true },
 					Todo = { bold = true },
@@ -104,7 +78,6 @@ return {
 					["@comment.documentation"] = { fg = c.comment },
 					SpecialComment = { fg = c.comment },
 					["@label"] = { fg = c.dim },
-					["@tag"] = { fg = c.accent },
 					["@tag.builtin"] = { fg = c.mid },
 					["@tag.attribute"] = { fg = c.dim },
 
@@ -149,7 +122,7 @@ return {
 					BlinkCmpLabelMatch = { fg = c.lack, bold = true },
 					SnacksPickerMatch = { fg = c.lack, bold = true },
 					CopilotSuggestion = { fg = c.comment, italic = true },
-				},
+				}),
 			})
 			local subtle
 			-- theme-agnostic statusline/scrollbar tweaks, re-applied whenever a colorscheme loads
@@ -242,8 +215,6 @@ return {
 				},
 				win = {
 					input = {
-						title = " Open File ",
-						title_pos = "center",
 						wo = {
 							winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,FloatTitle:Title,IncSearch:SnacksPickerMatch",
 						},
@@ -254,22 +225,10 @@ return {
 						},
 					},
 				},
-				sources = {
-					files = {
-						hidden = true,
-						ignored = true,
-						exclude = { ".next", ".next-dev", "node_modules" },
-					},
-				},
 				matcher = {
 					sort_empty = true,
 					history_bonus = true,
 					frecency = true,
-				},
-				formatters = {
-					file = {
-						filename_first = true,
-					},
 				},
 			},
 			notifier = { enabled = true },
@@ -295,11 +254,10 @@ return {
 				desc = "Recent",
 			},
 			{
-				"gr",
+				"grr",
 				function()
 					Snacks.picker.lsp_references()
 				end,
-				nowait = true,
 				desc = "References",
 			},
 			{
@@ -390,7 +348,6 @@ return {
 	{
 		"rachartier/tiny-inline-diagnostic.nvim",
 		event = "VeryLazy",
-		priority = 1000,
 		config = function()
 			require("tiny-inline-diagnostic").setup({
 				preset = "simple",
