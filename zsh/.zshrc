@@ -26,13 +26,29 @@ function git_prompt_info() {
 
     [[ "$branch" == "(detached)" ]] && branch=$(git rev-parse --short HEAD 2>/dev/null)
 
-    print -n "%B%F{#708090}${branch}%f%b"
-    [[ "$changed" -eq 1 ]] && print -n " %F{white}[+]%f"
-    [[ "$ahead" -gt 0 ]] && print -n " %F{green}▴${ahead}%f"
-    [[ "$behind" -gt 0 ]] && print -n " %F{red}▿${behind}%f"
+    # Palette numbers, so the prompt follows the Ghostty theme.
+    print -n " %B%F{6}${branch}%f%b"
+    [[ "$changed" -eq 1 ]] && print -n " %F{8}*%f"
+    [[ "$ahead" -gt 0 ]] && print -n " %F{2}⇡${ahead}%f"
+    [[ "$behind" -gt 0 ]] && print -n " %F{1}⇣${behind}%f"
 }
 
-PROMPT=$'%B%1~%b: $(git_prompt_info) %F{white}$%f '
+# Right prompt: duration of the last command, when it took 3s or more.
+zmodload zsh/datetime
+function _prompt_preexec() { _prompt_start=$EPOCHSECONDS }
+function _prompt_precmd() {
+    RPROMPT=
+    if [[ -n "$_prompt_start" ]]; then
+        local d=$(( EPOCHSECONDS - _prompt_start ))
+        (( d >= 3 )) && RPROMPT="%F{8}${d}s%f"
+        unset _prompt_start
+    fi
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec _prompt_preexec
+add-zsh-hook precmd _prompt_precmd
+
+PROMPT=$'%B%1~%b$(git_prompt_info) %(?.%F{8}.%F{1})❯%f '
 
 for _f in ${HOME}/.config/herdr/plugins/github/herdr-automatic-rename-*/shell/hook.zsh(N); do
   source $_f; break
