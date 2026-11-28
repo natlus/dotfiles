@@ -18,13 +18,11 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-require("ns.themes.vesper").setup()
-
 require("lazy").setup({
 	spec = {
 		{ import = "ns.plugins" },
 	},
-	install = { colorscheme = { "habamax" } },
+	install = { colorscheme = { "kanagawa-dragon", "habamax" } },
 	checker = { enabled = true },
 })
 

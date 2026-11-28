@@ -1,4 +1,44 @@
 return {
+	{
+		"rebelot/kanagawa.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("kanagawa").setup({
+				transparent = true,
+				colors = { theme = { all = { ui = { bg_gutter = "none" } } } },
+				overrides = function(colors)
+					local ui = colors.theme.ui
+					local hl = {
+						SatelliteBar = { bg = ui.bg_p2 },
+						StatusLine = { fg = ui.fg, bg = "none" },
+						StatusLineNC = { fg = ui.nontext, bg = "none" },
+					}
+					-- transparent statusline: section backgrounds made it patchy and the terminal
+					-- stretched the last row's background into its padding
+					for _, name in ipairs({ "Filename", "Fileinfo", "Devinfo", "Inactive" }) do
+						hl["MiniStatusline" .. name] =
+							{ fg = name == "Inactive" and ui.nontext or ui.fg_dim, bg = "none" }
+					end
+					return hl
+				end,
+			})
+			-- mode labels: use the mode color as text instead of a filled block (re-applied if a session reloads the theme)
+			vim.api.nvim_create_autocmd("ColorScheme", {
+				group = vim.api.nvim_create_augroup("ns-statusline-mode", { clear = true }),
+				callback = function()
+					for _, mode in ipairs({ "Normal", "Insert", "Visual", "Replace", "Command", "Other" }) do
+						local name = "MiniStatuslineMode" .. mode
+						local h = vim.api.nvim_get_hl(0, { name = name, link = false })
+						if h.bg then
+							vim.api.nvim_set_hl(0, name, { fg = h.bg, bold = true })
+						end
+					end
+				end,
+			})
+			vim.cmd.colorscheme("kanagawa-dragon")
+		end,
+	},
 	{ "nvim-tree/nvim-web-devicons", opts = {} },
 
 	{

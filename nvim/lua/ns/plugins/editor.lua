@@ -208,7 +208,7 @@ return {
 			})
 
 			local statusline = require("mini.statusline")
-			vim.api.nvim_set_hl(0, "NsStatuslineBasename", { fg = "#ffffff" })
+			vim.api.nvim_set_hl(0, "NsStatuslineBasename", { link = "StatusLine" })
 			local mode_names = {
 				n = "NOR",
 				no = "NOR",
@@ -273,13 +273,13 @@ return {
 						local location = statusline.section_location()
 
 						return statusline.combine_groups({
-							{ strings = { mode } },
+							{ hl = select(2, statusline.section_mode({})), strings = { mode } },
 							"%<",
 							{
 								hl = "MiniStatuslineFilename",
 								strings = { path .. "%#NsStatuslineBasename#" .. basename },
 							},
-							{ strings = { git_info .. "%#MiniStatuslineFilename#" } },
+							{ hl = "MiniStatuslineDevinfo", strings = { git_info } },
 							{ strings = { diagnostics .. "%#MiniStatuslineFilename#" } },
 							"%=",
 							{ hl = "MiniStatuslineFileinfo", strings = { filetype } },
