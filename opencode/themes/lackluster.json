@@ -121,13 +121,13 @@
       }
     },
     "syntax": {
-      "comment": "#3a3a3a",
-      "keyword": "#666666",
-      "function": "#7a7a7a",
+      "comment": "#5f5f5f",
+      "keyword": "#8e8e8e",
+      "function": "#ffffff",
       "variable": "#cccccc",
       "string": "#708090",
-      "number": "#aaaaaa",
-      "type": "#aaaaaa",
+      "number": "#ffffff",
+      "type": "#ffffff",
       "operator": "#7a7a7a",
       "punctuation": "#7a7a7a"
     },
