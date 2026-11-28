@@ -132,6 +132,7 @@ local function set_highlights(p)
 	hl(0, "PmenuThumb", { bg = p.scrollbar })
 
 	-- Messages
+	hl(0, "MsgArea", { fg = p.fg, bg = p.bg })
 	hl(0, "ModeMsg", { fg = p.fg, bold = true })
 	hl(0, "MoreMsg", { fg = p.string })
 	hl(0, "Question", { fg = p.string })
