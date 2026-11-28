@@ -88,6 +88,30 @@ alias oc="opencode --port"
 alias nv="nvim"
 alias ts='tailscale --socket="$HOME/.local/state/tailscale/tailscaled.sock"'
 
+# Report lazygit to the terminal (OSC 7577) so Rex brings it back after a
+# server restart. Rex trusts this with its `resume.trust.lazygit` rule.
+function lazygit() {
+    if [[ -z $OSC7577_TOKEN || $# -gt 0 ]]; then
+        command lazygit "$@"
+        return
+    fi
+    local token=$OSC7577_TOKEN shell=$$ dir=$PWD
+    {
+        local pid i
+        for i in {1..40}; do
+            pid=$(pgrep -P $shell -x lazygit | head -n 1)
+            [[ -n $pid ]] && break
+            sleep 0.05
+        done
+        if [[ -n $pid ]]; then
+            local body="pid=${pid}:time=$(date +%s):argv=$(print -rn -- lazygit | base64):cwd=$(print -rn -- $dir | base64 | tr -d '\n')"
+            local mac=$(print -rn -- "${body}:${token}" | shasum -a 256 | cut -c1-64)
+            print -rn -- $'\e]7577;'"${body}:mac=${mac}"$'\e\\' >/dev/tty
+        fi
+    } &!
+    command env -u OSC7577_TOKEN lazygit
+}
+
 function session() {
     local session_name="$1"
 
@@ -267,9 +291,6 @@ function proxyoff() {
 [ -s "/Users/jessul01/.bun/_bun" ] && source "/Users/jessul01/.bun/_bun"
 
 eval "$(atuin init --disable-up-arrow zsh)"
-
-# rexurrect
-source /opt/homebrew/share/rexurrect/rexurrect.plugin.zsh
 
 # opencode
 export PATH=/Users/jessul01/.opencode/bin:$PATH

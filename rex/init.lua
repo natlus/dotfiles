@@ -46,16 +46,10 @@ rex.bind("ctrl+s>n", "open_project")
 
 require("open_worktree")
 
--- automatically restore sessions using rexurrect
---
-do
-	local r = rex.exec({ "/opt/homebrew/bin/rexurrect", "auto-restore" }, {
-		env = {
-			REXURRECT_STATE_DIR = "/Users/jessul01/.local/state/rexurrect",
-			REXURRECT_CONFIG = "/Users/jessul01/.config/rexurrect/config.toml",
-		},
-	})
-	if r then
-		io.stderr:write(r.stderr)
-	end
-end
+-- program resume after a server restart. opencode (opencode/rex-resume) and
+-- claude use the built-in rules; nvim (nvim/lua/ns/resume.lua) and lazygit
+-- (zsh/.zshrc) need these.
+rex.set("resume.trust.nvim", {
+	command = { "nvim", "-S", rex.match.under("~/.local/state/nvim/sessions") },
+})
+rex.set("resume.trust.lazygit", { command = { "lazygit" } })

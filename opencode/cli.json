@@ -9,7 +9,8 @@
     "sidebar": "auto",
     "scrollbar": true,
     "thinking": "show",
-    "markdown": "rendered"
+    "markdown": "rendered",
+    "grouping": "auto"
   },
   "animations": true,
   "autoupdate": true,
@@ -23,7 +24,8 @@
     "paste": "full"
   },
   "plugins": [
-    "./pr-info"
+    "./pr-info",
+    "./rex-resume"
   ],
   "scroll": {
     "acceleration": true
