@@ -6,13 +6,13 @@ gui:
   mouseEvents: true
   theme:
     activeBorderColor:
-      - "#708090"
+      - "#7788aa"
     inactiveBorderColor:
       - "#444444"
     searchingActiveBorderColor:
-      - "#708090"
+      - "#7788aa"
     optionsTextColor:
-      - "#708090"
+      - "#7788aa"
     selectedLineBgColor:
       - "#2a2a2a"
     inactiveViewSelectedLineBgColor:
@@ -20,11 +20,11 @@ gui:
     cherryPickedCommitFgColor:
       - "#0a0a0a"
     cherryPickedCommitBgColor:
-      - "#708090"
+      - "#7788aa"
     markedBaseCommitFgColor:
       - "#0a0a0a"
     markedBaseCommitBgColor:
-      - "#708090"
+      - "#7788aa"
     unstagedChangesColor:
       - "#708090"
     defaultFgColor:

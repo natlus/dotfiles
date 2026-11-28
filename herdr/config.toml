@@ -115,7 +115,7 @@ agent_panel_sort = "spaces"
 
 # Accent color for highlights, borders, and navigation UI.
 # Accepts: hex (#89b4fa), named colors (cyan, blue, magenta), or rgb(r,g,b)
-accent = "#708090"
+accent = "#7788aa"
 
 [ui.sidebar.spaces]
 row_gap = 0
