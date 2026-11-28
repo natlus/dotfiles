@@ -29,13 +29,15 @@ local function has_oxfmt_config(_, ctx)
 		return true
 	end
 
-	if vim.fs.find({
-		".oxfmtrc.json",
-		".oxfmtrc.jsonc",
-		"oxfmt.config.ts",
-		"vite.config.ts",
-		"vite.config.js",
-	}, { path = ctx.filename, upward = true })[1] ~= nil then
+	if
+		vim.fs.find({
+			".oxfmtrc.json",
+			".oxfmtrc.jsonc",
+			"oxfmt.config.ts",
+			"vite.config.ts",
+			"vite.config.js",
+		}, { path = ctx.filename, upward = true })[1] ~= nil
+	then
 		return true
 	end
 
@@ -66,12 +68,10 @@ local function has_oxc_config(_, ctx)
 		return true
 	end
 
-	if
-		vim.fs.find({
-			"oxlint.json",
-			".oxlintrc.json",
-		}, { path = ctx.filename, upward = true })[1] ~= nil
-	then
+	if vim.fs.find({
+		"oxlint.json",
+		".oxlintrc.json",
+	}, { path = ctx.filename, upward = true })[1] ~= nil then
 		return true
 	end
 
@@ -83,7 +83,10 @@ local function has_oxc_config(_, ctx)
 	local dependency_groups = { "dependencies", "devDependencies", "peerDependencies", "optionalDependencies" }
 	for _, group in ipairs(dependency_groups) do
 		local dependencies = package[group]
-		if dependencies and (dependencies.oxc or dependencies.oxfmt or dependencies.oxlint or dependencies["@oxc-project/runtime"]) then
+		if
+			dependencies
+			and (dependencies.oxc or dependencies.oxfmt or dependencies.oxlint or dependencies["@oxc-project/runtime"])
+		then
 			return true
 		end
 	end

@@ -14,15 +14,6 @@ map({ "n", "v" }, "<leader>d", [["_d]])
 -- clear search highlight on esc
 map("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
-map("n", "do", "<cmd>:Gitsigns preview_hunk_inline<CR>", { desc = "Preview diff hunk" })
-map("n", "dp", "<cmd>:Gitsigns reset_hunk<CR>", { desc = "Reset diff hunk" })
-
-map("n", "[d", function()
-	vim.diagnostic.get_prev()
-end)
-map("n", "]d", function()
-	vim.diagnostic.get_next()
-end)
 map("n", "gh", function()
 	vim.diagnostic.open_float()
 end)
