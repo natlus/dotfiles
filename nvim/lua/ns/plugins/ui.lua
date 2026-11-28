@@ -105,7 +105,7 @@ return {
 					["@markup.link.url"] = { fg = c.blue, underline = true },
 					["@markup.list"] = { fg = c.dim },
 					Folded = { fg = c.dim },
-					WhichKey = { fg = c.lack },
+					WhichKey = { fg = c.blue },
 					WhichKeyDesc = { fg = c.mid },
 					WhichKeyGroup = { fg = c.text },
 					TroubleNormal = { fg = c.text },
@@ -119,8 +119,8 @@ return {
 					BlinkCmpMenuSelection = { fg = c.bright, bg = c.select, overwrite = true },
 
 					-- groups lackluster leaves undefined
-					BlinkCmpLabelMatch = { fg = c.lack, bold = true },
-					SnacksPickerMatch = { fg = c.lack, bold = true },
+					BlinkCmpLabelMatch = { fg = c.blue, bold = true },
+					SnacksPickerMatch = { fg = c.blue, bold = true },
 					CopilotSuggestion = { fg = c.comment, italic = true },
 				}),
 			})
