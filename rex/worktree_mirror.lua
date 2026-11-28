@@ -235,9 +235,9 @@ local function ask_mode(src, name)
 	})
 	local stays
 	if src.attach then
-		stays = "Only create the worktree, the agent still moves into it"
+		stays = "Only create the worktree, the agent moves into it here"
 	elseif src.resume then
-		stays = "Only create the worktree, this conversation stays here"
+		stays = "Only create the worktree, this conversation moves into it here"
 	else
 		stays = "Only create the worktree and branch"
 	end
@@ -519,7 +519,7 @@ local function open_session(src, wt)
 		windows = { { window_label = name, layout = { block = { flavor = SHELL_FLAVOR, options = options } } } }
 	end
 
-	local created = must(rex.call("session.create", { label = name, initial_windows = windows }))
+	local created = must(rex.call("session.create", { label = "\xee\x9c\xa5 " .. name, initial_windows = windows }))
 	local session_id = created.session_id
 	-- Focus and zoom calls are only accepted for the attached session.
 	rex.call("session.attach", { session_id = session_id })

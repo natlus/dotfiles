@@ -1,0 +1,65 @@
+#!/bin/sh
+# Moves the calling agent's work into a new git worktree. Used by the
+# rex-worktree skill.
+#
+#   rex-wt NAME [TASK]        move this conversation (or continue in place)
+#   rex-wt --new NAME TASK    hand TASK to a fresh agent in the worktree
+#
+# NAME "" lets Rex ask for one. Prints worktree_mirror's JSON. If Rex can't
+# be used (no live pane, no Rex, or the action fails before creating
+# anything), it creates the worktree with plain git and prints
+# {"mode":"none","fallback":true,...}: the caller continues there itself.
+
+new=
+[ "$1" = --new ] && { new=1; shift; }
+name=$1 task=$2
+here=$(dirname "$0")
+id=${CLAUDE_CODE_SESSION_ID:-$OPENCODE_SESSION_ID}
+
+fallback() {
+	[ -n "$name" ] || { echo "rex-wt: Rex isn't available, so a branch name is required" >&2; exit 1; }
+	root=$(git rev-parse --show-toplevel) || exit 1
+	main=$(git rev-parse --path-format=absolute --git-common-dir | sed 's#/\.git/*$##')
+	wt="$main/.claude/worktrees/$name"
+	existing=false
+	if [ ! -d "$wt" ]; then
+		if git show-ref --verify --quiet "refs/heads/$name"; then
+			existing=true
+			git worktree add "$wt" "$name" >&2 || exit 1
+		else
+			git worktree add -b "$name" "$wt" >&2 || exit 1
+		fi
+		# Gitignored env files don't come with the checkout.
+		git -C "$root" ls-files --others --ignored --exclude-standard -- '.env*' | while read -r f; do
+			mkdir -p "$wt/$(dirname "$f")" && cp -p "$root/$f" "$wt/$f"
+		done
+	fi
+	jq -nc --arg wt "$wt" --arg b "$name" --argjson e "$existing" --arg why "$1" \
+		'{mode: "none", fallback: true, reason: $why, worktree: $wt, branch: $b, existing_branch: $e}'
+	exit 0
+}
+
+if "$here/in-rex-pane.sh"; then
+	if [ -n "$new" ]; then
+		args=$(jq -nc --arg name "$name" --arg task "$task" '{name: $name, task: $task}')
+	else
+		args=$(jq -nc --arg name "$name" --arg resume "$id" --arg task "$task" '{name: $name, resume: $resume, task: $task}')
+	fi
+	set -- rex do -s "$REX_SESSION" -b "$REX_BLOCK" worktree_mirror --json --args "$args"
+elif "$here/in-rex-background.sh"; then
+	[ -z "$new" ] || { echo "rex-wt: --new isn't supported from a background session" >&2; exit 1; }
+	args=$(jq -nc --arg name "$name" --arg cwd "$PWD" --arg attach "$id" '{name: $name, cwd: $cwd, attach: $attach}')
+	set -- env -u REX_SESSION -u REX_BLOCK rex do worktree_mirror --json --args "$args"
+else
+	fallback "no live Rex pane"
+fi
+
+if out=$("$@"); then
+	printf '%s\n' "$out"
+else
+	printf '%s\n' "$out" >&2
+	main=$(git rev-parse --path-format=absolute --git-common-dir 2>/dev/null | sed 's#/\.git/*$##')
+	# Don't paper over a failure that already left a worktree behind.
+	[ -n "$name" ] && [ -d "$main/.claude/worktrees/$name" ] && { echo "rex-wt: worktree_mirror failed after creating $main/.claude/worktrees/$name" >&2; exit 1; }
+	fallback "worktree_mirror failed"
+fi
