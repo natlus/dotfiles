@@ -75,6 +75,10 @@ if.app-id = 'app.zen-browser.zen'
 run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
+if.app-id = 'com.ardia.browser'
+run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
 if.app-id = 'org.chromium.Chromium'
 run = 'move-node-to-workspace 3'
 
