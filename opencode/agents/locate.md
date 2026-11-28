@@ -3,7 +3,8 @@ description: >-
   Cheap, fast locator. Use to find WHERE something is: files matching a pattern,
   definitions or usages of a symbol, config keys, string occurrences. Returns paths
   and line numbers only. Do NOT use to explain how code works or trace behaviour
-  across files (use trace), or to judge correctness (use review).
+  across files (use trace), to judge correctness (use review), or for anything on
+  the web (use research).
 mode: subagent
 model: github-copilot/claude-haiku-5.5
 permissions:

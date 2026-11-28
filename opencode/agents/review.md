@@ -14,11 +14,11 @@ permissions:
   - { action: read, resource: "*.env.*", effect: deny }
   - { action: grep, resource: "*", effect: allow }
   - { action: glob, resource: "*", effect: allow }
-  - { action: shell, resource: "git log*", effect: allow }
-  - { action: shell, resource: "git show*", effect: allow }
-  - { action: shell, resource: "git diff*", effect: allow }
-  - { action: shell, resource: "git blame*", effect: allow }
-  - { action: shell, resource: "git status*", effect: allow }
+  - { action: shell, resource: "git log *", effect: allow }
+  - { action: shell, resource: "git show *", effect: allow }
+  - { action: shell, resource: "git diff *", effect: allow }
+  - { action: shell, resource: "git blame *", effect: allow }
+  - { action: shell, resource: "git status *", effect: allow }
   - { action: shell, resource: "*--output*", effect: deny }
 ---
 
